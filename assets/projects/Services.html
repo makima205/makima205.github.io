@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Projects | CreateSpace</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/Services.css">
+</head>
+
+<body>
+
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../index.html">
+         CreateSpace</a>
+
+    <nav class="site-nav" aria-label="Primary navigation">
+      <ul>
+        <li><a href="projects.html">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#clients">Clients</a></li>
+        <li><a href="..\contact\contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+<!-- MAIN (Center website) -->
+<div class="main">
+<h1>Projects</h1>
+<p>An architecture firm in India designing solutions that enhance the built environment and prioritise user experience. Our designs are centred around users, backed by extensive research, and seamlessly integrated into their unique contexts.</p>
+<div class="row">
+  <div class="column">
+    <div class="card">
+      <img src="https://picsum.photos/640/420?14" alt="Architecture" style="width:100%">
+      <div class="container">
+        <h2>Architecture</h2>
+        <p>Our architectural projects focus on spatial exploration, allowing us to push the boundaries of conventional design while maintaining a strong connection to the local context</p>
+        <p><button class="button">View projects</button></p>
+      </div>
+    </div>
+  </div>
+  <div class="column">
+    <div class="card">
+      <img src="https://picsum.photos/640/420?14" alt="Interior Design" style="width:100%">
+      <div class="container">
+        <h2>Interior Design</h2>
+        <p>Our architectural projects focus on spatial exploration, allowing us to push the boundaries of conventional design while maintaining a strong connection to the local context</p>
+        <p><button class="button">View projects</button></p>
+      </div>
+    </div>
+  </div>
+  <div class="column">
+    <div class="card">
+      <img src="https://picsum.photos/640/420?14" alt="Urban Design" style="width:100%">
+      <div class="container">
+        <h2>Urban Design</h2>
+        <p>Our architectural projects focus on spatial exploration, allowing us to push the boundaries of conventional design while maintaining a strong connection to the local context</p>
+        <p><button class="button">View projects</button></p>
+      </div>
+    </div>
+  </div>
+  <div class="column">
+    <div class="card">
+      <img src="https://picsum.photos/640/420?14" alt="Architecture" style="width:100%">
+      <div class="container">
+        <h2>Architecture</h2>
+        <p>Our architectural projects focus on spatial exploration, allowing us to push the boundaries of conventional design while maintaining a strong connection to the local context</p>
+        <p><button class="button">View projects</button></p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<footer id="footer">
+  <div class="footer-top">
+    <div class="footer-grid">
+      <div>
+        <h3 class="footer-brand">ExampleCloud</h3>
+        <p>Global infrastructure built for modern applications and distributed teams.</p>
+      </div>
+
+      <div>
+        <h4>Products</h4>
+        <a href="#">Edge network</a>
+        <a href="#">Application security</a>
+        <a href="#">Traffic acceleration</a>
+        <a href="#">Developer platform</a>
+      </div>
+
+      <div>
+        <h4>Resources</h4>
+        <a href="#">Documentation</a>
+        <a href="#">API reference</a>
+        <a href="#">Status</a>
+        <a href="#">Community</a>
+      </div>
+
+      <div>
+        <h4>Company</h4>
+        <a href="#">About</a>
+        <a href="#">Careers</a>
+        <a href="#">Press</a>
+        <a href="#">Compliance</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    © 2025 space s4. All rights reserved.
+  </div>
+</footer>
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".card").forEach(card => {
+    const title = card.querySelector("h2")?.textContent.trim();
+    const button = card.querySelector(".button");
+
+    if (!button) return;
+
+    
+    if (title === "Architecture") {
+      button.addEventListener("click", function () {
+        window.location.href = "Architecture/Architecture.html";
+      });
+    }
+    if (title === "Urban Design") {
+      button.addEventListener("click", function () {
+        window.location.href = "Urban_Design/Urban.html";
+      });
+    }
+    
+    if (title === "Interior Design") {
+      button.addEventListener("click", function () {
+        window.location.href = "Interior_Design/Interior.html";
+      });
+    }
+  });
+});
+
+</script>
+
+</body>
+</html>
