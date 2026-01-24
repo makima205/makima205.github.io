@@ -15,20 +15,26 @@
 
 <!-- ===== HEADER (UNCHANGED FROM EARLY FILE) ===== -->
 <header class="site-header">
-  <div class="container header-inner">
-    <a class="brand" href="../../../../index.html">CreateSpace</a>
+    <div class="container header-inner">
+      <a class="brand" href="../../../../index.html">CreateSpace</a>
 
-    <nav class="site-nav">
-      <ul>
-        <li><a href="../../../../assets/projects/Services.html">Services</a></li>
-        <li><a href="index.html#about">About</a></li>
-        <li><a href="index.html#news">News</a></li>
-        <li><a href="index.html#clients">Clients</a></li>
-        <li><a href="../../../../assets/contact/contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+      <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="site-nav" aria-label="Primary navigation">
+        <ul>
+          <li><a href="../../../projects/Services.html">Services</a></li>
+          <li><a href="../../../../AboutUs/aboutus.html">About</a></li>
+          <li><a href="#news">News</a></li>
+          <li><a href="#clients">Clients</a></li>
+          <li><a href="../../../contact/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
 <!-- ===== PROJECT CONTENT (S4 STYLE) ===== -->
 <main class="component-body">
@@ -149,7 +155,7 @@
 
       <div>
         <h4>Company</h4>
-        <a href="#">About</a>
+        <a href="../../../../AboutUs/aboutus.html">About</a>
         <a href="#">Careers</a>
         <a href="..\..\..\contact\contact.html">Conect us</a>
       </div>
@@ -218,5 +224,6 @@
     if(e.target === lightbox) lightbox.style.display = "none";
   };
 </script>
+ <script src="../../../js/script.js"></script>
 </body>
 </html>

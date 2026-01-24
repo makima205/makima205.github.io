@@ -106,7 +106,6 @@ body {
   height: 420px;
   background-size: cover;
   background-position: center;
-  /* border-radius:var(--radius); */
   overflow: hidden;
   box-shadow: 0 20px 40px rgba(0, 0, 0, .12);
   transition: transform var(--transition), box-shadow var(--transition);
@@ -181,7 +180,6 @@ body {
 
 .about-img {
   height: 520px;
-  /* border-radius:var(--radius); */
   background-size: cover;
   background-position: center;
 }
@@ -198,10 +196,9 @@ body {
   text-align: justify;
 }
 
-/* ================= NEWS (UPDATED FIX) ================= */
+/* ================= NEWS (INFINITE SCROLL FIXED) ================= */
 .news {
-  margin: 56px 0 24px 0; /* Adjusted margins for full width flow */
-  /* Remove max-height constraint to avoid clipping shadows */
+  margin: 56px 0 24px 0;
   padding-bottom: 30px;
 }
 
@@ -222,8 +219,8 @@ body {
   overflow: hidden;
   width: 100%;
   position: relative;
-  padding: 20px 0; /* Room for shadow */
-  /* Gradient mask makes the sides fade out smoothly */
+  padding: 20px 0;
+  /* Soft fade on edges */
   mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
 }
@@ -232,9 +229,8 @@ body {
   display: flex;
   gap: 24px;
   width: max-content;
-  /* CRITICAL FIX: Always align left so first card isn't cut */
-  justify-content: flex-start !important; 
-  /* Slower animation for 16+ cards (60s) */
+  /* CRITICAL: Force left alignment for loop */
+  justify-content: flex-start !important;
   animation: newsLoop 60s linear infinite;
   will-change: transform;
 }
@@ -244,23 +240,17 @@ body {
 }
 
 @keyframes newsLoop {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    /* Moves to -50% because we are cloning the cards in JS */
-    transform: translateX(-50%);
-  }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .news-card {
-  /* Fixed width ensures animation math is correct */
-  flex: 0 0 300px;
+  flex: 0 0 300px; /* Fixed width */
   max-width: 300px;
   background: #fff;
   box-shadow: 0 10px 30px rgba(0, 0, 0, .06);
   transition: transform var(--transition), box-shadow var(--transition);
-  border-radius: 8px; /* Optional rounded corners */
+  border-radius: 8px;
   overflow: hidden;
 }
 
@@ -271,7 +261,7 @@ body {
 
 .news-card img {
   width: 100%;
-  height: 160px; /* Slightly taller image */
+  height: 160px;
   object-fit: cover;
 }
 
@@ -381,15 +371,13 @@ body {
   transition: all 0.3s ease;
 }
 
-/* Mobile menu open state */
+/* Mobile menu open state - Transformed into X */
 .menu-toggle.active span:nth-child(1) {
   transform: rotate(45deg) translate(7px, 7px);
 }
-
 .menu-toggle.active span:nth-child(2) {
   opacity: 0;
 }
-
 .menu-toggle.active span:nth-child(3) {
   transform: rotate(-45deg) translate(7px, -7px);
 }
@@ -490,319 +478,152 @@ footer {
   margin-bottom: 12px;
 }
 
-/* ================= RESPONSIVE ================= */
+/* ================= RESPONSIVE (UPDATED & BOOSTED) ================= */
 
 /* Large Desktop (1200px - 1440px) */
 @media(max-width:1440px) {
-  .what-we-do,
-  .about,
-  .news,
-  .clients {
+  .what-we-do, .about, .news, .clients {
     margin: 56px 50px 24px 50px;
   }
 }
 
 /* Desktop / Small Laptop (1024px - 1200px) */
 @media(max-width:1200px) {
-  .cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  /* Note: .news-card size is now controlled by the 300px flex-basis above, 
-     so we don't need to override it here for the carousel */
-
-  .what-we-do,
-  .about,
-  .news,
-  .clients {
-    margin: 40px 40px 24px 40px;
-  }
-
-  .hero-text h1 {
-    font-size: 56px;
-  }
+  .cards { grid-template-columns: repeat(2, 1fr); }
+  .what-we-do, .about, .news, .clients { margin: 40px 40px 24px 40px; }
+  .hero-text h1 { font-size: 56px; }
 }
 
 /* Tablet Landscape (768px - 1024px) */
 @media(max-width:1024px) {
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-  }
-
-  .location {
-    gap: 10%;
-  }
-
-  .location a {
-    font-size: 18px;
-  }
-
-  .site-nav ul {
-    gap: 16px;
-  }
-
-  .site-nav a {
-    font-size: 0.95rem;
-  }
-
-  .about {
-    gap: 50px;
-  }
-
-  .about-img {
-    height: 450px;
-  }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .location { gap: 10%; }
+  .site-nav ul { gap: 16px; }
+  .about { gap: 50px; }
+  .about-img { height: 450px; }
 }
 
-/* Tablet Portrait & Large Mobile (600px - 768px) */
+/* ================= MOBILE & TABLET PORTRAIT (Important Fixes) ================= */
 @media(max-width:768px) {
-  .cards {
-    grid-template-columns: 1fr;
+  /* 1. Layout Adjustments */
+  .cards { grid-template-columns: 1fr; }
+  
+  .about { display: flex; flex-direction: column; }
+  .about-text { order: 1; }
+  .about-img { 
+    order: 2; 
+    width: 100%; 
+    height: 350px; /* Taller image */
+    background-size: cover; 
+    background-position: center; 
+  }
+  .about-text p { order: 3; }
+
+  /* 2. Text Size BOOST for Mobile Reading */
+  body { font-size: 18px; } /* Base size increase */
+  
+  .hero-text h1 { font-size: 48px; line-height: 1.1; }
+  .hero-text p { font-size: 20px; }
+
+  .what-we-do h1, .about-text h1, .news h1, .clients h1 {
+    font-size: 40px; /* Much larger headers */
   }
 
-  .about {
-    display: flex;
-    flex-direction: column;
+  .what-we-do p, .about-text p {
+    font-size: 1.15rem; /* ~19px readable text */
+    line-height: 1.7;
+    text-align: left; /* Easier to read on mobile than justify/center */
   }
 
-  .about-text {
-    order: 1;
-  }
-
-  .about-img {
-    order: 2;
-    width: 100%;
-    height: 300px;
-    background-size: cover;
-    background-position: center;
-  }
-
-  .about-text p {
-    order: 3;
-  }
-
-  /* Mobile Navigation */
-  .menu-toggle {
-    display: flex;
-  }
-
+  /* 3. Mobile Navigation Menu */
+  .menu-toggle { display: flex; }
+  
   .site-nav {
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
-    background: rgba(7, 16, 36, .98);
-    backdrop-filter: blur(10px);
+    background: rgba(7, 16, 36, 0.98);
+    backdrop-filter: blur(15px);
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.4s ease;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
   }
-
-  .site-nav.active {
-    max-height: 400px;
-  }
-
+  
+  /* Class added via JS */
+  .site-nav.active { max-height: 500px; } 
+  
   .site-nav ul {
     flex-direction: column;
     gap: 0;
-    padding: 0;
+    padding: 20px 0;
   }
-
-  .site-nav li {
-    border-bottom: 1px solid rgba(255, 255, 255, .1);
-  }
-
+  
+  .site-nav li { border-bottom: 1px solid rgba(255, 255, 255, .08); }
+  
   .site-nav a {
     display: block;
-    padding: 16px 6%;
-    font-size: 1rem;
+    padding: 20px 8%; /* Larger touch target */
+    font-size: 1.2rem; /* Bigger menu text */
+    letter-spacing: 1px;
   }
 
-  .brand {
-    font-size: 1.2rem;
-  }
+  /* 4. Footer & Sections */
+  .footer-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+  .footer-grid a { font-size: 1.1rem; padding: 5px 0; } /* Bigger links */
+  .social { justify-content: center; gap: 20px; }
+  .social a img { width: 28px; height: 28px; } /* Bigger icons */
+  
+  .location { flex-direction: column; gap: 20px; }
+  .location a { font-size: 18px; }
 
-  /* Footer Responsive */
-  .footer-top {
-    padding: 20px 5%;
-  }
+  .what-we-do, .about, .news, .clients { margin: 40px 25px; }
 
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 30px;
-    text-align: center;
-  }
-
-  .footer-grid a {
-    font-size: 1rem;
-  }
-
-  .social {
-    justify-content: center;
-    gap: 12px;
-  }
-
-  .location {
-    flex-direction: column;
-    gap: 15px;
-    padding: 15px 5%;
-  }
-
-  .location a {
-    font-size: 16px;
-  }
-
-  .footer-bottom {
-    padding: 15px 5%;
-    font-size: .8rem;
-  }
-
-  /* Sections */
-  .what-we-do,
-  .about,
-  .news,
-  .clients {
-    margin: 30px 20px 20px 20px;
-  }
-
-  .hero-text {
-    left: 5%;
-    right: 5%;
-    bottom: 15%;
-  }
-
-  .hero-text h1 {
-    font-size: 42px;
-  }
-
-  .hero-text p {
-    font-size: 17px;
-  }
-
-  .what-we-do h1,
-  .about-text h1,
-  .news h1,
-  .clients h1 {
-    font-size: 36px;
-  }
-
-  .service-card {
-    height: 380px;
-  }
-
-  /* NEWS MOBILE: Switch from infinite loop to Swipeable Cards */
+  /* 5. NEWS SLIDESHOW FOR MOBILE (UPDATED) */
   .news-carousel {
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    mask-image: none; /* Remove fade effect on mobile */
-    -webkit-mask-image: none;
+    overflow: hidden; /* Hide scrollbar for seamless look */
+    padding-bottom: 20px;
+    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
   }
 
   .news-track {
     display: flex;
     gap: 16px;
     width: max-content;
-    animation: none; /* Stop the auto loop on mobile */
-    transform: none !important; /* Reset position */
+    /* Enable the infinite loop animation */
+    animation: newsLoop 45s linear infinite; 
+    transform: translateX(0); /* Reset generic transform */
+  }
+
+  /* Pause scrolling if user touches it */
+  .news-track:active, .news-track:focus {
+    animation-play-state: paused;
   }
 
   .news-card {
-    flex: 0 0 calc(50vw - 20px); /* 2 cards visible */
-    max-width: none;
-    scroll-snap-align: start;
+    /* Use fixed width (pixels) instead of vw to ensure smooth looping calculations */
+    flex: 0 0 260px; 
+    max-width: 260px;
+    scroll-snap-align: unset; /* Disable snap */
   }
 
-  .news-card img {
-    height: 160px;
-    object-fit: cover;
-  }
-
-  .news-carousel::-webkit-scrollbar {
-    display: none;
-  }
-}
-
-/* Mobile (480px - 600px) */
-@media(max-width:600px) {
-  .hero-text h1 {
-    font-size: 36px;
-  }
-
-  .what-we-do h1,
-  .about-text h1,
-  .news h1,
-  .clients h1 {
-    font-size: 32px;
-  }
-
-  .client-slider {
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-  }
-
-  .logo {
-    width: 120px;
-  }
+  .news-card img { height: 180px; }
 }
 
 /* Small Mobile (below 480px) */
 @media(max-width:480px) {
-  .footer-grid h4 {
-    font-size: 1.1rem;
+  .hero-text h1 { font-size: 38px; }
+  .hero-text p { font-size: 18px; }
+  
+  .what-we-do h1, .about-text h1, .news h1, .clients h1 {
+    font-size: 34px;
   }
-
-  .footer-brand {
-    font-size: 1.3rem;
-  }
-
-  .social a img {
-    width: 20px;
-    height: 20px;
-  }
-
-  .location a {
-    font-size: 15px;
-  }
-
-  .location img {
-    width: 22px;
-    height: 22px;
-  }
-
-  .hero-text h1 {
-    font-size: 28px;
-  }
-
-  .hero-text p {
-    font-size: 15px;
-  }
-
-  .what-we-do h1,
-  .about-text h1,
-  .news h1,
-  .clients h1 {
-    font-size: 26px;
-  }
-
-  .service-card {
-    height: 350px;
-  }
-
-  .what-we-do,
-  .about,
-  .news,
-  .clients {
-    margin: 20px 15px 15px 15px;
-  }
-
-  .brand {
-    font-size: 1.1rem;
-  }
-
-  .header-inner {
-    padding: 12px 4%;
-  }
+  
+  .brand { font-size: 1.2rem; }
+  .header-inner { padding: 15px 5%; }
+  
+  .service-card { height: 380px; }
+  .service-card .card-title { font-size: 1.4rem; } /* Bigger card titles */
 }

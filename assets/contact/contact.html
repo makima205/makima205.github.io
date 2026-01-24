@@ -1,147 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact | Napul Labde</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | CreateSpace</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="..\css\style.css">
-<link rel="stylesheet" href="..\css\contact.css">
-
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/contact.css">
 </head>
 
 <body>
 
-<div class="wrap">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../../index.html">CreateSpace</a>
 
-<header class="site-header">
-  <div class="container header-inner">
-    <a class="brand" href="../../index.html">
-         CreateSpace</a>
+      <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-    <nav class="site-nav" aria-label="Primary navigation">
-      <ul>
-        <li><a href="../projects/Services.html">Services</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#news">News</a></li>
-        <li><a href="#clients">Clients</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-<div class="main-content">
-<section id="contact" aria-labelledby="contactHeading">
-                <div class="two-col contact-grid">
-                    <div>
-                        <h2 class="section-title" id="contactHeading">Get In Touch</h2>
-                        <p class="muted">Prefer GitHub/LinkedIn or drop a message — I reply quickly. Replace the email below with your preferred contact address.</p>
-                        <div style="margin-top:12px">
-                            <div class="muted"><strong>GitHub:</strong> <a href="https://github.com/napul205" target="_blank" rel="noreferrer">github.com/napul205</a></div>
-                            <div class="muted" style="margin-top:6px"><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/napul-labde/" target="_blank" rel="noreferrer">/in/napul-labde</a></div>
-                            <div class="muted" style="margin-top:6px"><strong>Email:</strong> <a href="mailto:your.email@example.com">your.email@example.com</a></div>
-                            <div class="muted" style="margin-top:10px"><strong>Social:</strong>
-                                <div class="socials" style="display:inline-flex; margin-left:8px">
-                                    <a href="https://www.instagram.com/your_instagram" target="_blank" rel="noreferrer" aria-label="Instagram">
-                                        <!-- Instagram SVG -->
-                                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="18.2" cy="5.8" r="0.6" fill="currentColor"/></svg>
-                                    </a>
-                                    <a href="https://www.facebook.com/your_facebook" target="_blank" rel="noreferrer" aria-label="Facebook">
-                                        <!-- Facebook SVG -->
-                                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M22 12.07C22 6.48 17.52 2 11.93 2S2 6.48 2 12.07C2 17.11 5.66 21.2 10.44 22v-7.01H7.9v-2.92h2.54V9.41c0-2.5 1.5-3.88 3.79-3.88 1.1 0 2.25.2 2.25.2v2.48h-1.27c-1.25 0-1.63.77-1.63 1.56v1.88h2.77l-.44 2.92h-2.33V22C18.34 21.2 22 17.11 22 12.07z" stroke="currentColor" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                                    </a>
-                                    <a href="https://www.linkedin.com/in/napul-labde/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
-                                        <!-- LinkedIn SVG -->
-                                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0-.02-5zM3 9h4v12H3zM9 9h3.6v1.63h.05c.5-.95 1.72-1.95 3.55-1.95C19.8 8.68 21 10.5 21 13.4V21h-4v-6.2c0-1.48-.03-3.38-2.06-3.38-2.07 0-2.38 1.61-2.38 3.27V21H9V9z" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <aside>
-                        <form class="contact-form" id="contactForm">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" placeholder="Your name" required />
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" placeholder="you@example.com" required />
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5" placeholder="Write your message here" required></textarea>
-                            <div style="display:flex;gap:8px;align-items:center">
-                                <button class="btn btn-primary" type="submit">Send Message</button>
-                                <div id="formStatus" style="color:var(--muted);font-size:.95rem;display:none">Message prepared — opening mail client...</div>
-                            </div>
-                        </form>
-                    </aside>
-                </div>
-            </section>
-</div>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <ul>
+          <li><a href="../projects/Services.html">Services</a></li>
+          <li><a href="../../AboutUs/aboutus.html">About</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="#news">News</a></li>
+          <li><a href="contact.html" style="color:#f0c14a;">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-</div>
-<footer id="footer">
-  <div class="footer-top">
-    <div class="footer-grid">
-      <div>
-        <h2 class="footer-brand">CreateSpace</h2>
-        <p>Global infrastructure built for modern applications and distributed teams.</p>
+  <main class="main-content">
+    
+    <div class="page-header">
+      <h1 class="section-title">Get In Touch</h1>
+      <p class="subtitle">Have a project in mind? Let's build something great together.</p>
+    </div>
+
+    <div class="contact-wrapper">
+      
+      <div class="contact-info">
+        <div class="info-card">
+          <h3>Contact Details</h3>
+          <p class="muted">Prefer GitHub/LinkedIn or drop a message — we reply quickly.</p>
+          
+          <div class="details-list">
+            <div class="detail-item">
+              <span class="icon">📧</span>
+              <a href="mailto:hello@createspace.com">hello@createspace.com</a>
+            </div>
+            <div class="detail-item">
+              <span class="icon">💼</span>
+              <a href="https://www.linkedin.com/in/napul-labde/" target="_blank">linkedin.com/in/napul-labde</a>
+            </div>
+            <div class="detail-item">
+              <span class="icon">💻</span>
+              <a href="https://github.com/napul205" target="_blank">github.com/napul205</a>
+            </div>
+          </div>
+
+          <div class="social-block">
+            <h4>Follow Us</h4>
+            <div class="socials">
+              <a href="#" aria-label="Instagram">
+                <img src="../../assets/images/social logo/instagram.png" alt="IG">
+              </a>
+              <a href="#" aria-label="Facebook">
+                <img src="../../assets/images/social logo/facebook.png" alt="FB">
+              </a>
+              <a href="#" aria-label="Twitter">
+                <img src="../../assets/images/social logo/twitter.png" alt="TW">
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div>
-        <h4>Services</h4>
-        <a href="assets\projects\Architecture\Architecture.html">Architecture</a>
-        <a href="assets\projects\Interior_Design\Interior.html">Interior Design</a>
-        <a href="assets\projects\Urban_Design\Urban.html">Urban Design</a>
-      </div>
+      <div class="contact-form-wrapper">
+  <form class="contact-form" action="https://formsubmit.co/napullabde7@gmail.com" method="POST">
 
-      <div>
-        <h4>Company</h4>
-        <a href="#">About</a>
-        <a href="#">Careers</a>
-        <a href="contact.html">Conect us</a>
-      </div>
+    <input type="hidden" name="_subject" value="New Inquiry from CreateSpace Website!">
+    
+    <input type="hidden" name="_captcha" value="false">
 
-      <div class="social">
-  <a href="https://www.instagram.com" target="_blank">
-    <img src="..\images\social logo\instagram.png" alt="Instagram" width="24">
-  </a>
-  <a href="https://www.facebook.com" target="_blank">
-    <img src="..\images\social logo\facebook.png" alt="Facebook" width="24">
-  </a>
-  <a href="https://www.linkedin.com" target="_blank">
-    <img src="..\images\social logo\linkedin.png" alt="LinkedIn" width="24">
-  </a>
-  <a href="https://www.twitter.com" target="_blank">
-    <img src="..\images\social logo\twitter.png" alt="Twitter" width="24">
-  </a>
-  <a href="https://www.whatsapp.com" target="_blank">
-    <img src="..\images\social logo\whatsapp.png" alt="WhatsApp" width="24">
-  </a>
-  <a href="https://www.youtube.com" target="_blank">
-    <img src="..\images\social logo\youtube.png" alt="YouTube" width="24">
-  </a>
+    <input type="hidden" name="_next" value="https://yourwebsite.com/contact.html"> 
+    
+    <div class="form-group">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" placeholder="Enter your name" required />
+    </div>
+    
+    <div class="form-row">
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="you@company.com" required />
+      </div>
+      
+      <div class="form-group">
+        <label for="mobile">Mobile Number</label>
+        <input type="tel" id="mobile" name="mobile" placeholder="+91 98765 43210" required />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="projectType">Project Type</label>
+      <select id="projectType" name="projectType" required>
+        <option value="" disabled selected>Select a project type...</option>
+        <option value="Residential">Residential Architecture</option>
+        <option value="Commercial">Commercial / Office</option>
+        <option value="Interior">Interior Design</option>
+        <option value="Urban">Urban Planning</option>
+        <option value="Renovation">Renovation</option>
+        <option value="Other">Other Inquiry</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="5" placeholder="Tell us about your project..." required></textarea>
+    </div>
+    
+    <button class="btn btn-primary" type="submit">Send Message</button>
+  </form>
 </div>
 
     </div>
-  </div>
- <div class="line-break"></div>
+  </main>
 
-  <div class="location"> 
-  <a href="https://www.youtube.com" target="_blank">
-    <img src="..\images\social logo\location.png" alt="Pune" width="24">Pune
-  </a>
-  <a href="https://www.youtube.com" target="_blank">
-    <img src="..\images\social logo\location.png" alt="Pune" width="24">Mumbai
-  </a>
-  <a href="https://www.youtube.com" target="_blank">
-    <img src="..\images\social logo\location.png" alt="Pune" width="24">Delhi
-  </a> 
-  </div>
-<div class="line-break"></div>
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="footer-grid">
+        <div>
+          <h2 class="footer-brand">CreateSpace</h2>
+          <p>Global infrastructure built for modern applications and distributed teams.</p>
+        </div>
 
-  <div class="footer-bottom">
-    © 2025 CreateSpace. All rights reserved.
-  </div>
-</footer>
+        <div>
+          <h4>Services</h4>
+          <a href="#">Architecture</a>
+          <a href="#">Interior Design</a>
+          <a href="#">Urban Design</a>
+        </div>
+
+        <div>
+          <h4>Company</h4>
+          <a href="../../AboutUs/aboutus.html">About</a>
+          <a href="#">Careers</a>
+          <a href="contact.html">Contact</a>
+        </div>
+
+        <div class="social">
+          <a href="#"><img src="../../assets/images/social logo/instagram.png" alt="IG" width="24"></a>
+          <a href="#"><img src="../../assets/images/social logo/facebook.png" alt="FB" width="24"></a>
+          <a href="#"><img src="../../assets/images/social logo/linkedin.png" alt="LI" width="24"></a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="line-break"></div>
+
+    <div class="location">
+      <a href="#"><img src="../../assets/images/social logo/location.png" width="24"> Pune</a>
+      <a href="#"><img src="../../assets/images/social logo/location.png" width="24"> Mumbai</a>
+      <a href="#"><img src="../../assets/images/social logo/location.png" width="24"> Delhi</a>
+    </div>
+
+    <div class="line-break"></div>
+
+    <div class="footer-bottom">
+      © 2025 CreateSpace. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="../../assets/js/script.js"></script>
 </body>
 </html>

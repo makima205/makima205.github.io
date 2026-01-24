@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Team | CreateSpace</title>
+  
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <style>
+    /* ================= TEAM PAGE SPECIFIC STYLES ================= */
+    
+    .team-header {
+      padding: 20px 20px 20px;
+      text-align: center;
+      background: linear-gradient(to bottom, #1f2937, #2a2a2a);
+      color: #fff;
+    }
+    
+    .team-header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      color: #f0c14a; /* Brand Gold */
+    }
+
+    .team-section {
+      padding: 20px 8%;
+      background-color: var(--surface);
+      min-height: 60vh;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+      gap: 50px;
+      margin-top: 40px;
+    }
+
+    .team-member {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      background: #fff;
+      padding: 30px 20px;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+      animation: fadeIn 0.5s ease forwards;
+    }
+
+    .team-member:hover {
+      transform: translateY(-10px);
+    }
+
+    .member-img-wrapper {
+      width: 180px;
+      height: 180px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .member-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #f0c14a;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+
+    .member-name {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #2a2a2a;
+      margin-bottom: 5px;
+    }
+
+    .member-role {
+      font-size: 0.95rem;
+      color: #7a7a7a;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .member-bio {
+      font-size: 0.9rem;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    .loading-msg {
+      grid-column: 1 / -1;
+      text-align: center;
+      font-size: 1.2rem;
+      color: #666;
+      padding: 20px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media(max-width: 768px) {
+      .team-header { padding-top: 100px; }
+      .team-header h1 { font-size: 2.5rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html">CreateSpace</a>
+
+      <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="site-nav" aria-label="Primary navigation">
+        <ul>
+          <li><a href="../assets/projects/Services.html">Services</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="team.html" style="color:#f0c14a;">Team</a></li> 
+          <li><a href="../index.html">News</a></li>
+          <li><a href="../assets/contact/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="team-header">
+    <h1>Our Team</h1>
+    <p>The architects, designers, and visionaries behind CreateSpace.</p>
+  </section>
+
+  <section class="team-section">
+    <div class="team-grid" id="teamContainer">
+      <div class="loading-msg">Loading Team Details...</div>
+    </div>
+  </section>
+
+ <footer id="footer">
+    <div class="footer-top">
+      <div class="footer-grid">
+        <div>
+          <h2 class="footer-brand">CreateSpace</h2>
+          <p>Global infrastructure built for modern applications and distributed teams.</p>
+        </div>
+
+        <div>
+          <h4>Services</h4>
+          <a href="../assets/projects/Architecture/Architecture.html">Architecture</a>
+          <a href="../assets/projects/Interior_Design/Interior.html">Interior Design</a>
+          <a href="../assets/projects/Urban_Design/Urban.html">Urban Design</a>
+        </div>
+
+        <div>
+          <h4>Company</h4>
+          <a href="../AboutUs/aboutus.html">About</a>
+          <a href="#">Careers</a>
+          <a href="../assets/contact/contact.html">Contact us</a>
+        </div>
+
+        <div class="social">
+          <a href="https://www.instagram.com" target="_blank">
+            <img src="../assets/images/social logo/instagram.png" alt="Instagram" width="24">
+          </a>
+          <a href="https://www.facebook.com" target="_blank">
+            <img src="../assets/images/social logo/facebook.png" alt="Facebook" width="24">
+          </a>
+          <a href="https://www.linkedin.com" target="_blank">
+            <img src="../assets/images/social logo/linkedin.png" alt="LinkedIn" width="24">
+          </a>
+          <a href="https://www.twitter.com" target="_blank">
+            <img src="../assets/images/social logo/twitter.png" alt="Twitter" width="24">
+          </a>
+          <a href="https://www.whatsapp.com" target="_blank">
+            <img src="../assets/images/social logo/whatsapp.png" alt="WhatsApp" width="24">
+          </a>
+          <a href="https://www.youtube.com" target="_blank">
+            <img src="../assets/images/social logo/youtube.png" alt="YouTube" width="24">
+          </a>
+        </div>
+
+      </div>
+    </div>
+    <div class="line-break"></div>
+
+    <div class="location">
+      <a href="https://www.youtube.com" target="_blank">
+        <img src="../assets/images/social logo/location.png" alt="Pune" width="24">Pune
+      </a>
+      <a href="https://www.youtube.com" target="_blank">
+        <img src="../assets/images/social logo/location.png" alt="Mumbai" width="24">Mumbai
+      </a>
+      <a href="https://www.youtube.com" target="_blank">
+        <img src="../assets/images/social logo/location.png" alt="Delhi" width="24">Delhi
+      </a>
+    </div>
+    <div class="line-break"></div>
+
+    <div class="footer-bottom">
+      © 2025 CreateSpace. All rights reserved.
+    </div>
+  </footer>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+  
+  <script src="../assets/js/script.js"></script>
+
+  <script>
+    /* Helper function to convert Drive 'view' links to 'direct' image links */
+    /* Helper function to force Google Drive images to show */
+function getDirectDriveLink(url) {
+  if (!url) return "";
+  
+  // 1. Extract the ID from various Drive URL formats
+  let id = "";
+  if (url.indexOf("id=") !== -1) {
+    // Matches: uc?export=view&id=THE_ID
+    const params = new URLSearchParams(url.split('?')[1]);
+    id = params.get("id");
+  } else if (url.indexOf("/d/") !== -1) {
+    // Matches: /file/d/THE_ID/view
+    const parts = url.split(/\/d\/|\/file\/d\//);
+    if (parts.length > 1) {
+      id = parts[1].split('/')[0];
+    }
+  }
+
+  // 2. Return a "lh3.googleusercontent.com" link (More reliable than drive.google.com)
+  if (id) {
+    return `https://lh3.googleusercontent.com/d/${id}=s1000?authuser=0`;
+  }
+  
+  return url;
+}
+    async function loadTeam() {
+      const container = document.getElementById("teamContainer");
+      
+      const sheetId = '1gtu1WSMvPOrPn1qzD2smIdSajVTqeOmH272c9LW6a1c';
+      const sheetName = 'Team%20details'; 
+      const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=${sheetName}`;
+
+      try {
+        const response = await fetch(url);
+        const data = await response.text();
+
+        Papa.parse(data, {
+          header: false,
+          complete: function (results) {
+            const rows = results.data;
+            const members = rows.slice(1);
+
+            container.innerHTML = ""; 
+
+            members.forEach(row => {
+              const name = row[1];
+              const rawImgUrl = row[2]; // The Raw Drive Link
+              const role = row[3];
+              const bio = row[4];
+
+              // Convert the link here!
+              const imgUrl = getDirectDriveLink(rawImgUrl);
+                console.log(
+                    imgUrl
+                );
+              if (name && name.trim() !== "") {
+                const displayImg = imgUrl || `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=f0c14a&color=fff&size=256`;
+
+                const html = `
+                  <div class="team-member">
+                    <div class="member-img-wrapper">
+                      <img src="${displayImg}" alt="${name}" class="member-img">
+                    </div>
+                    <h3 class="member-name">${name}</h3>
+                    <p class="member-role">${role || ""}</p>
+                    <p class="member-bio">${bio || ""}</p>
+                  </div>
+                `;
+                container.innerHTML += html;
+              }
+            });
+          }
+        });
+      } catch (error) {
+        console.error("Error loading team:", error);
+        container.innerHTML = "<p class='loading-msg'>Unable to load team details.</p>";
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", loadTeam);
+  </script>
+
+</body>
+</html>

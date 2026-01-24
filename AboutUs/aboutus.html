@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>About Us | CreateSpace</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <style>
+    /* Reuse Hero but with a static image instead of video */
+    .about-hero {
+      background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://picsum.photos/1600/900?grayscale');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+    
+    /* Simple Values Section */
+    .values-section {
+      text-align: center;
+      padding: 60px 20px;
+      background: var(--surface);
+    }
+    .values-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 40px;
+    }
+    .value-item {
+      flex: 0 0 250px;
+      text-align: center;
+    }
+    .value-icon {
+      font-size: 3rem;
+      color: #f0c14a; /* Brand Gold */
+      margin-bottom: 15px;
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html">CreateSpace</a>
+
+      <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="site-nav" aria-label="Primary navigation">
+        <ul>
+          <li><a href="../assets/projects/Services.html">Services</a></li>
+          <li><a href="about.html" style="color:#f0c14a;">About</a></li> <li><a href="index.html#news">News</a></li>
+          <li><a href="../index.html#clients">Clients</a></li>
+          <li><a href="../assets/contact/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero about-hero">
+    <div class="hero-text">
+      <h1>Who We Are</h1>
+      <p>We are a collective of architects, designers, and thinkers shaping the future of living spaces.</p>
+    </div>
+  </section>
+
+  <section class="about" style="margin-top: 80px;">
+    <div class="about-img" style="background-image:url('https://picsum.photos/1200/900?architecture');"></div>
+    
+    <div class="about-text">
+      <h1>Our Story</h1>
+      <p>
+        Founded in 2010, CreateSpace began with a simple idea: that architecture should not just be about buildings, but about the people who inhabit them. 
+        <br><br>
+        Over the last decade, we have grown from a small studio in Pune to a distributed team working across India. We believe in "Design with Purpose"—a philosophy that prioritizes sustainability, cultural context, and human well-being above all else.
+        <br><br>
+        Whether it is a high-rise in Mumbai or a bamboo retreat in the Northeast, our process remains the same: listen, collaborate, and create.
+      </p>
+    </div>
+  </section>
+
+  <section class="values-section">
+    <h1>Our Core Values</h1>
+    <p style="max-width: 600px; margin: 0 auto; color: var(--muted);">The principles that guide every line we draw.</p>
+    
+    <div class="values-grid">
+      <div class="value-item">
+        <span class="value-icon">🌱</span>
+        <h3>Sustainability</h3>
+        <p class="card-desc" style="text-align: center; opacity: 1; max-height: none; color: var(--muted);">
+          Building for today without compromising tomorrow.
+        </p>
+      </div>
+      <div class="value-item">
+        <span class="value-icon">🤝</span>
+        <h3>Collaboration</h3>
+        <p class="card-desc" style="text-align: center; opacity: 1; max-height: none; color: var(--muted);">
+          Great design is a conversation, not a monologue.
+        </p>
+      </div>
+      <div class="value-item">
+        <span class="value-icon">🚀</span>
+        <h3>Innovation</h3>
+        <p class="card-desc" style="text-align: center; opacity: 1; max-height: none; color: var(--muted);">
+          Pushing the boundaries of materials and form.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="footer-grid">
+        <div>
+          <h2 class="footer-brand">CreateSpace</h2>
+          <p>Global infrastructure built for modern applications and distributed teams.</p>
+        </div>
+
+        <div>
+          <h4>Services</h4>
+          <a href="../assets/projects/Architecture/Architecture.html">Architecture</a>
+          <a href="../assets/projects/Interior_Design/Interior.html">Interior Design</a>
+          <a href="../assets/projects/Urban_Design/Urban.html">Urban Design</a>
+        </div>
+
+        <div>
+          <h4>Company</h4>
+          <a href="about.html">About</a>
+          <a href="#">Careers</a>
+          <a href="../assets/contact/contact.html">Contact us</a>
+        </div>
+
+        <div class="social">
+          <a href="https://www.instagram.com" target="_blank">
+            <img src="../assets/images/social logo/instagram.png" alt="Instagram" width="24">
+          </a>
+          <a href="https://www.facebook.com" target="_blank">
+            <img src="../assets/images/social logo/facebook.png" alt="Facebook" width="24">
+          </a>
+          <a href="https://www.linkedin.com" target="_blank">
+            <img src="../assets/images/social logo/linkedin.png" alt="LinkedIn" width="24">
+          </a>
+          <a href="https://www.twitter.com" target="_blank">
+            <img src="../assets/images/social logo/twitter.png" alt="Twitter" width="24">
+          </a>
+          <a href="https://www.whatsapp.com" target="_blank">
+            <img src="../assets/images/social logo/whatsapp.png" alt="WhatsApp" width="24">
+          </a>
+          <a href="https://www.youtube.com" target="_blank">
+            <img src="../assets/images/social logo/youtube.png" alt="YouTube" width="24">
+          </a>
+        </div>
+
+      </div>
+    </div>
+    <div class="line-break"></div>
+
+    <div class="location">
+      <a href="https://www.youtube.com" target="_blank">
+        <img src="../assets/images/social logo/location.png" alt="Pune" width="24">Pune
+      </a>
+      <a href="https://www.youtube.com" target="_blank">
+        <img src="../assets/images/social logo/location.png" alt="Mumbai" width="24">Mumbai
+      </a>
+      <a href="https://www.youtube.com" target="_blank">
+        <img src="../assets/images/social logo/location.png" alt="Delhi" width="24">Delhi
+      </a>
+    </div>
+    <div class="line-break"></div>
+
+    <div class="footer-bottom">
+      © 2025 CreateSpace. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="../assets/js/script.js"></script>
+
+</body>
+</html>
