@@ -1,227 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>Studio Website</title>
-<link rel="stylesheet" href="assets\css\style.css">
+  <meta charset="UTF-8">
+  <title>Studio Website</title>
+  <link rel="stylesheet" href="assets\css\style.css">
 </head>
+
 <body>
 
-<!-- NAV -->
-<header class="site-header">
-  <div class="container header-inner">
-    <a class="brand" href="index.html">
-         CreateSpace</a>
+  <!-- NAV -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">CreateSpace</a>
 
-    <nav class="site-nav" aria-label="Primary navigation">
-      <ul>
-        <li><a href="assets\projects\Services.html">Services</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#news">News</a></li>
-        <li><a href="#clients">Clients</a></li>
-        <li><a href="assets\contact\contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+      <!-- Add this hamburger menu button -->
+      <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-<!-- HERO SLIDESHOW -->
-<section id="services" class="hero video-hero">
-  <video class="bg-video" autoplay muted loop playsinline>
-    <source src="assets\videos\bg.mp4" type="video/mp4">
-  </video>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <ul>
+          <li><a href="assets\projects\Services.html">Services</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#news">News</a></li>
+          <li><a href="#clients">Clients</a></li>
+          <li><a href="assets\contact\contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-  <div class="hero-text">
-    <h1>Design With Purpose</h1>
-    <p>Global infrastructure built for modern applications and distributed teams.</p>
-  </div>
-</section>
+  <!-- HERO SLIDESHOW -->
+  <section id="services" class="hero video-hero">
+    <video class="bg-video" autoplay muted loop playsinline>
+      <source src="assets\videos\bg.mp4" type="video/mp4">
+    </video>
+
+    <div class="hero-text">
+      <h1>Design With Purpose</h1>
+      <p>Global infrastructure built for modern applications and distributed teams.</p>
+    </div>
+  </section>
 
 
-<!-- 2. WHAT WE DO -->
-<section id="services" class="what-we-do">
-  <h1>What We Do</h1>
-  <p>Architecture is the art and science of designing, planning, and constructing buildings and other structures, blending creativity with technical skill to create spaces that are functional, safe, beautiful, and meaningful for people and society</p>
-  <div class="cards">
-    <div class="service-card" style="background-image:url('https://picsum.photos/600/600?3')">
-      <div class="overlay">
-        <h3 class="card-title">Architecture</h3>
-        <p class="card-desc">Innovative architectural solutions focused on sustainability and craft.</p>
-        <a class="card-link" href="assets\projects\Architecture\Architecture.html">View Projects</a>
+  <!-- 2. WHAT WE DO -->
+  <section id="services" class="what-we-do">
+    <h1>What We Do</h1>
+    <p>Architecture is the art and science of designing, planning, and constructing buildings and other structures,
+      blending creativity with technical skill to create spaces that are functional, safe, beautiful, and meaningful for
+      people and society</p>
+    <div class="cards">
+      <div class="service-card" style="background-image:url('https://picsum.photos/600/600?3')">
+        <div class="overlay">
+          <h3 class="card-title">Architecture</h3>
+          <p class="card-desc">Innovative architectural solutions focused on sustainability and craft.</p>
+          <a class="card-link" href="assets\projects\Architecture\Architecture.html">View Projects</a>
+        </div>
+      </div>
+      <div class="service-card" style="background-image:url('https://picsum.photos/600/600?4')">
+        <div class="overlay">
+          <h3 class="card-title">Interior Design</h3>
+          <p class="card-desc">Functional and aesthetic interiors tailored to user needs.</p>
+          <a class="card-link" href="assets\projects\Interior_Design\Interior.html">Explore</a>
+        </div>
+      </div>
+      <div class="service-card" style="background-image:url('https://picsum.photos/600/600?5')">
+        <div class="overlay">
+          <h3 class="card-title">Urban Design</h3>
+          <p class="card-desc">Human focused urban planning that enables resilient communities.</p>
+          <a class="card-link" href="assets\projects\Urban_Design\Urban.html">Learn More</a>
+        </div>
+      </div>
+      <div class="service-card" style="background-image:url('https://picsum.photos/600/600?4')">
+        <div class="overlay">
+          <h3 class="card-title">Interior Design</h3>
+          <p class="card-desc">Functional and aesthetic interiors tailored to user needs.</p>
+          <a class="card-link" href="#">Explore</a>
+        </div>
       </div>
     </div>
-    <div class="service-card" style="background-image:url('https://picsum.photos/600/600?4')">
-      <div class="overlay">
-        <h3 class="card-title">Interior Design</h3>
-        <p class="card-desc">Functional and aesthetic interiors tailored to user needs.</p>
-        <a class="card-link" href="assets\projects\Interior_Design\Interior.html">Explore</a>
-      </div>
-    </div>
-    <div class="service-card" style="background-image:url('https://picsum.photos/600/600?5')">
-      <div class="overlay">
-        <h3 class="card-title">Urban Design</h3>
-        <p class="card-desc">Human focused urban planning that enables resilient communities.</p>
-        <a class="card-link" href="assets\projects\Urban_Design\Urban.html">Learn More</a>
-      </div>
-    </div>
-    <div class="service-card" style="background-image:url('https://picsum.photos/600/600?4')">
-      <div class="overlay">
-        <h3 class="card-title">Interior Design</h3>
-        <p class="card-desc">Functional and aesthetic interiors tailored to user needs.</p>
-        <a class="card-link" href="#">Explore</a>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- 3. ABOUT US -->
-<section id="about" class="about">
-  <div class="about-img" style="background-image:url('https://picsum.photos/1200/900?6')"></div>
-  <div class="about-text">
-    <h1>About Us</h1>
-    <p>
-      Architecture is the art and science of designing, planning, and constructing buildings and other structures, blending creativity with technical skill to create spaces that are functional,
-      safe, beautiful, and meaningful for people and society. It's about shaping our built environment, from houses and cities to bridges, serving practical needs (shelter, function) while also expressing culture, emotion, and aesthetics (form, beauty).  
-Key AspectsArt & Science: It combines artistic vision (beauty, symbolism) with engineering principles (stability, practicality). 
-Function & Form: Buildings must serve a purpose (function) while also having an appealing look and feel (form). 
-Social Art: Architecture influences human experience, affecting well-being, community, and culture. 
-Context: Designs must integrate with their environment, considering surroundings, climate, and history. 
-Process: It involves stages from initial concept and design to construction and user experience. 
+  <!-- 3. ABOUT US -->
+  <section id="about" class="about">
+    <div class="about-img" style="background-image:url('https://picsum.photos/1200/900?6')"></div>
+    <div class="about-text">
+      <h1>About Us</h1>
+      <p>
+        Architecture is the art and science of designing, planning, and constructing buildings and other structures,
+        blending creativity with technical skill to create spaces that are functional,
+        safe, beautiful, and meaningful for people and society. It's about shaping our built environment, from houses
+        and cities to bridges, serving practical needs (shelter, function) while also expressing culture, emotion, and
+        aesthetics (form, beauty).
+        Key AspectsArt & Science: It combines artistic vision (beauty, symbolism) with engineering principles
+        (stability, practicality).
+        Function & Form: Buildings must serve a purpose (function) while also having an appealing look and feel (form).
+        Social Art: Architecture influences human experience, affecting well-being, community, and culture.
+        Context: Designs must integrate with their environment, considering surroundings, climate, and history.
+        Process: It involves stages from initial concept and design to construction and user experience.
+      </p>
+    </div>
+  </section>
+
+  <!-- 4. NEWS -->
+  <section id="news" class="news">
+    <h1>News</h1>
+
+    <p class="section-desc">
+      Architecture is the art and science of designing meaningful spaces.
     </p>
-  </div>
-</section>
 
-<!-- 4. NEWS -->
-<section id="news" class="news">
-  <h1>News</h1>
-
-  <p class="section-desc">
-    Architecture is the art and science of designing meaningful spaces.
-  </p>
-
-  <div class="news-carousel">
-    <div class="news-track">
-
-      <!-- ===== SET 1 ===== -->
-      <article class="news-card">
-        <img src="https://picsum.photos/640/420?11">
-        <h3 class="card-title">Award Recognition 2024</h3>
-        <p class="card-desc">National Architecture Award for sustainable design.</p>
-        <p>25-sep-2025</p>
-      </article>
-
-      <article class="news-card">
-        <img src="https://picsum.photos/640/420?12">
-        <h3 class="card-title">Design Journal Feature</h3>
-        <p class="card-desc">Community-led design featured internationally.</p>
-        <p>25-sep-2025</p>
-      </article>
-
-      <article class="news-card">
-        <img src="https://picsum.photos/640/420?13">
-        <h3 class="card-title">Global Exhibition</h3>
-        <p class="card-desc">Selected works at Global Design Expo.</p>
-        <p>25-sep-2025</p>
-      </article>
-
-      <article class="news-card">
-        <img src="https://picsum.photos/640/420?14">
-        <h3 class="card-title">New Civic Center</h3>
-        <p class="card-desc">Energy-efficient civic infrastructure project.</p>
-        <p>25-sep-2025</p>
-      </article>
-
-      <article class="news-card">
-        <img src="https://picsum.photos/640/420?15">
-        <h3 class="card-title">Research Publication</h3>
-        <p class="card-desc">Adaptive reuse in dense urban districts.</p>
-        <p>25-sep-2025</p>
-      </article>
-
+    <div class="news-carousel">
+      <div class="news-track" id="newsTrack">
+        <!-- News cards injected here -->
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- 5. CLIENTS -->
-<section id="clients" class="clients">
-  <h1>Our Clients</h1>
-<div class="client-slider">
-<img class="logo" src="assets\images\logo1.png" alt="Nike">
-<img class="logo" src="assets\images\logo2.png" alt="Adidas">
-<img class="logo" src="assets\images\logo2.png" alt="Airbnb">
-<img class="logo" src="assets\images\logo2.png" alt="Netflix">
-<img class="logo" src="assets\images\logo1.png" alt="Nike">
-<img class="logo" src="assets\images\logo2.png" alt="Adidas">
-<img class="logo" src="assets\images\logo2.png" alt="Airbnb">
-<img class="logo" src="assets\images\logo2.png" alt="Netflix">
-</div>
-</section>
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="footer-grid">
+        <div>
+          <h2 class="footer-brand">CreateSpace</h2>
+          <p>Global infrastructure built for modern applications and distributed teams.</p>
+        </div>
 
-<footer id="footer">
-  <div class="footer-top">
-    <div class="footer-grid">
-      <div>
-        <h2 class="footer-brand">CreateSpace</h2>
-        <p>Global infrastructure built for modern applications and distributed teams.</p>
+        <div>
+          <h4>Services</h4>
+          <a href="assets\projects\Architecture\Architecture.html">Architecture</a>
+          <a href="assets\projects\Interior_Design\Interior.html">Interior Design</a>
+          <a href="assets\projects\Urban_Design\Urban.html">Urban Design</a>
+        </div>
+
+        <div>
+          <h4>Company</h4>
+          <a href="#">About</a>
+          <a href="#">Careers</a>
+          <a href="assets\contact\contact.html">Conect us</a>
+        </div>
+
+        <div class="social">
+          <a href="https://www.instagram.com" target="_blank">
+            <img src="assets\images\social logo\instagram.png" alt="Instagram" width="24">
+          </a>
+          <a href="https://www.facebook.com" target="_blank">
+            <img src="assets\images\social logo\facebook.png" alt="Facebook" width="24">
+          </a>
+          <a href="https://www.linkedin.com" target="_blank">
+            <img src="assets\images\social logo\linkedin.png" alt="LinkedIn" width="24">
+          </a>
+          <a href="https://www.twitter.com" target="_blank">
+            <img src="assets\images\social logo\twitter.png" alt="Twitter" width="24">
+          </a>
+          <a href="https://www.whatsapp.com" target="_blank">
+            <img src="assets\images\social logo\whatsapp.png" alt="WhatsApp" width="24">
+          </a>
+          <a href="https://www.youtube.com" target="_blank">
+            <img src="assets\images\social logo\youtube.png" alt="YouTube" width="24">
+          </a>
+        </div>
+
       </div>
-
-      <div>
-        <h4>Services</h4>
-        <a href="assets\projects\Architecture\Architecture.html">Architecture</a>
-        <a href="assets\projects\Interior_Design\Interior.html">Interior Design</a>
-        <a href="assets\projects\Urban_Design\Urban.html">Urban Design</a>
-      </div>
-
-      <div>
-        <h4>Company</h4>
-        <a href="#">About</a>
-        <a href="#">Careers</a>
-        <a href="assets\contact\contact.html">Conect us</a>
-      </div>
-
-      <div class="social">
-  <a href="https://www.instagram.com" target="_blank">
-    <img src="assets\images\social logo\instagram.png" alt="Instagram" width="24">
-  </a>
-  <a href="https://www.facebook.com" target="_blank">
-    <img src="assets\images\social logo\facebook.png" alt="Facebook" width="24">
-  </a>
-  <a href="https://www.linkedin.com" target="_blank">
-    <img src="assets\images\social logo\linkedin.png" alt="LinkedIn" width="24">
-  </a>
-  <a href="https://www.twitter.com" target="_blank">
-    <img src="assets\images\social logo\twitter.png" alt="Twitter" width="24">
-  </a>
-  <a href="https://www.whatsapp.com" target="_blank">
-    <img src="assets\images\social logo\whatsapp.png" alt="WhatsApp" width="24">
-  </a>
-  <a href="https://www.youtube.com" target="_blank">
-    <img src="assets\images\social logo\youtube.png" alt="YouTube" width="24">
-  </a>
-</div>
-
     </div>
-  </div>
- <div class="line-break"></div>
+    <div class="line-break"></div>
 
-  <div class="location"> 
-  <a href="https://www.youtube.com" target="_blank">
-    <img src="assets\images\social logo\location.png" alt="Pune" width="24">Pune
-  </a>
-  <a href="https://www.youtube.com" target="_blank">
-    <img src="assets\images\social logo\location.png" alt="Pune" width="24">Mumbai
-  </a>
-  <a href="https://www.youtube.com" target="_blank">
-    <img src="assets\images\social logo\location.png" alt="Pune" width="24">Delhi
-  </a> 
-  </div>
-<div class="line-break"></div>
+    <div class="location">
+      <a href="https://www.youtube.com" target="_blank">
+        <img src="assets\images\social logo\location.png" alt="Pune" width="24">Pune
+      </a>
+      <a href="https://www.youtube.com" target="_blank">
+        <img src="assets\images\social logo\location.png" alt="Pune" width="24">Mumbai
+      </a>
+      <a href="https://www.youtube.com" target="_blank">
+        <img src="assets\images\social logo\location.png" alt="Pune" width="24">Delhi
+      </a>
+    </div>
+    <div class="line-break"></div>
 
-  <div class="footer-bottom">
-    © 2025 CreateSpace. All rights reserved.
-  </div>
-</footer>
+    <div class="footer-bottom">
+      © 2025 CreateSpace. All rights reserved.
+    </div>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
 
-<script src="assets\js\script.js"></script>
+  <script>
+  /* ===== LOAD NEWS & SETUP INFINITE SCROLL ===== */
+  async function loadNews() {
+    const track = document.getElementById("newsTrack");
+    if (!track) return;
+
+    const sheetId = '1gtu1WSMvPOrPn1qzD2smIdSajVTqeOmH272c9LW6a1c';
+    const sheetName = 'News%20cards';
+    const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=${sheetName}`;
+
+    try {
+      const response = await fetch(url);
+      const data = await response.text();
+
+      Papa.parse(data, {
+        header: false,
+        complete: function (results) {
+          const rows = results.data;
+          const newsItems = rows.slice(2); // Skip headers
+
+          track.innerHTML = ""; // Clear loader
+
+          // 1. Build the initial HTML string
+          let cardsHtml = "";
+          
+          newsItems.forEach(row => {
+            const title = row[1];
+            const imgUrl = row[2];
+            const description = row[3];
+            const date = row[4];
+
+            if (title && title.trim() !== "") {
+              cardsHtml += `
+                <article class="news-card">
+                  <img src="${imgUrl || 'https://picsum.photos/600/400'}" alt="${title}">
+                  <div class="news-content" style="padding: 15px;">
+                    <h3 class="card-title">${title}</h3>
+                    <p class="card-desc" style="text-align:left;">
+                      ${limitText(description || "", 75)}</p>
+                    <p class="news-date" style="text-align:left; font-size: 0.8rem; color: #888; margin-top:10px;">
+                      ${date || ""}
+                    </p>
+                  </div>
+                </article>
+              `;
+            }
+          });
+
+          // 2. Inject the cards
+          track.innerHTML = cardsHtml;
+
+          track.innerHTML += cardsHtml;
+        }
+      });
+    } catch (error) {
+      console.error("Error fetching sheet:", error);
+      track.innerHTML = "<p style='padding:20px'>Unable to load news.</p>";
+    }
+  }
+
+  function limitText(text, limit = 75) {
+    return text.length > limit ? text.substring(0, limit) + "..." : text;
+  }
+
+  document.addEventListener("DOMContentLoaded", loadNews);
+</script>
+
+ 
+
+
+
+  <script src="assets\js\script.js"></script>
 </body>
+
 </html>

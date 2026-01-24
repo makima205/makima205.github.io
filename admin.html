@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Panel | CreateSpace</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  font-family: Inter, Arial, sans-serif;
+  background:#f5f5f5;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+}
+
+/* COMMON */
+.box{
+  background:#fff;
+  padding:30px;
+  width:380px;
+  box-shadow:0 20px 40px rgba(0,0,0,.15);
+  display:none;
+}
+
+.box.active{
+  display:block;
+}
+
+h2{
+  text-align:center;
+  margin-bottom:20px;
+}
+
+input, textarea, button{
+  width:100%;
+  padding:12px;
+  margin-bottom:12px;
+  font-size:14px;
+}
+
+button{
+  background:#1f2937;
+  color:#fff;
+  border:none;
+  cursor:pointer;
+}
+
+button.secondary{
+  background:#6b7280;
+}
+
+.menu-btn{
+  margin-bottom:15px;
+  font-size:16px;
+}
+
+/* NEWS ITEMS */
+.news-item{
+  border:1px solid #ddd;
+  padding:10px;
+  margin-top:12px;
+}
+
+.news-item img{
+  width:100%;
+  height:120px;
+  object-fit:cover;
+}
+
+.news-item .actions{
+  display:flex;
+  gap:8px;
+  margin-top:8px;
+}
+
+.news-item .actions button{
+  flex:1;
+  font-size:13px;
+}
+
+.delete{
+  background:#c0392b;
+}
+.edit{
+  background:#2563eb;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div class="box active" id="loginBox">
+  <h2>Admin Login</h2>
+  <input type="text" id="username" placeholder="Username">
+  <input type="password" id="password" placeholder="Password">
+  <button onclick="login()">Login</button>
+</div>
+
+<!-- DASHBOARD -->
+<div class="box" id="dashboard">
+  <h2>Admin Dashboard</h2>
+  <button class="menu-btn" onclick="openNews()">✏️ Edit News</button>
+  <button class="menu-btn secondary" onclick="openProjects()">📁 Edit Project Page</button>
+</div>
+
+<!-- NEWS MANAGER -->
+<div class="box" id="newsPanel">
+  <h2>Edit News</h2>
+
+  <input type="text" id="img" placeholder="Image URL">
+  <input type="text" id="title" placeholder="Title">
+  <textarea id="desc" placeholder="Description"></textarea>
+  <input type="date" id="date">
+
+  <button onclick="addNews()">Add News</button>
+
+  <div id="newsList"></div>
+
+  <button class="secondary" onclick="backToDashboard()">⬅ Back</button>
+</div>
+
+<!-- PROJECT MANAGER (PLACEHOLDER) -->
+<div class="box" id="projectPanel">
+  <h2>Edit Project Page</h2>
+  <p style="text-align:center;color:#666">
+    🚧 Project editor coming soon
+  </p>
+
+  <button class="secondary" onclick="backToDashboard()">⬅ Back</button>
+</div>
+
+<script>
+/* ===== LOGIN ===== */
+const ADMIN_USER = "admin";
+const ADMIN_PASS = "1234";
+
+function login(){
+  if(username.value === ADMIN_USER && password.value === ADMIN_PASS){
+    loginBox.classList.remove("active");
+    dashboard.classList.add("active");
+  } else {
+    alert("Invalid login");
+  }
+}
+
+/* ===== NAVIGATION ===== */
+function openNews(){
+  dashboard.classList.remove("active");
+  newsPanel.classList.add("active");
+  loadNews();
+}
+
+function openProjects(){
+  dashboard.classList.remove("active");
+  projectPanel.classList.add("active");
+}
+
+function backToDashboard(){
+  newsPanel.classList.remove("active");
+  projectPanel.classList.remove("active");
+  dashboard.classList.add("active");
+}
+
+/* ===== NEWS CRUD ===== */
+function getNews(){
+  return JSON.parse(localStorage.getItem("news")) || [];
+}
+
+function saveNews(data){
+  localStorage.setItem("news", JSON.stringify(data));
+}
+
+function addNews(){
+  const news = getNews();
+
+  news.push({
+    img: img.value,
+    title: title.value,
+    desc: desc.value,
+    date: date.value || new Date().toISOString().split("T")[0]
+  });
+
+  saveNews(news);
+
+  img.value = title.value = desc.value = date.value = "";
+  loadNews();
+}
+
+
+function deleteNews(index){
+  const news = getNews();
+  news.splice(index,1);
+  saveNews(news);
+  loadNews();
+}
+
+function loadNews(){
+  const list = document.getElementById("newsList");
+  list.innerHTML = "";
+
+  getNews().forEach((n,i)=>{
+    list.innerHTML += `
+      <div class="news-item">
+        <img src="${n.img}">
+        <h4>${n.title}</h4>
+        <p>${n.desc}</p>
+        <small>${n.date}</small>
+        <div class="actions">
+          <button class="delete" onclick="deleteNews(${i})">Delete</button>
+        </div>
+      </div>
+    `;
+  });
+}
+</script>
+
+</body>
+</html>
