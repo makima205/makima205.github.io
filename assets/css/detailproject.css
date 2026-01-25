@@ -1,188 +1,528 @@
-/* ================= BASE ================= */
-body{
+/* =========================================
+   PROJECT.CSS
+   Matched Responsiveness with style.css
+   ========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ================= VARIABLES (From style.css) ================= */
+:root {
+  --bg: #faf9f7;
+  --surface: #f1efe9;
+  --card: #ffffff;
+  --text: #2a2a2a;
+  --muted: #7a7a7a;
+  --border: #e2dfd6;
+  --accent: #1f2937;
+  --gold: #f0c14a;
+  --radius: 18px;
+  --transition: 320ms cubic-bezier(.2, .9, .3, 1);
+}
+
+/* ================= BASE RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
   font-family: 'Inter', sans-serif;
-  margin:0;
-  color:#2b2b2b;
-  background:#fff;
-  line-height:1.7;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  letter-spacing: .2px;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
-img{
-  width:100%;
-  height:auto;
-  display:block;
+img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
-a{
-  text-decoration:none;
-  color:inherit;
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: 0.3s;
 }
 
-/* ================= PAGE WRAPPER ================= */
-.component-body{
-  max-width:1400px;
-  margin: 25px 70px 80px 70px;
-
+/* ================= NAVBAR (Desktop) ================= */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: rgba(7, 16, 36, .75);
+  backdrop-filter: blur(10px);
 }
 
-/* ================= TITLES ================= */
-.component-title{
-  font-size:42px;
-  font-weight:600;
-  margin:20px 0 0 0;
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 3%;
+  max-width: 100%;    
 }
 
-.component-head{
-  text-transform:capitalize;
+.brand {
+  font-weight: 800;
+  color: #f0c14a;
+  text-decoration: none;
+  letter-spacing: 1px;
+  font-size: 1.3rem;
+  z-index: 61;
 }
 
-/* ================= HERO IMAGE ================= */
-
-.single-img img{
-  max-height:80vh;
-  object-fit:cover;
+.site-nav ul {
+  display: flex;
+  gap: 22px;
+  list-style: none;
 }
 
-/* ================= PROJECT META ================= */
-.component-menu{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:40px;
-  margin:80px 0;
+.site-nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
 }
 
-.component-menu-title{
-  font-size:14px;
-  letter-spacing:1px;
-  text-transform:uppercase;
-  color:#777;
-  margin-bottom:6px;
+.site-nav a:hover {
+  color: #f0c14a;
 }
 
-.component-menu p{
-  font-size:16px;
-  font-weight:500;
+/* Mobile Menu Toggle (Hidden on Desktop) */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 5px;
+  z-index: 61;
 }
 
-/* ================= IMAGE + TEXT ================= */
-.img-text{
-  display:grid;
-  grid-template-columns:1.2fr 1fr;
-  gap:60px;
-  margin:100px 0;
+.menu-toggle span {
+  display: block;
+  width: 28px;
+  height: 3px;
+  background: #f0c14a;
+  border-radius: 2px;
+  transition: all 0.3s ease;
 }
 
-.component-text{
-  font-size:16px;
-  color:#555;
+/* Hamburger Animation */
+.menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(7px, 7px); }
+.menu-toggle.active span:nth-child(2) { opacity: 0; }
+.menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+
+/* ================= PROJECT CONTENT LAYOUT ================= */
+.component-body {
+  max-width: 100%;
+  margin: 56px 70px 80px 70px; /* Matches style.css margin logic */
+}
+
+/* TITLES */
+.component-title {
+  font-size: 42px;
+  font-weight: 600;
+  margin: 20px 0 0 0;
+  line-height: 1.2;
+}
+
+.component-head {
+  text-transform: capitalize;
+  margin-bottom: 40px;
+}
+
+/* HERO IMAGE */
+.single-img img {
+  max-height: 80vh;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* PROJECT META */
+.component-menu {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 30px;
+  margin: 60px 0;
+  padding-bottom: 40px;
+  border-bottom: 1px solid #eee;
+}
+
+.component-menu-title {
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.component-menu p {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* IMAGE + TEXT */
+.img-text {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 60px;
+  margin: 100px 0;
+  align-items: start;
+}
+
+.component-text {
+  font-size: 1.05rem; /* Matches style.css paragraph size */
+  color: var(--muted);
   text-align: justify;
+  margin: 0;
 }
 
-/* ================= TEXT ONLY ================= */
-.single-text{
-  margin:80px 0 30px;
+/* TEXT ONLY */
+.single-text {
+  margin: 80px 0 30px;
 }
 
-.single-text .component-title{
-  font-size:28px;
+.single-text .component-title {
+  font-size: 28px;
+  margin-bottom: 20px;
 }
 
-/* ================= IMAGE GRIDS ================= */
+/* IMAGE GRIDS */
 .two-image,
-.three-image{
-  gap:30px;
-  margin:80px 0;
+.three-image {
+  gap: 32px; /* Matches style.css gap */
+  margin: 60px 0;
 }
 
-.two-image{
-  display:grid;
-  grid-template-columns:1fr 1fr;
+.two-image {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
-.three-image{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
+.three-image {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .two-image img,
-.three-image img{
-  aspect-ratio:4/3;
-  object-fit:cover;
+.three-image img {
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  border-radius: 4px;
 }
 
-/* ================= PAGINATION ================= */
-.paginationbox{
-  display:flex;
-  justify-content:space-between;
-  gap:40px;
-  margin:120px 0 40px;
+/* PAGINATION */
+.paginationbox {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 100px 0 40px;
+  padding-top: 40px;
+  border-top: 1px solid #eee;
 }
 
-.prev-next-title span{
-  font-size:13px;
-  color:#777;
-  text-transform:uppercase;
-  letter-spacing:1px;
+.prev-next-title span {
+  font-size: 12px;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: block;
+  margin-bottom: 5px;
 }
 
-.prev-next{
-  font-size:22px;
-  font-weight:500;
-  margin-top:6px;
+.prev-next {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
 }
 
-/* ================= FOOTER ALIGN HELP ================= */
-.footer-section{
-  background:#111;
-  color:#fff;
-  margin-top:120px;
+.prev-next:hover {
+  color: #000;
+  text-decoration: underline;
 }
 
-/* ===== IMAGE LIGHTBOX ===== */
-.lightbox{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.9);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
+/* ================= FOOTER (Desktop) ================= */
+footer {
+  background: radial-gradient(circle at top, #d0d0d3, #545454);
+  color: #cfd6e4;
+  margin-top: 100px;
 }
 
-.lightbox img{
-  max-width:95%;
-  max-height:95%;
-  object-fit:contain;
+.footer-top {
+  padding: 20px 8% 10px 8%;
 }
 
-.lightbox-close{
-  position:absolute;
-  top:30px;
-  right:40px;
-  font-size:40px;
-  color:#fff;
-  cursor:pointer;
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 70px;
 }
 
+.footer-grid h4 {
+  color: #fff;
+  letter-spacing: 2px;
+  margin-bottom: 22px;
+}
 
-/* ================= RESPONSIVE ================= */
-@media(max-width:1100px){
-  .img-text{
-    grid-template-columns:1fr;
+.footer-grid a {
+  color: #ffffff;
+  text-decoration: none;
+  margin-bottom: 10px;
+  display: block;
+  font-size: large;
+}
+
+.footer-grid a:hover {
+  color: #fff;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, .08);
+  padding: 10px 8%;
+  font-size: .85rem;
+  text-align: center;
+}
+
+/* SOCIAL ICONS (SIZE FIXED) */
+.social {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.social a {
+  display: block;
+  width: auto; 
+  height: auto;
+}
+
+/* CRITICAL FIX for Icon Size */
+.social a img {
+  display: block;
+  width: 24px !important; 
+  height: 24px !important; 
+  object-fit: contain;
+}
+
+/* Divider & Location */
+.line-break {
+  height: 1px;
+  width: 100%;
+  margin: 10px 0;
+  background-color: #ffffff;
+}
+
+.location {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20%;
+  flex-wrap: wrap;
+  padding: 15px 8%;
+}
+
+.location a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.location img {
+  width: 26px;
+  height: 26px;
+  color: #ffffff;
+}
+
+.location a:hover {
+  color: #000;
+  transform: translateY(-2px);
+}
+
+.footer-brand {
+  color: #f0c14a;
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+}
+
+/* ================= LIGHTBOX ================= */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.lightbox img {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 40px;
+  color: #fff;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* =======================================================
+   RESPONSIVENESS (EXACTLY MATCHING STYLE.CSS LOGIC)
+   ======================================================= */
+
+/* 1. Large Desktop (max 1440px) */
+@media(max-width:1440px) {
+  .component-body {
+    margin: 56px 50px 80px 50px; /* Reduced margins */
   }
 }
 
-@media(max-width:800px){
-  .two-image,
-  .three-image{
-    grid-template-columns:1fr;
+/* 2. Desktop / Small Laptop (max 1200px) */
+@media(max-width:1200px) {
+  .component-body {
+    margin: 40px 40px 80px 40px;
+    padding: 0;
+  }
+}
+
+/* 3. Tablet Landscape (max 1024px) */
+@media(max-width:1024px) {
+  /* Footer Grid becomes 2x2 */
+  .footer-grid { 
+    grid-template-columns: 1fr 1fr; 
+    gap: 40px; 
+  }
+  
+  .location { gap: 10%; }
+  
+  /* Project Layout Adjustments */
+  .img-text {
+    gap: 40px;
+  }
+}
+
+/* 4. MOBILE & TABLET PORTRAIT (max 768px) - CRITICAL SECTION */
+@media(max-width:768px) {
+  
+  /* --- A. TEXT SIZE BOOST (From style.css) --- */
+  body { font-size: 18px; }
+  
+  .component-title { 
+    font-size: 40px; /* Bigger headers */
+  }
+  
+  .component-text, .component-menu p {
+    font-size: 1.15rem; /* Readable text */
+    text-align: left; /* No justify on mobile */
   }
 
-  .component-title{
-    font-size:32px;
+  /* --- B. MOBILE NAVIGATION (Exact logic from style.css) --- */
+  .menu-toggle { display: flex; }
+  
+  .site-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(7, 16, 36, 0.98); /* Dark background */
+    backdrop-filter: blur(15px);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  }
+  
+  .site-nav.active { max-height: 500px; } 
+  
+  .site-nav ul {
+    flex-direction: column;
+    gap: 0;
+    padding: 20px 0;
+  }
+  
+  .site-nav li { border-bottom: 1px solid rgba(255, 255, 255, .08); }
+  
+  .site-nav a {
+    display: block;
+    padding: 20px 8%; 
+    font-size: 1.2rem;
+    letter-spacing: 1px;
   }
 
-  .component-body{
-    margin-top:90px;
+  /* --- C. PROJECT LAYOUT STACKING --- */
+  .component-body {
+    margin: 40px 25px; /* Matches style.css mobile margin */
   }
+  
+  .img-text {
+    grid-template-columns: 1fr; /* Stack Image over Text */
+  }
+  
+  .two-image, .three-image {
+    grid-template-columns: 1fr; /* Stack grids */
+    gap: 20px;
+  }
+  
+  .component-menu {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .paginationbox {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  /* --- D. FOOTER STACKING (From style.css) --- */
+  .footer-grid { 
+    grid-template-columns: 1fr; 
+    gap: 40px; 
+    text-align: center; 
+  }
+  
+  .social { 
+    justify-content: center; 
+    gap: 20px; 
+  }
+  
+  /* Icon Size is handled by the !important rule above, 
+     but style.css had specific logic here too */
+  .social a img { 
+    width: 28px !important; 
+    height: 28px !important; 
+  }
+  
+  .location { 
+    flex-direction: column; 
+    gap: 20px; 
+  }
+  
+  .location a { font-size: 18px; }
+}
+
+/* 5. Small Mobile (max 480px) */
+@media(max-width:480px) {
+  .header-inner { padding: 15px 5%; }
+  
+  .component-title { font-size: 34px; }
+  
+  .brand { font-size: 1.2rem; }
 }

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>All News | CreateSpace</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/projects.css">
+
+<style>
+  #loading { text-align: center; padding: 100px; color: #888; grid-column: 1/-1; }
+  .error-msg { color: red; text-align: center; padding: 20px; grid-column: 1/-1; }
+
+  /* =========================================
+     5-COLUMN GRID LAYOUT
+     ========================================= */
+  
+  /* 1. grid container: 5 columns */
+  .row {
+    display: grid;
+    /* Forces 5 items per row on large screens */
+    grid-template-columns: repeat(5, 1fr) !important; 
+    gap: 20px;
+    margin: 0 auto;
+    max-width: 100%; /* Use full width */
+  }
+
+  /* 2. Card Container (Vertical) */
+  .content {
+    display: flex;
+    flex-direction: column !important; /* Image Top, Text Bottom */
+    height: 100%;       
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+  }
+
+  .content:hover {
+    transform: translateY(-5px);
+  }
+
+  /* 3. Image (Top) */
+  .content img {
+    width: 100% !important;         
+    height: 180px !important; /* shorter height for 5-col grid */       
+    object-fit: cover;
+  }
+
+  /* 4. Text Wrapper */
+  .news-text-wrapper {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  /* Typography */
+  .content h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    margin-top: 0 !important;
+    line-height: 1.4;
+    
+    /* Limit to 2 lines */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 2.8em; 
+  }
+
+  .content p.desc {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 12px;
+    line-height: 1.5;
+    
+    /* Limit to 3 lines */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .content p.date {
+    font-size: 0.75rem;
+    color: #999;
+    margin-top: auto; /* Push to bottom */
+    font-weight: 500;
+  }
+
+  /* =========================================
+     RESPONSIVE BREAKPOINTS
+     ========================================= */
+  
+  /* Laptop (max 1400px): Drop to 4 columns */
+  @media(max-width: 1400px) {
+    .row { grid-template-columns: repeat(4, 1fr) !important; }
+  }
+
+  /* Tablet Landscape (max 1024px): Drop to 3 columns */
+  @media(max-width: 1024px) {
+    .row { grid-template-columns: repeat(3, 1fr) !important; }
+  }
+
+  /* Tablet Portrait (max 768px): Drop to 2 columns */
+  @media(max-width: 768px) {
+    .row { grid-template-columns: repeat(2, 1fr) !important; }
+  }
+
+  /* Mobile (max 480px): Drop to 1 column */
+  @media(max-width: 480px) {
+    .row { grid-template-columns: 1fr !important; }
+  }
+</style>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../index.html">CreateSpace</a>
+      <button class="menu-toggle"><span></span><span></span><span></span></button>
+      <nav class="site-nav">
+        <ul>
+          <li><a href="../assets/projects/Services.html">Services</a></li>
+          <li><a href="../AboutUs/aboutus.html">About</a></li>
+          <li><a href="news.html" style="color:#f0c14a;">News</a></li>
+          <li><a href="../assets/contact/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+</header>
+
+<div class="main">
+  <h2>Latest News</h2>
+  <hr>
+  <div class="row" id="news-container">
+     <div id="loading">Loading news...</div>
+  </div>
+</div>
+
+<footer id="footer">
+    <div class="footer-top">
+      <div class="footer-grid">
+        <div>
+          <h2 class="footer-brand">CreateSpace</h2>
+          <p>Global infrastructure built for modern applications and distributed teams.</p>
+        </div>
+
+        <div>
+          <h4>Services</h4>
+          <a href="../assets/projects/Architecture/Architecture.html?filter=Architecture">Architecture</a>
+          <a href="../assets/projects/Architecture/Architecture.html?filter=Interior Design">Interior Design</a>
+          <a href="../assets/projects/Architecture/Architecture.html?filter=Landscape">Landscape</a>
+          <a href="../assets/projects/Architecture/Architecture.html?filter=Urban Design">Urban Design</a>
+        </div>
+
+        <div>
+          <h4>Company</h4>
+          <a href="../AboutUs/aboutus.html">About</a>
+          <a href="../News/News.html">News</a>
+          <a href="../assets/contact/contact.html">Contact us</a>
+        </div>
+
+        <div class="social">
+          <a href="https://www.instagram.com" target="_blank"><img src="../assets/images/social logo/instagram.png" alt="IG" width="24"></a>
+          <a href="https://www.facebook.com" target="_blank"><img src="../assets/images/social logo/facebook.png" alt="FB" width="24"></a>
+          <a href="https://www.linkedin.com" target="_blank"><img src="../assets/images/social logo/linkedin.png" alt="LI" width="24"></a>
+          <a href="https://www.twitter.com" target="_blank"><img src="../assets/images/social logo/twitter.png" alt="TW" width="24"></a>
+        </div>
+
+      </div>
+    </div>
+    <div class="line-break"></div>
+    <div class="footer-bottom">
+      © 2025 CreateSpace. All rights reserved.
+    </div>
+  </footer>
+
+<script>
+const SHEET_ID = '1gtu1WSMvPOrPn1qzD2smIdSajVTqeOmH272c9LW6a1c';
+const SHEET_NAME = 'News cards'; 
+const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(SHEET_NAME)}`;
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Mobile Menu
+    const menuToggle = document.querySelector('.menu-toggle');
+    const siteNav = document.querySelector('.site-nav');
+    if(menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            siteNav.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+    }
+
+    fetch(SHEET_URL)
+    .then(r => r.text())
+    .then(csv => {
+        const items = parseCSV(csv);
+        generateHTML(items);
+    })
+    .catch(e => document.getElementById('news-container').innerHTML = "<div class='error-msg'>Error loading data.</div>");
+});
+
+function parseCSV(csv) {
+    const lines = csv.split("\n");
+    const result = [];
+    for (let i = 2; i < lines.length; i++) { 
+        const line = lines[i].trim();
+        if (!line) continue;
+        const cols = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/^"|"$/g, '').trim());
+
+        // MAPPING: Col B(1)=Title, C(2)=Image, D(3)=Desc, E(4)=Date
+        const p = { 
+            title: cols[1], 
+            imageURL: cols[2], 
+            description: cols[3], 
+            date: cols[4] 
+        };
+        
+        if(p.title) result.push(p);
+    }
+    return result;
+}
+
+function generateHTML(data) {
+    const container = document.getElementById('news-container');
+    container.innerHTML = ""; 
+
+    if(data.length === 0) {
+        container.innerHTML = "<p>No news found.</p>"; return;
+    }
+
+    data.forEach(item => {
+        const link = `newsDetail.html?article=${encodeURIComponent(item.title)}`;
+
+        // VERTICAL CARD STRUCTURE
+        const card = `
+          <div class="column show" style="width:100%">
+            <a href="${link}" class="project-link">
+            <div class="content">
+              <img src="${item.imageURL || '#'}" alt="${item.title}">
+              
+              <div class="news-text-wrapper">
+                <h4>${item.title}</h4>
+                <p class="desc">${item.description}</p>
+                <p class="date">${item.date || ''}</p>
+              </div>
+            </div>
+            </a>
+          </div>
+        `;
+        container.innerHTML += card;
+    });
+}
+</script>
+<script src="../../js/script.js"></script>
+</body>
+</html>

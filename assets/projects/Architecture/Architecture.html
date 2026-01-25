@@ -1,198 +1,336 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Projects | CreateSpace</title>
+<title>Architecture Projects | CreateSpace</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="stylesheet" href="../../css/style.css">
+
 <link rel="stylesheet" href="../../css/projects.css">
+
+<style>
+/* Loading State (specific to this page) */
+#loading {
+text-align: center;
+padding: 100px;
+font-size: 1.2rem;
+color: #888;
+grid-column: 1 / -1;
+}
+.error-msg {
+color: red;
+text-align: center;
+padding: 20px;
+grid-column: 1 / -1;
+}
+</style>
+<style>
+/* Loading Style */
+#loading { text-align: center; padding: 40px; font-size: 1.2rem; color: #666; }
+.error-msg { color: red; text-align: center; padding: 20px; }
+
+/* === CARD LAYOUT FIXES === */
+
+/* 1. Set the card container to a fixed height */
+.content {
+background-color: #fff; /* Ensure background is white */
+height: 420px; /* FIXED HEIGHT for the whole card */
+display: flex;
+flex-direction: column;
+overflow: hidden;
+box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: adds nice shadow */
+border-radius: 8px; /* Optional: adds rounded corners */
+}
+
+/* 2. Fix the Image Size */
+.content img {
+object-fit: cover;
+height: 220px; /* Fixed height for image */
+width: 100%;
+display: block;
+flex-shrink: 0; /* Prevents image from squishing */
+}
+
+/* 3. Text Container Padding */
+/* If you don't have a wrapper div for text in your JS, padding goes on h4/p or content */
+.content h4, .content p {
+padding: 0 15px; /* Side padding for text */
+}
+
+/* 4. Limit Title to 2 Lines */
+.content h4 {
+margin-top: 15px;
+margin-bottom: 8px;
+font-size: 1.1rem;
+line-height: 1.4;
+height: 2.8em; /* Force height to match 2 lines */
+
+/* CSS Magic to cut off text with "..." */
+display: -webkit-box;
+-webkit-line-clamp: 2;
+-webkit-box-orient: vertical;
+overflow: hidden;
+}
+
+/* 5. Limit Description to 3 Lines */
+.content p {
+font-size: 0.9rem;
+color: #666;
+line-height: 1.5;
+
+/* CSS Magic to cut off text with "..." */
+display: -webkit-box;
+-webkit-line-clamp: 3;
+-webkit-box-orient: vertical;
+overflow: hidden;
+}
+</style>
 </head>
 
 <body>
 
-
 <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="../../../index.html">CreateSpace</a>
+<div class="container header-inner">
+<a class="brand" href="../../../index.html">CreateSpace</a>
+<button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+<span></span><span></span><span></span>
+</button>
+<nav class="site-nav" aria-label="Primary navigation">
+<ul>
+<li><a href="../../projects/Services.html">Services</a></li>
+<li><a href="../../../AboutUs/aboutus.html">About</a></li>
+<li><a href="../../../News/News.html">News</a></li>
+<li><a href="../../contact/contact.html">Contact</a></li>
+</ul>
+</nav>
+</div>
+</header>
 
-      <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
-      <nav class="site-nav" aria-label="Primary navigation">
-        <ul>
-          <li><a href="../../projects/Services.html">Services</a></li>
-          <li><a href="../../../AboutUs/aboutus.html">About</a></li>
-          <li><a href="#news">News</a></li>
-          <li><a href="#clients">Clients</a></li>
-          <li><a href="../../contact/contact.html">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-
-<!-- MAIN (Center website) -->
 <div class="main">
 
-<h2>Projects</h2>
+<h2>Architecture Projects</h2>
 <hr>
 
 <div id="myBtnContainer">
-  <button class="btn active" onclick="filterSelection('all')"> Show all</button>
-  <button class="btn" onclick="filterSelection('Architecture')"> Architecture</button>
-  <button class="btn" onclick="filterSelection('Interior_Design')"> Interior Design</button>
-  <button class="btn" onclick="filterSelection('Urban_Design')"> Urban Design</button>
+<button class="btn active" onclick="filterSelection('all')"> Show all</button>
+<button class="btn" onclick="filterSelection('Architecture')"> Architecture</button>
+<button class="btn" onclick="filterSelection('Interior_Design')"> Interior Design</button>
+<button class="btn" onclick="filterSelection('Landscape')"> Landscape</button>
+<button class="btn" onclick="filterSelection('Urban_Design')"> Urban Design</button>
 </div>
 
-<!-- Portfolio Gallery Grid -->
-<div class="row">
-  <div class="column Architecture">
-    <a href="../Architecture/projects/project.html" class="project-link">
-    <div class="content">
-      <img src="https://picsum.photos/640/420?14" alt="Mountains" style="width:100%">
-      <h4>Bamboo research</h4>
-      <p>Bamboo research & learning center “Weaving The Future Of Khonoma”</p>
-    </div>
-  </a>
-  </div>
-  <div class="column Architecture">
-    <div class="content">
-    <img src="https://picsum.photos/640/420?15" alt="Lights" style="width:100%">
-      <h4>Architecture</h4>
-      <p>Lorem ipsum dolor..</p>
-    </div>
-  </div>
-  <div class="column Architecture">
-    <div class="content">
-    <img src="https://picsum.photos/640/420?16" alt="Nature" style="width:100%">
-      <h4>Architecture</h4>
-      <p>Lorem ipsum dolor..</p>
-    </div>
-  </div>
-  
-  <div class="column Interior_Design">
-    <div class="content">
-      <img src="https://picsum.photos/640/420?17" alt="Car" style="width:100%">
-      <h4>Interior Design</h4>
-      <p>Lorem ipsum dolor..</p>
-    </div>
-  </div>
-  <div class="column Interior_Design">
-    <div class="content">
-    <img src="https://picsum.photos/640/420?19" alt="Car" style="width:100%">
-      <h4>Interior Design</h4>
-      <p>Lorem ipsum dolor..</p>
-    </div>
-  </div>
-  <div class="column Interior_Design">
-    <div class="content">
-    <img src="https://picsum.photos/640/420?14" alt="Car" style="width:100%">
-      <h4>Interior Design</h4>
-      <p>Lorem ipsum dolor..</p>
-    </div>
-  </div>
-
-  <div class="column Urban_Design">
-    <div class="content">
-      <img src="https://picsum.photos/640/420?14" alt="Car" style="width:100%">
-      <h4>Urban Design</h4>
-      <p>Lorem ipsum dolor..</p>
-    </div>
-  </div>
-  <div class="column Urban_Design">
-    <div class="content">
-    <img src="https://picsum.photos/640/420?14" alt="Car" style="width:100%">
-      <h4>Urban Design</h4>
-      <p>Lorem ipsum dolor..</p>
-    </div>
-  </div>
-  <div class="column Urban_Design">
-    <div class="content">
-    <img src="https://picsum.photos/640/420?14" alt="Car" style="width:100%">
-      <h4>Urban Design</h4>
-      <p>Lorem ipsum dolor..</p>
-    </div>
-  </div>
-<!-- END GRID -->
+<div class="row" id="project-container">
+<div id="loading">Loading projects from Google Sheet...</div>
 </div>
 
 </div>
+
 <footer id="footer">
-    <div class="footer-top">
-      <div class="footer-grid">
-        <div>
-          <h2 class="footer-brand">CreateSpace</h2>
-          <p>Global infrastructure built for modern applications and distributed teams.</p>
-        </div>
+<div class="footer-top">
+<div class="footer-grid">
+<div>
+<h2 class="footer-brand">CreateSpace</h2>
+<p>Global infrastructure built for modern applications and distributed teams.</p>
+</div>
 
-        <div>
-          <h4>Services</h4>
-          <a href="../../projects/Architecture/Architecture.html">Architecture</a>
-          <a href="../../projects/Interior_Design/Interior.html">Interior Design</a>
-          <a href="../../projects/Urban_Design/Urban.html">Urban Design</a>
-        </div>
+<div>
+<h4>Services</h4>
+<a href="../../projects/Architecture/Architecture.html?filter=Architecture">Architecture</a>
+<a href="../../projects/Architecture/Architecture.html?filter=Interior_Design">Interior Design</a>
+<a href="../../projects/Architecture/Architecture.html?filter=Landscape">Landscape</a>
+<a href="../../projects/Architecture/Architecture.html?filter=Urban_Design">Urban Design</a>
+</div>
 
-        <div>
-          <h4>Company</h4>
-          <a href="../../../AboutUs/aboutus.html">About</a>
-          <a href="#">Careers</a>
-          <a href="../../../assets/contact/contact.html">Contact us</a>
-        </div>
+<div>
+<h4>Company</h4>
+<a href="../../../AboutUs/aboutus.html">About</a>
+<a href="../../../News/News.html">News</a>
+<a href="../../contact/contact.html">Contact us</a>
+</div>
 
-        <div class="social">
-          <a href="https://www.instagram.com" target="_blank">
-            <img src="../../../assets/images/social logo/instagram.png" alt="Instagram" width="24">
-          </a>
-          <a href="https://www.facebook.com" target="_blank">
-            <img src="../../../assets/images/social logo/facebook.png" alt="Facebook" width="24">
-          </a>
-          <a href="https://www.linkedin.com" target="_blank">
-            <img src="../../../assets/images/social logo/linkedin.png" alt="LinkedIn" width="24">
-          </a>
-          <a href="https://www.twitter.com" target="_blank">
-            <img src="../../../assets/images/social logo/twitter.png" alt="Twitter" width="24">
-          </a>
-          <a href="https://www.whatsapp.com" target="_blank">
-            <img src="../../../assets/images/social logo/whatsapp.png" alt="WhatsApp" width="24">
-          </a>
-          <a href="https://www.youtube.com" target="_blank">
-            <img src="../../../assets/images/social logo/youtube.png" alt="YouTube" width="24">
-          </a>
-        </div>
+<div class="social">
+<a href="https://www.instagram.com" target="_blank">
+<img src="../../images/social logo/instagram.png" alt="Instagram" width="24">
+</a>
+<a href="https://www.facebook.com" target="_blank">
+<img src="../../images/social logo/facebook.png" alt="Facebook" width="24">
+</a>
+<a href="https://www.linkedin.com" target="_blank">
+<img src="../../images/social logo/linkedin.png" alt="LinkedIn" width="24">
+</a>
+<a href="https://www.twitter.com" target="_blank">
+<img src="../../images/social logo/twitter.png" alt="Twitter" width="24">
+</a>
+<a href="https://www.whatsapp.com" target="_blank">
+<img src="../../images/social logo/whatsapp.png" alt="WhatsApp" width="24">
+</a>
+<a href="https://www.youtube.com" target="_blank">
+<img src="../../images/social logo/youtube.png" alt="YouTube" width="24">
+</a>
+</div>
 
-      </div>
-    </div>
-    <div class="line-break"></div>
+</div>
+</div>
+<div class="line-break"></div>
 
-    <div class="location">
-      <a href="https://www.youtube.com" target="_blank">
-        <img src="../../../assets/images/social logo/location.png" alt="Pune" width="24">Pune
-      </a>
-      <a href="https://www.youtube.com" target="_blank">
-        <img src="../../../assets/images/social logo/location.png" alt="Mumbai" width="24">Mumbai
-      </a>
-      <a href="https://www.youtube.com" target="_blank">
-        <img src="../../../assets/images/social logo/location.png" alt="Delhi" width="24">Delhi
-      </a>
-    </div>
-    <div class="line-break"></div>
+<div class="location">
+<a href="https://www.youtube.com" target="_blank">
+<img src="../../images/social logo/location.png" alt="Pune" width="24">Pune
+</a>
+<a href="https://www.youtube.com" target="_blank">
+<img src="../../images/social logo/location.png" alt="Mumbai" width="24">Mumbai
+</a>
+<a href="https://www.youtube.com" target="_blank">
+<img src="../../images/social logo/location.png" alt="Delhi" width="24">Delhi
+</a>
+</div>
+<div class="line-break"></div>
 
-    <div class="footer-bottom">
-      © 2025 CreateSpace. All rights reserved.
-    </div>
-  </footer>
+<div class="footer-bottom">
+© 2025 CreateSpace. All rights reserved.
+</div>
+</footer>
+
 <script>
-filterSelection("all")
+// ==========================================
+// 1. CONFIGURATION
+// ==========================================
+const SHEET_ID = '1gtu1WSMvPOrPn1qzD2smIdSajVTqeOmH272c9LW6a1c';
+const SHEET_NAME = 'Architecture Projects'; 
+const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(SHEET_NAME)}`;
+const IMAGE_PREFIX = ""; 
+
+// ==========================================
+// 2. FETCH DATA
+// ==========================================
+document.addEventListener("DOMContentLoaded", function() {
+    // Mobile Menu Toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const siteNav = document.querySelector('.site-nav');
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            siteNav.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+    }
+
+    fetch(SHEET_URL)
+    .then(response => {
+        if (!response.ok) throw new Error("HTTP error " + response.status);
+        return response.text();
+    })
+    .then(csvText => {
+        const projects = parseCSV(csvText);
+        generateHTML(projects);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        document.getElementById('project-container').innerHTML = 
+            `<div class="error-msg">Error loading data. Check console.</div>`;
+    });
+});
+
+// ==========================================
+// 3. PARSE CSV
+// ==========================================
+function parseCSV(csv) {
+    const lines = csv.split("\n");
+    const result = [];
+
+    // Skip Header Rows (Start at i=2)
+    for (let i = 2; i < lines.length; i++) {
+        const line = lines[i].trim();
+        if (!line) continue;
+
+        // Split by comma, respecting quotes
+        const columns = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+
+        // Map Columns
+        const category    = cleanText(columns[1]); 
+        const title       = cleanText(columns[2]); 
+        const imageURL    = cleanText(columns[3]); 
+        const description = cleanText(columns[4]); 
+
+        // Validate Data
+        if(title && title.toLowerCase() !== "title" && category.toLowerCase() !== "category") {
+            result.push({ category, title, imageURL, description });
+        }
+    }
+    return result;
+}
+
+function cleanText(text) {
+    if (!text) return "";
+    return text.replace(/^"|"$/g, '').trim(); 
+}
+
+// ==========================================
+// 4. GENERATE CARDS & HANDLE FILTER
+// ==========================================
+function generateHTML(data) {
+    const container = document.getElementById('project-container');
+    container.innerHTML = ""; 
+
+    if(data.length === 0) {
+        container.innerHTML = "<p style='text-align:center;'>No projects found.</p>";
+        return;
+    }
+
+    data.forEach(project => {
+        let finalImage = project.imageURL;
+        if(IMAGE_PREFIX && !finalImage.startsWith("http")) {
+            finalImage = IMAGE_PREFIX + finalImage;
+        }
+
+        // Check your file path here! (If project.html is next to this file, remove 'projects/')
+        const link = `project.html?project=${encodeURIComponent(project.title)}`;
+
+        const card = `
+          <div class="column ${project.category} show">
+            <a href="${link}" class="project-link">
+            <div class="content">
+              <img src="${finalImage}" alt="${project.title}">
+              <h4>${project.title}</h4>
+              <p>${project.description}</p>
+            </div>
+            </a>
+          </div>
+        `;
+        container.innerHTML += card;
+    });
+
+    // === NEW LOGIC: CHECK URL FOR FILTER ===
+    const urlParams = new URLSearchParams(window.location.search);
+    const activeFilter = urlParams.get('filter');
+
+    if (activeFilter) {
+        // 1. Apply the filter from URL
+        filterSelection(activeFilter);
+        
+        // 2. Highlight the correct button
+        const btnContainer = document.getElementById("myBtnContainer");
+        const btns = btnContainer.getElementsByClassName("btn");
+        for (let i = 0; i < btns.length; i++) {
+            btns[i].className = btns[i].className.replace(" active", "");
+            // Check if button onclick contains the filter name (e.g., 'Landscape')
+            if(btns[i].getAttribute("onclick").includes(`'${activeFilter}'`)) {
+                btns[i].className += " active";
+            }
+        }
+    } else {
+        // Default behavior: Show All
+        filterSelection("all");
+    }
+}
+
+// ==========================================
+// 5. FILTER LOGIC
+// ==========================================
 function filterSelection(c) {
-  var x, i;
-  x = document.getElementsByClassName("column");
+  var x = document.getElementsByClassName("column");
   if (c == "all") c = "";
-  for (i = 0; i < x.length; i++) {
+  for (var i = 0; i < x.length; i++) {
     w3RemoveClass(x[i], "show");
     if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
   }
@@ -219,18 +357,17 @@ function w3RemoveClass(element, name) {
   element.className = arr1.join(" ");
 }
 
-
-// Add active class to the current button (highlight it)
+// Button Click Listener
 var btnContainer = document.getElementById("myBtnContainer");
 var btns = btnContainer.getElementsByClassName("btn");
 for (var i = 0; i < btns.length; i++) {
   btns[i].addEventListener("click", function(){
     var current = document.getElementsByClassName("active");
-    current[0].className = current[0].className.replace(" active", "");
+    if(current.length > 0) current[0].className = current[0].className.replace(" active", "");
     this.className += " active";
   });
 }
 </script>
-
+<script src="../../js/script.js"></script>
 </body>
 </html>

@@ -2,12 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Project Details | CreateSpace</title>
+<title>News Details | CreateSpace</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="../../../css/style.css">
-
-<link rel="stylesheet" href="../../../css/detailproject.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/detailproject.css">
 
 <style>
   /* Loading State */
@@ -23,7 +22,7 @@
     padding: 100px;
   }
   
-  /* Preserve Paragraphs from Sheet */
+  /* Preserve line breaks from Sheet */
   .component-text {
     white-space: pre-line; 
   }
@@ -53,7 +52,7 @@
 
 <header class="site-header">
     <div class="header-inner">
-      <a class="brand" href="../../../../index.html">CreateSpace</a>
+      <a class="brand" href="../index.html">CreateSpace</a>
 
       <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -61,17 +60,17 @@
 
       <nav class="site-nav" aria-label="Primary navigation">
         <ul>
-          <li><a href="../../Services.html">Services</a></li>
-          <li><a href="../../../../AboutUs/aboutus.html">About</a></li>
-          <li><a href="../../../../News/News.html">News</a></li>
-          <li><a href="../../../contact/contact.html">Contact</a></li>
+          <li><a href="../assets/projects/Services.html">Services</a></li>
+          <li><a href="../AboutUs/aboutus.html">About</a></li>
+          <li><a href="../News/News.html">News</a></li>
+          <li><a href="../assets/contact/contact.html">Contact</a></li>
         </ul>
       </nav>
     </div>
 </header>
 
 <main class="component-body" id="dynamic-content">
-  <div id="loading">Loading project details...</div>
+  <div id="loading">Loading news details...</div>
 </main>
 
 <footer id="footer">
@@ -83,32 +82,32 @@
         </div>
         <div>
           <h4>Services</h4>
-          <a href="../../../projects/Architecture/Architecture.html?filter=Architecture">Architecture</a>
-          <a href="../../../projects/Architecture/Architecture.html?filter=Interior_Design">Interior Design</a>
-          <a href="../../../projects/Architecture/Architecture.html?filter=Landscape">Landscape</a>
-          <a href="../../../projects/Architecture/Architecture.html?filter=Urban Design">Urban Design</a>
+          <a href="../assets/projects/Architecture/Architecture.html?filter=Architecture">Architecture</a>
+          <a href="../assets/projects/Architecture/Architecture.html?filter=Interior_Design">Interior Design</a>
+          <a href="../assets/projects/Architecture/Architecture.html?filter=Landscape">Landscape</a>
+          <a href="../assets/projects/Architecture/Architecture.html?filter=Urban_Design">Urban Design</a>
         </div>
         <div>
           <h4>Company</h4>
-          <a href="../../../../AboutUs/aboutus.html">About</a>
-          <a href="../../../../News/News.html">News</a>
-          <a href="../../../contact/contact.html">Contact us</a>
+          <a href="../AboutUs/aboutus.html">About</a>
+          <a href="../News/News.html">News</a>
+          <a href="../assets/contact/contact.html">Contact us</a>
         </div>
         <div class="social">
-          <a href="#"><img src="../../../images/social logo/instagram.png" alt="Insta"></a>
-          <a href="#"><img src="../../../images/social logo/facebook.png" alt="FB"></a>
-          <a href="#"><img src="../../../images/social logo/linkedin.png" alt="Li"></a>
-          <a href="#"><img src="../../../images/social logo/twitter.png" alt="Twitter"></a>
-          <a href="#"><img src="../../../images/social logo/whatsapp.png" alt="WhatsApp"></a>
-          <a href="#"><img src="../../../images/social logo/youtube.png" alt="YouTube"></a>
+          <a href="#"><img src="../assets/images/social logo/instagram.png" alt="Insta"></a>
+          <a href="#"><img src="../assets/images/social logo/facebook.png" alt="FB"></a>
+          <a href="#"><img src="../assets/images/social logo/linkedin.png" alt="Li"></a>
+          <a href="#"><img src="../assets/images/social logo/twitter.png" alt="Twitter"></a>
+          <a href="#"><img src="../assets/images/social logo/whatsapp.png" alt="WhatsApp"></a>
+          <a href="#"><img src="../assets/images/social logo/youtube.png" alt="YouTube"></a>
         </div>
       </div>
     </div>
     <div class="line-break"></div>
     <div class="location">
-      <a href="#"><img src="../../../images/social logo/location.png" alt="Loc">Pune</a>
-      <a href="#"><img src="../../../images/social logo/location.png" alt="Loc">Mumbai</a>
-      <a href="#"><img src="../../../images/social logo/location.png" alt="Loc">Delhi</a>
+      <a href="#"><img src="../assets/images/social logo/location.png" alt="Loc">Pune</a>
+      <a href="#"><img src="../assets/images/social logo/location.png" alt="Loc">Mumbai</a>
+      <a href="#"><img src="../assets/images/social logo/location.png" alt="Loc">Delhi</a>
     </div>
     <div class="footer-bottom">© 2025 CreateSpace. All rights reserved.</div>
 </footer>
@@ -122,9 +121,11 @@
 // ==========================================
 // 1. CONFIGURATION
 // ==========================================
-// Make sure this matches your Sheet ID exactly
 const SHEET_ID = '1gtu1WSMvPOrPn1qzD2smIdSajVTqeOmH272c9LW6a1c';
-const SHEET_NAME = 'project details'; 
+
+// UPDATED SHEET NAME
+const SHEET_NAME = 'News cards'; 
+
 const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(SHEET_NAME)}`;
 const IMAGE_PREFIX = ""; 
 
@@ -132,10 +133,11 @@ const IMAGE_PREFIX = "";
 // 2. MAIN LOGIC
 // ==========================================
 const urlParams = new URLSearchParams(window.location.search);
-const projectToFind = urlParams.get('project'); 
+// We look for ?article=Title in the URL
+const articleToFind = urlParams.get('article'); 
 
 document.addEventListener("DOMContentLoaded", function() {
-    // Mobile Menu Logic (Copied from Global Script)
+    // Mobile Menu Logic
     const menuToggle = document.querySelector('.menu-toggle');
     const siteNav = document.querySelector('.site-nav');
     if (menuToggle) {
@@ -145,24 +147,22 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Check if we have a project to look for
-    if(!projectToFind) {
-        document.getElementById('dynamic-content').innerHTML = "<div class='error-msg'>No project specified.<br><a href='Architecture.html'>Go back to projects</a></div>";
+    if(!articleToFind) {
+        document.getElementById('dynamic-content').innerHTML = "<div class='error-msg'>No article specified.<br><a href='../News/News.html'>Back to News</a></div>";
         return;
     }
 
-    // Fetch Data
     fetch(SHEET_URL)
     .then(r => r.text())
     .then(csvText => {
-        const projects = parseCSV(csvText);
-        // Find the specific row where title matches URL
-        const myProject = projects.find(p => p.title.trim() === projectToFind.trim());
+        const articles = parseCSV(csvText);
+        // Find the matching article title (Trimming spaces to be safe)
+        const myArticle = articles.find(a => a.title.trim() === articleToFind.trim());
         
-        if(myProject) {
-            renderPage(myProject);
+        if(myArticle) {
+            renderPage(myArticle);
         } else {
-            document.getElementById('dynamic-content').innerHTML = `<div class='error-msg'>Project "${projectToFind}" not found.</div>`;
+            document.getElementById('dynamic-content').innerHTML = `<div class='error-msg'>Article "${articleToFind}" not found.</div>`;
         }
     });
 });
@@ -175,16 +175,19 @@ function renderPage(p) {
     
     // Process Images
     const heroImg = processImg(p.heroImage);
-    const descImg = processImg(p.descImage);
+    const sideImg = processImg(p.sideImage);
     
-    // Process Gallery (Splits comma-separated links)
+    // Process Gallery
+    // Filters out empty entries
     const galleryImages = p.galleryRaw.split(',').map(url => url.trim()).filter(url => url.length > 0);
     let galleryHTML = "";
     galleryImages.forEach(url => {
         galleryHTML += `<img src="${processImg(url)}" alt="Gallery Image">`;
     });
 
-    // INJECT HTML (Matches Bamboo Page Layout)
+    // Only show "Gallery" header if there are images
+    const gallerySectionHeader = galleryHTML ? `<div class="single-text"><h2 class="component-title">Gallery</h2></div>` : '';
+
     container.innerHTML = `
       <h1 class="component-title component-head">${p.title}</h1>
 
@@ -192,84 +195,46 @@ function renderPage(p) {
         <img src="${heroImg}" alt="${p.title}">
       </div>
 
-      <div class="component-menu">
-        <div>
-          <p class="component-menu-title">Project Client</p>
-          <p>${p.client || 'N/A'}</p>
-        </div>
-        <div>
-          <p class="component-menu-title">Project Category</p>
-          <p>${p.category}</p>
-        </div>
-        <div>
-          <p class="component-menu-title">Location</p>
-          <p>${p.location || 'N/A'}</p>
-        </div>
-        <div>
-          <p class="component-menu-title">Status</p>
-          <p>${p.status || 'Completed'}</p>
-        </div>
-        <div>
-          <p class="component-menu-title">Area</p>
-          <p>${p.area || 'N/A'}</p>
-        </div>
-      </div>
-
       <div class="img-text">
-        <img src="${descImg}" alt="Detail Shot">
+        <img src="${sideImg}" alt="Side Image">
         <p class="component-text">${p.description}</p>
       </div>
 
-      <div class="single-text">
-        <h2 class="component-title">Photos</h2>
-      </div>
+      ${gallerySectionHeader}
 
       <div class="gallery-grid">
         ${galleryHTML}
       </div>
 
-      <div class="paginationbox">
-        <div class="prev-next-title">
-          <a href="../Architecture.html">
-            <span>Back to</span>
-            <div class="component-title prev-next">All Projects</div>
-          </a>
-        </div>
-      </div>
     `;
 
-    // Initialize Lightbox for new images
     initLightbox();
 }
 
 // ==========================================
-// 4. PARSE CSV (Mapping Columns)
+// 4. PARSE CSV (UPDATED COLUMN MAPPING)
 // ==========================================
 function parseCSV(csv) {
     const lines = csv.split("\n");
     const result = [];
     
-    // Start loop at 1 (Assuming Row 1 is Header)
+    // Start at row 1 (Assuming Row 1 is Header)
     for (let i = 1; i < lines.length; i++) {
         const line = lines[i].trim();
         if (!line) continue;
         
-        // Regex to split by comma but ignore commas inside quotes
+        // Regex split to handle commas inside quotes
         const cols = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(cleanText);
 
-        // === IMPORTANT: MATCH THIS TO YOUR SHEET COLUMNS ===
+        // === CORRECT MAPPING (Targeting Column M for Gallery) ===
+        // I=8, J=9, K=10, L=11, M=12
+        
         const p = {
-            category:   cols[1], // Column B
-            title:      cols[2], // Column C
-            heroImage:  cols[3], // Column D
-            description:cols[4], // Column E
-            // New Columns you requested:
-            client:     cols[5], // Column F
-            location:   cols[6], // Column G
-            status:     cols[7], // Column H
-            area:       cols[8], // Column I
-            descImage:  cols[9], // Column J (Side image next to text)
-            galleryRaw: cols[10] || "" // Column K (Comma separated gallery links)
+            title:       cols[8],       // Column I
+            heroImage:   cols[9],       // Column J
+            description: cols[10],      // Column K
+            sideImage:   cols[11],      // Column L
+            galleryRaw:  cols[12] || "" // Column M (Index 12)
         };
 
         if(p.title) result.push(p);
@@ -294,7 +259,6 @@ function initLightbox() {
     const lbImg = document.getElementById("lightbox-img");
     const close = document.querySelector(".lightbox-close");
 
-    // Select all images in the content area
     document.querySelectorAll("#dynamic-content img").forEach(img => {
         img.addEventListener("click", () => {
             lb.style.display = "flex";
