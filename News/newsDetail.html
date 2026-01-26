@@ -115,143 +115,138 @@
 <div id="lightbox" class="lightbox">
   <span class="lightbox-close">&times;</span>
   <img id="lightbox-img">
-</div>
-
+</div><script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+<script src="../assets/js/script.js"></script>
 <script>
 // ==========================================
-// 1. CONFIGURATION
+// 1. HELPER: PROCESS IMAGE LINKS (Drive Fix)
 // ==========================================
-const SHEET_ID = '1gtu1WSMvPOrPn1qzD2smIdSajVTqeOmH272c9LW6a1c';
+function processImg(url) {
+    if(!url) return "https://via.placeholder.com/800x600?text=No+Image"; 
+    url = url.trim();
 
-// UPDATED SHEET NAME
-const SHEET_NAME = 'News cards'; 
-
-const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(SHEET_NAME)}`;
-const IMAGE_PREFIX = ""; 
+    // Fix Google Drive Links to use Thumbnail endpoint (Avoids permissions/virus warnings)
+    if (url.includes('drive.google.com')) {
+        const idMatch = url.match(/\/d\/([a-zA-Z0-9_-]+)/); // Matches /d/ID
+        if (idMatch && idMatch[1]) {
+            return `https://drive.google.com/thumbnail?id=${idMatch[1]}&sz=w4000`;
+        }
+        // Fallback for ID= style links
+        if (url.includes("id=")) {
+            const params = new URLSearchParams(url.split('?')[1]);
+            const id = params.get("id");
+            if(id) return `https://drive.google.com/thumbnail?id=${id}&sz=w4000`;
+        }
+    }
+    
+    // Normal Links
+    const IMAGE_PREFIX = ""; 
+    if(IMAGE_PREFIX && !url.startsWith("http")) return IMAGE_PREFIX + url;
+    return url;
+}
 
 // ==========================================
 // 2. MAIN LOGIC
 // ==========================================
-const urlParams = new URLSearchParams(window.location.search);
-// We look for ?article=Title in the URL
-const articleToFind = urlParams.get('article'); 
-
-document.addEventListener("DOMContentLoaded", function() {
-    // Mobile Menu Logic
-    const menuToggle = document.querySelector('.menu-toggle');
-    const siteNav = document.querySelector('.site-nav');
-    if (menuToggle) {
-        menuToggle.addEventListener('click', () => {
-            siteNav.classList.toggle('active');
-            menuToggle.classList.toggle('active');
-        });
-    }
+async function loadArticle() {
+    const container = document.getElementById("dynamic-content");
+    const urlParams = new URLSearchParams(window.location.search);
+    const articleToFind = urlParams.get('article'); 
 
     if(!articleToFind) {
-        document.getElementById('dynamic-content').innerHTML = "<div class='error-msg'>No article specified.<br><a href='../News/News.html'>Back to News</a></div>";
+        container.innerHTML = "<div class='error-msg'>No article specified.<br><a href='news.html'>Back to News</a></div>";
         return;
     }
 
-    fetch(SHEET_URL)
-    .then(r => r.text())
-    .then(csvText => {
-        const articles = parseCSV(csvText);
-        // Find the matching article title (Trimming spaces to be safe)
-        const myArticle = articles.find(a => a.title.trim() === articleToFind.trim());
-        
-        if(myArticle) {
-            renderPage(myArticle);
-        } else {
-            document.getElementById('dynamic-content').innerHTML = `<div class='error-msg'>Article "${articleToFind}" not found.</div>`;
-        }
-    });
-});
+    const sheetId = '1gtu1WSMvPOrPn1qzD2smIdSajVTqeOmH272c9LW6a1c';
+    const sheetName = 'News%20cards'; 
+    const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(sheetName)}`;
+
+    try {
+        const response = await fetch(url);
+        const csvText = await response.text();
+
+        // USE PAPAPARSE (Like your Team Page)
+        Papa.parse(csvText, {
+            header: false,
+            complete: function(results) {
+                const rows = results.data;
+                // Skip Header (Row 1 is usually header in Google Sheet export)
+                // Use .find to locate the specific article title
+                const myArticle = rows.find(row => row[8] && row[8].trim() === articleToFind.trim());
+
+                if (myArticle) {
+                    renderPage(myArticle);
+                } else {
+                    container.innerHTML = `<div class='error-msg'>Article "${articleToFind}" not found.</div>`;
+                }
+            }
+        });
+
+    } catch (error) {
+        console.error("Error:", error);
+        container.innerHTML = "<div class='error-msg'>Error loading data.</div>";
+    }
+}
 
 // ==========================================
 // 3. RENDER FUNCTION
 // ==========================================
-function renderPage(p) {
+function renderPage(row) {
     const container = document.getElementById('dynamic-content');
-    
+
+    // MAPPING (Based on your News Sheet):
+    // I(8)=Title, J(9)=Hero, K(10)=Desc, L(11)=Side, M(12)=Gallery
+    const p = {
+        title:       row[8],
+        heroImage:   row[9],
+        description: row[10],
+        sideImage:   row[11],
+        galleryRaw:  row[12] || "" 
+    };
+
     // Process Images
     const heroImg = processImg(p.heroImage);
     const sideImg = processImg(p.sideImage);
-    
-    // Process Gallery
-    // Filters out empty entries
-    const galleryImages = p.galleryRaw.split(',').map(url => url.trim()).filter(url => url.length > 0);
-    let galleryHTML = "";
-    galleryImages.forEach(url => {
-        galleryHTML += `<img src="${processImg(url)}" alt="Gallery Image">`;
-    });
 
-    // Only show "Gallery" header if there are images
-    const gallerySectionHeader = galleryHTML ? `<div class="single-text"><h2 class="component-title">Gallery</h2></div>` : '';
+    // Process Gallery
+    const galleryHTML = p.galleryRaw.split(',')
+        .map(u => u.trim())
+        .filter(u => u.length > 5)
+        .map(url => `<img src="${processImg(url)}" alt="Gallery">`)
+        .join('');
+
+    const galleryHeader = galleryHTML ? `<div class="single-text"><h2 class="component-title">Gallery</h2></div>` : '';
 
     container.innerHTML = `
       <h1 class="component-title component-head">${p.title}</h1>
 
       <div class="single-img">
-        <img src="${heroImg}" alt="${p.title}">
+        <img src="${heroImg}" alt="${p.title}" onerror="this.src='https://via.placeholder.com/800?text=Image+Error'">
       </div>
 
       <div class="img-text">
-        <img src="${sideImg}" alt="Side Image">
+        <img src="${sideImg}" alt="Side Image" onerror="this.src='https://via.placeholder.com/600?text=Image+Error'">
         <p class="component-text">${p.description}</p>
       </div>
 
-      ${gallerySectionHeader}
+      ${galleryHeader}
 
       <div class="gallery-grid">
         ${galleryHTML}
       </div>
 
+      <div class="paginationbox">
+        <div class="prev-next-title">
+          <a href="news.html">
+            <span>Back to</span>
+            <div class="component-title prev-next">All News</div>
+          </a>
+        </div>
+      </div>
     `;
 
     initLightbox();
-}
-
-// ==========================================
-// 4. PARSE CSV (UPDATED COLUMN MAPPING)
-// ==========================================
-function parseCSV(csv) {
-    const lines = csv.split("\n");
-    const result = [];
-    
-    // Start at row 1 (Assuming Row 1 is Header)
-    for (let i = 1; i < lines.length; i++) {
-        const line = lines[i].trim();
-        if (!line) continue;
-        
-        // Regex split to handle commas inside quotes
-        const cols = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(cleanText);
-
-        // === CORRECT MAPPING (Targeting Column M for Gallery) ===
-        // I=8, J=9, K=10, L=11, M=12
-        
-        const p = {
-            title:       cols[8],       // Column I
-            heroImage:   cols[9],       // Column J
-            description: cols[10],      // Column K
-            sideImage:   cols[11],      // Column L
-            galleryRaw:  cols[12] || "" // Column M (Index 12)
-        };
-
-        if(p.title) result.push(p);
-    }
-    return result;
-}
-
-function cleanText(text) {
-    if (!text) return "";
-    return text.replace(/^"|"$/g, '').trim(); 
-}
-
-function processImg(url) {
-    if(!url) return "https://via.placeholder.com/800x600?text=No+Image"; 
-    url = url.trim();
-    if(IMAGE_PREFIX && !url.startsWith("http")) return IMAGE_PREFIX + url;
-    return url;
 }
 
 function initLightbox() {
@@ -269,7 +264,8 @@ function initLightbox() {
     close.onclick = () => lb.style.display = "none";
     lb.onclick = e => { if(e.target === lb) lb.style.display = "none"; };
 }
-</script>
 
+document.addEventListener("DOMContentLoaded", loadArticle);
+</script>
 </body>
 </html>

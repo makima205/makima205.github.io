@@ -118,24 +118,46 @@
   <img id="lightbox-img">
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+
 <script>
 // ==========================================
 // 1. CONFIGURATION
 // ==========================================
-// Make sure this matches your Sheet ID exactly
 const SHEET_ID = '1gtu1WSMvPOrPn1qzD2smIdSajVTqeOmH272c9LW6a1c';
 const SHEET_NAME = 'project details'; 
 const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(SHEET_NAME)}`;
 const IMAGE_PREFIX = ""; 
 
 // ==========================================
-// 2. MAIN LOGIC
+// 2. HELPER: FIX GOOGLE DRIVE IMAGES
+// ==========================================
+function processImg(url) {
+    if(!url) return "https://via.placeholder.com/800x600?text=No+Image"; 
+    url = url.trim();
+
+    // Convert Drive Link to Thumbnail Link (Bypasses permissions/virus warnings)
+    if (url.includes('drive.google.com')) {
+        const idMatch = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+        if (idMatch && idMatch[1]) {
+            // Request large image (w4000) for details page
+            return `https://drive.google.com/thumbnail?id=${idMatch[1]}&sz=w4000`;
+        }
+    }
+    
+    // Normal Links
+    if(IMAGE_PREFIX && !url.startsWith("http")) return IMAGE_PREFIX + url;
+    return url;
+}
+
+// ==========================================
+// 3. MAIN LOGIC
 // ==========================================
 const urlParams = new URLSearchParams(window.location.search);
 const projectToFind = urlParams.get('project'); 
 
 document.addEventListener("DOMContentLoaded", function() {
-    // Mobile Menu Logic (Copied from Global Script)
+    // Mobile Menu
     const menuToggle = document.querySelector('.menu-toggle');
     const siteNav = document.querySelector('.site-nav');
     if (menuToggle) {
@@ -145,30 +167,63 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Check if we have a project to look for
     if(!projectToFind) {
         document.getElementById('dynamic-content').innerHTML = "<div class='error-msg'>No project specified.<br><a href='Architecture.html'>Go back to projects</a></div>";
         return;
     }
 
-    // Fetch Data
+    // Fetch and Parse
     fetch(SHEET_URL)
     .then(r => r.text())
     .then(csvText => {
-        const projects = parseCSV(csvText);
-        // Find the specific row where title matches URL
-        const myProject = projects.find(p => p.title.trim() === projectToFind.trim());
-        
-        if(myProject) {
-            renderPage(myProject);
-        } else {
-            document.getElementById('dynamic-content').innerHTML = `<div class='error-msg'>Project "${projectToFind}" not found.</div>`;
-        }
+        Papa.parse(csvText, {
+            header: false,
+            complete: function(results) {
+                const rows = results.data;
+                // Find matching project by Title (Column C -> Index 2)
+                const myProjectRow = rows.find(row => row[2] && row[2].trim() === projectToFind.trim());
+                
+                if(myProjectRow) {
+                    // Map the row array to an object
+                    const p = mapRowToProject(myProjectRow);
+                    renderPage(p);
+                } else {
+                    document.getElementById('dynamic-content').innerHTML = `<div class='error-msg'>Project "${projectToFind}" not found.</div>`;
+                }
+            }
+        });
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        document.getElementById('dynamic-content').innerHTML = `<div class='error-msg'>Error loading data.</div>`;
     });
 });
 
 // ==========================================
-// 3. RENDER FUNCTION
+// 4. MAP ROW TO OBJECT
+// ==========================================
+function mapRowToProject(cols) {
+    // MAPPING based on your previous code:
+    // B=1(Category), C=2(Title), D=3(Hero), E=4(Desc), 
+    // F=5(Client), G=6(Location), H=7(Status), I=8(Area), 
+    // J=9(DescImg), K=10(Gallery)
+    
+    return {
+        category:    cols[1],
+        title:       cols[2],
+        heroImage:   cols[3],
+        description: cols[4],
+        client:      cols[5],
+        location:    cols[6],
+        status:      cols[7],
+        area:        cols[8],
+        descImage:   cols[9],
+        galleryRaw:  cols[10] || ""
+    };
+}
+
+// ==========================================
+// 5. RENDER FUNCTION
 // ==========================================
 function renderPage(p) {
     const container = document.getElementById('dynamic-content');
@@ -177,46 +232,30 @@ function renderPage(p) {
     const heroImg = processImg(p.heroImage);
     const descImg = processImg(p.descImage);
     
-    // Process Gallery (Splits comma-separated links)
-    const galleryImages = p.galleryRaw.split(',').map(url => url.trim()).filter(url => url.length > 0);
-    let galleryHTML = "";
-    galleryImages.forEach(url => {
-        galleryHTML += `<img src="${processImg(url)}" alt="Gallery Image">`;
-    });
+    // Process Gallery
+    const galleryHTML = p.galleryRaw.split(',')
+        .map(u => u.trim())
+        .filter(u => u.length > 5)
+        .map(url => `<img src="${processImg(url)}" alt="Gallery Image">`)
+        .join('');
 
-    // INJECT HTML (Matches Bamboo Page Layout)
     container.innerHTML = `
       <h1 class="component-title component-head">${p.title}</h1>
 
       <div class="single-img">
-        <img src="${heroImg}" alt="${p.title}">
+        <img src="${heroImg}" alt="${p.title}" onerror="this.src='https://via.placeholder.com/800x600?text=Image+Error'">
       </div>
 
       <div class="component-menu">
-        <div>
-          <p class="component-menu-title">Project Client</p>
-          <p>${p.client || 'N/A'}</p>
-        </div>
-        <div>
-          <p class="component-menu-title">Project Category</p>
-          <p>${p.category}</p>
-        </div>
-        <div>
-          <p class="component-menu-title">Location</p>
-          <p>${p.location || 'N/A'}</p>
-        </div>
-        <div>
-          <p class="component-menu-title">Status</p>
-          <p>${p.status || 'Completed'}</p>
-        </div>
-        <div>
-          <p class="component-menu-title">Area</p>
-          <p>${p.area || 'N/A'}</p>
-        </div>
+        <div><p class="component-menu-title">Project Client</p><p>${p.client || 'N/A'}</p></div>
+        <div><p class="component-menu-title">Project Category</p><p>${p.category}</p></div>
+        <div><p class="component-menu-title">Location</p><p>${p.location || 'N/A'}</p></div>
+        <div><p class="component-menu-title">Status</p><p>${p.status || 'Completed'}</p></div>
+        <div><p class="component-menu-title">Area</p><p>${p.area || 'N/A'}</p></div>
       </div>
 
       <div class="img-text">
-        <img src="${descImg}" alt="Detail Shot">
+        <img src="${descImg}" alt="Detail Shot" onerror="this.src='https://via.placeholder.com/600x400?text=Image+Error'">
         <p class="component-text">${p.description}</p>
       </div>
 
@@ -238,55 +277,7 @@ function renderPage(p) {
       </div>
     `;
 
-    // Initialize Lightbox for new images
     initLightbox();
-}
-
-// ==========================================
-// 4. PARSE CSV (Mapping Columns)
-// ==========================================
-function parseCSV(csv) {
-    const lines = csv.split("\n");
-    const result = [];
-    
-    // Start loop at 1 (Assuming Row 1 is Header)
-    for (let i = 1; i < lines.length; i++) {
-        const line = lines[i].trim();
-        if (!line) continue;
-        
-        // Regex to split by comma but ignore commas inside quotes
-        const cols = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(cleanText);
-
-        // === IMPORTANT: MATCH THIS TO YOUR SHEET COLUMNS ===
-        const p = {
-            category:   cols[1], // Column B
-            title:      cols[2], // Column C
-            heroImage:  cols[3], // Column D
-            description:cols[4], // Column E
-            // New Columns you requested:
-            client:     cols[5], // Column F
-            location:   cols[6], // Column G
-            status:     cols[7], // Column H
-            area:       cols[8], // Column I
-            descImage:  cols[9], // Column J (Side image next to text)
-            galleryRaw: cols[10] || "" // Column K (Comma separated gallery links)
-        };
-
-        if(p.title) result.push(p);
-    }
-    return result;
-}
-
-function cleanText(text) {
-    if (!text) return "";
-    return text.replace(/^"|"$/g, '').trim(); 
-}
-
-function processImg(url) {
-    if(!url) return "https://via.placeholder.com/800x600?text=No+Image"; 
-    url = url.trim();
-    if(IMAGE_PREFIX && !url.startsWith("http")) return IMAGE_PREFIX + url;
-    return url;
 }
 
 function initLightbox() {
@@ -294,7 +285,6 @@ function initLightbox() {
     const lbImg = document.getElementById("lightbox-img");
     const close = document.querySelector(".lightbox-close");
 
-    // Select all images in the content area
     document.querySelectorAll("#dynamic-content img").forEach(img => {
         img.addEventListener("click", () => {
             lb.style.display = "flex";
@@ -306,6 +296,6 @@ function initLightbox() {
     lb.onclick = e => { if(e.target === lb) lb.style.display = "none"; };
 }
 </script>
-
+<script src="../../../js/script.js"></script>
 </body>
 </html>

@@ -202,7 +202,25 @@ const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tq
 const IMAGE_PREFIX = ""; 
 
 // ==========================================
-// 2. FETCH DATA
+// 2. HELPER: FIX GOOGLE DRIVE IMAGES
+// ==========================================
+function processImg(url) {
+    if(!url) return "https://via.placeholder.com/600x400?text=No+Image"; 
+    url = url.trim();
+
+    // Convert Drive Link to Thumbnail Link (Bypasses permissions/virus warnings)
+    if (url.includes('drive.google.com')) {
+        const idMatch = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+        if (idMatch && idMatch[1]) {
+            // Requesting width 800px
+            return `https://drive.google.com/thumbnail?id=${idMatch[1]}&sz=w800`;
+        }
+    }
+    return url;
+}
+
+// ==========================================
+// 3. FETCH DATA
 // ==========================================
 document.addEventListener("DOMContentLoaded", function() {
     // Mobile Menu Toggle
@@ -232,7 +250,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // ==========================================
-// 3. PARSE CSV
+// 4. PARSE CSV
 // ==========================================
 function parseCSV(csv) {
     const lines = csv.split("\n");
@@ -266,7 +284,7 @@ function cleanText(text) {
 }
 
 // ==========================================
-// 4. GENERATE CARDS & HANDLE FILTER
+// 5. GENERATE CARDS & HANDLE FILTER
 // ==========================================
 function generateHTML(data) {
     const container = document.getElementById('project-container');
@@ -278,19 +296,17 @@ function generateHTML(data) {
     }
 
     data.forEach(project => {
-        let finalImage = project.imageURL;
-        if(IMAGE_PREFIX && !finalImage.startsWith("http")) {
-            finalImage = IMAGE_PREFIX + finalImage;
-        }
+        // 1. Use the Image Processor
+        const finalImage = processImg(project.imageURL);
 
-        // Check your file path here! (If project.html is next to this file, remove 'projects/')
+        // 2. Fix Link Path (Assuming project.html is in same folder)
         const link = `projects/project.html?project=${encodeURIComponent(project.title)}`;
 
         const card = `
           <div class="column ${project.category} show">
             <a href="${link}" class="project-link">
             <div class="content">
-              <img src="${finalImage}" alt="${project.title}">
+              <img src="${finalImage}" alt="${project.title}" onerror="this.src='https://via.placeholder.com/600x400?text=Image+Error'">
               <h4>${project.title}</h4>
               <p>${project.description}</p>
             </div>
@@ -300,32 +316,30 @@ function generateHTML(data) {
         container.innerHTML += card;
     });
 
-    // === NEW LOGIC: CHECK URL FOR FILTER ===
+    // === CHECK URL FOR FILTER ===
     const urlParams = new URLSearchParams(window.location.search);
     const activeFilter = urlParams.get('filter');
 
     if (activeFilter) {
-        // 1. Apply the filter from URL
+        // Apply filter
         filterSelection(activeFilter);
         
-        // 2. Highlight the correct button
+        // Highlight button
         const btnContainer = document.getElementById("myBtnContainer");
         const btns = btnContainer.getElementsByClassName("btn");
         for (let i = 0; i < btns.length; i++) {
             btns[i].className = btns[i].className.replace(" active", "");
-            // Check if button onclick contains the filter name (e.g., 'Landscape')
             if(btns[i].getAttribute("onclick").includes(`'${activeFilter}'`)) {
                 btns[i].className += " active";
             }
         }
     } else {
-        // Default behavior: Show All
         filterSelection("all");
     }
 }
 
 // ==========================================
-// 5. FILTER LOGIC
+// 6. FILTER LOGIC
 // ==========================================
 function filterSelection(c) {
   var x = document.getElementsByClassName("column");
@@ -351,7 +365,7 @@ function w3RemoveClass(element, name) {
   arr2 = name.split(" ");
   for (i = 0; i < arr2.length; i++) {
     while (arr1.indexOf(arr2[i]) > -1) {
-      arr1.splice(arr1.indexOf(arr2[i]), 1);     
+      arr1.splice(arr1.indexOf(arr2[i]), 1);      
     }
   }
   element.className = arr1.join(" ");

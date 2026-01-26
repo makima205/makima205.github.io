@@ -49,36 +49,41 @@
     <p>Architecture is the art and science of designing, planning, and constructing buildings and other structures,
       blending creativity with technical skill to create spaces that are functional, safe, beautiful, and meaningful for
       people and society</p>
-    <div class="cards">
-      <div class="service-card" style="background-image:url('https://picsum.photos/600/600?3')">
-        <div class="overlay">
-          <h3 class="card-title">Architecture</h3>
-          <p class="card-desc">Innovative architectural solutions focused on sustainability and craft.</p>
-          <a class="card-link" href="assets/projects/Architecture/Architecture.html">View Projects</a>
-        </div>
-      </div>
-      <div class="service-card" style="background-image:url('https://picsum.photos/600/600?4')">
-        <div class="overlay">
-          <h3 class="card-title">Interior Design</h3>
-          <p class="card-desc">Functional and aesthetic interiors tailored to user needs.</p>
-          <a class="card-link" href="assets/projects/Interior_Design/Interior.html">Explore</a>
-        </div>
-      </div>
-      <div class="service-card" style="background-image:url('https://picsum.photos/600/600?5')">
-        <div class="overlay">
-          <h3 class="card-title">Urban Design</h3>
-          <p class="card-desc">Human focused urban planning that enables resilient communities.</p>
-          <a class="card-link" href="assets/projects/Urban_Design/Urban.html">Learn More</a>
-        </div>
-      </div>
-      <div class="service-card" style="background-image:url('https://picsum.photos/600/600?4')">
-        <div class="overlay">
-          <h3 class="card-title">Interior Design</h3>
-          <p class="card-desc">Functional and aesthetic interiors tailored to user needs.</p>
-          <a class="card-link" href="#">Explore</a>
-        </div>
-      </div>
+<div class="cards">
+  
+  <a href="assets/projects/Architecture/Architecture.html?filter=Architecture" class="service-card" style="background-image:url('https://picsum.photos/600/600?3'); display:block; text-decoration:none; color:inherit;">
+    <div class="overlay">
+      <h3 class="card-title">Architecture</h3>
+      <p class="card-desc">Innovative architectural solutions focused on sustainability and craft.</p>
+      <span class="card-link">View Projects</span>
     </div>
+  </a>
+
+  <a href="assets/projects/Architecture/Architecture.html?filter=Interior_Design" class="service-card" style="background-image:url('https://picsum.photos/600/600?4'); display:block; text-decoration:none; color:inherit;">
+    <div class="overlay">
+      <h3 class="card-title">Interior Design</h3>
+      <p class="card-desc">Functional and aesthetic interiors tailored to enhance user experience and well-being.</p>
+      <span class="card-link">Explore</span>
+    </div>
+  </a>
+
+  <a href="assets/projects/Architecture/Architecture.html?filter=Landscape" class="service-card" style="background-image:url('https://picsum.photos/600/600?5'); display:block; text-decoration:none; color:inherit;">
+    <div class="overlay">
+      <h3 class="card-title">Landscape</h3>
+      <p class="card-desc">Harmonious outdoor environments that blend natural ecology with human interaction.</p>
+      <span class="card-link">Learn More</span>
+    </div>
+  </a>
+
+  <a href="assets/projects/Architecture/Architecture.html?filter=Urban_Design" class="service-card" style="background-image:url('https://picsum.photos/600/600?4'); display:block; text-decoration:none; color:inherit;">
+    <div class="overlay">
+      <h3 class="card-title">Urban Design</h3>
+      <p class="card-desc">Human-focused urban planning that enables resilient, connected, and thriving communities.</p>
+      <span class="card-link">Explore</span>
+    </div>
+  </a>
+
+</div>
   </section>
 
   <section id="about" class="about">
@@ -124,10 +129,10 @@
 
         <div>
           <h4>Services</h4>
-          <a href="assets/projects/Architecture/Architecture.htmlfilter=Architecture">Architecture</a>
-          <a href="assets/projects/Architecture/Architecture.htmlfilter=Interior Design">Interior Design</a>
-          <a href="assets/projects/Architecture/Architecture.htmlfilter=Landscape">Landscape</a>
-          <a href="assets/projects/Architecture/Architecture.htmlfilter=Urban Design">Urban Design</a>
+          <a href="assets/projects/Architecture/Architecture.html?filter=Architecture">Architecture</a>
+          <a href="assets/projects/Architecture/Architecture.html?filter=Interior_Design">Interior Design</a>
+          <a href="assets/projects/Architecture/Architecture.html?filter=Landscape">Landscape</a>
+          <a href="assets/projects/Architecture/Architecture.html?filter=Urban_Design">Urban Design</a>
         </div>
 
         <div>
@@ -179,10 +184,24 @@
       © 2025 CreateSpace. All rights reserved.
     </div>
   </footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+<script>
+    /* ===== HELPER: FIX GOOGLE DRIVE IMAGES ===== */
+    function processImg(url) {
+      if (!url) return "https://picsum.photos/600/400"; // Fallback image
+      url = url.trim();
 
-  <script>
+      // Convert Drive Link to Thumbnail Link (Bypasses permissions/virus warnings)
+      if (url.includes('drive.google.com')) {
+        const idMatch = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+        if (idMatch && idMatch[1]) {
+          return `https://drive.google.com/thumbnail?id=${idMatch[1]}&sz=w800`;
+        }
+      }
+      return url;
+    }
+
     /* ===== LOAD NEWS FROM GOOGLE SHEETS ===== */
     async function loadNews() {
       const track = document.getElementById("newsTrack");
@@ -200,21 +219,25 @@
           header: false,
           complete: function (results) {
             const rows = results.data;
-            const newsItems = rows.slice(2);
+            const newsItems = rows.slice(2); // Skip headers
 
             track.innerHTML = ""; 
 
             let cardsHtml = "";
             newsItems.forEach(row => {
               const title = row[1];
-              const imgUrl = row[2];
+              // Apply the Drive Fix here
+              const imgUrl = processImg(row[2]); 
               const description = row[3];
               const date = row[4];
 
               if (title && title.trim() !== "") {
+                // Link to Detail Page
+                const link = `assets/news/newsDetail.html?article=${encodeURIComponent(title)}`;
+
                 cardsHtml += `
-                  <article class="news-card">
-                    <img src="${imgUrl || 'https://picsum.photos/600/400'}" alt="${title}">
+                  <article class="news-card" onclick="window.location.href='${link}'" style="cursor: pointer;">
+                    <img src="${imgUrl}" alt="${title}" onerror="this.src='https://picsum.photos/600/400'">
                     <div class="news-content" style="padding: 15px;">
                       <h3 class="card-title">${title}</h3>
                       <p class="card-desc" style="text-align:left;">
@@ -244,8 +267,7 @@
     }
 
     document.addEventListener("DOMContentLoaded", loadNews);
-  </script>
-
+</script>
   <script src="assets/js/script.js"></script>
 </body>
 

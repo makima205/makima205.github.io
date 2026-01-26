@@ -182,13 +182,40 @@
     </div>
   </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+<script src="../../js/script.js"></script>
+
 <script>
+// ==========================================
+// 1. CONFIGURATION
+// ==========================================
 const SHEET_ID = '1gtu1WSMvPOrPn1qzD2smIdSajVTqeOmH272c9LW6a1c';
 const SHEET_NAME = 'News cards'; 
 const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(SHEET_NAME)}`;
 
+// ==========================================
+// 2. HELPER: FIX GOOGLE DRIVE IMAGES
+// ==========================================
+function processImg(url) {
+    if(!url) return "https://via.placeholder.com/600x400?text=No+Image"; 
+    url = url.trim();
+
+    // Convert Drive Link to Thumbnail Link (Bypasses permissions/virus warnings)
+    if (url.includes('drive.google.com')) {
+        const idMatch = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+        if (idMatch && idMatch[1]) {
+            // Requesting width 800px for the card
+            return `https://drive.google.com/thumbnail?id=${idMatch[1]}&sz=w800`;
+        }
+    }
+    return url;
+}
+
+// ==========================================
+// 3. MAIN LOGIC
+// ==========================================
 document.addEventListener("DOMContentLoaded", function() {
-    // Mobile Menu
+    // Mobile Menu Logic
     const menuToggle = document.querySelector('.menu-toggle');
     const siteNav = document.querySelector('.site-nav');
     if(menuToggle) {
@@ -200,62 +227,68 @@ document.addEventListener("DOMContentLoaded", function() {
 
     fetch(SHEET_URL)
     .then(r => r.text())
-    .then(csv => {
-        const items = parseCSV(csv);
-        generateHTML(items);
+    .then(csvText => {
+        // Use PapaParse for reliable CSV reading
+        Papa.parse(csvText, {
+            header: false,
+            complete: function(results) {
+                const rows = results.data;
+                // Skip the first 2 header rows as per your previous logic
+                const items = rows.slice(2); 
+                generateHTML(items);
+            }
+        });
     })
-    .catch(e => document.getElementById('news-container').innerHTML = "<div class='error-msg'>Error loading data.</div>");
+    .catch(e => {
+        console.error(e);
+        document.getElementById('news-container').innerHTML = "<div class='error-msg'>Error loading data.</div>";
+    });
 });
 
-function parseCSV(csv) {
-    const lines = csv.split("\n");
-    const result = [];
-    for (let i = 2; i < lines.length; i++) { 
-        const line = lines[i].trim();
-        if (!line) continue;
-        const cols = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/^"|"$/g, '').trim());
-
-        // MAPPING: Col B(1)=Title, C(2)=Image, D(3)=Desc, E(4)=Date
-        const p = { 
-            title: cols[1], 
-            imageURL: cols[2], 
-            description: cols[3], 
-            date: cols[4] 
-        };
-        
-        if(p.title) result.push(p);
-    }
-    return result;
-}
-
+// ==========================================
+// 4. GENERATE CARDS
+// ==========================================
 function generateHTML(data) {
     const container = document.getElementById('news-container');
     container.innerHTML = ""; 
 
     if(data.length === 0) {
-        container.innerHTML = "<p>No news found.</p>"; return;
+        container.innerHTML = "<p>No news found.</p>"; 
+        return;
     }
 
-    data.forEach(item => {
-        const link = `newsDetail.html?article=${encodeURIComponent(item.title)}`;
+    data.forEach(row => {
+        // MAPPING: B=1, C=2, D=3, E=4
+        const title       = row[1];
+        const imageURL    = row[2];
+        const description = row[3];
+        const date        = row[4];
 
-        // VERTICAL CARD STRUCTURE
-        const card = `
-          <div class="column show" style="width:100%">
-            <a href="${link}" class="project-link">
-            <div class="content">
-              <img src="${item.imageURL || '#'}" alt="${item.title}">
-              
-              <div class="news-text-wrapper">
-                <h4>${item.title}</h4>
-                <p class="desc">${item.description}</p>
-                <p class="date">${item.date || ''}</p>
+        // Only create card if Title exists
+        if(title && title.trim() !== "") {
+            
+            // Fix the Image URL
+            const finalImg = processImg(imageURL);
+
+            const link = `newsDetail.html?article=${encodeURIComponent(title)}`;
+
+            const card = `
+              <div class="column show" style="width:100%">
+                <a href="${link}" class="project-link">
+                <div class="content">
+                  <img src="${finalImg}" alt="${title}" onerror="this.src='https://via.placeholder.com/600x400?text=Image+Error'">
+                  
+                  <div class="news-text-wrapper">
+                    <h4>${title}</h4>
+                    <p class="desc">${description || ""}</p>
+                    <p class="date">${date || ""}</p>
+                  </div>
+                </div>
+                </a>
               </div>
-            </div>
-            </a>
-          </div>
-        `;
-        container.innerHTML += card;
+            `;
+            container.innerHTML += card;
+        }
     });
 }
 </script>

@@ -10,6 +10,80 @@
   
   <link rel="stylesheet" href="../../assets/css/style.css">
   <link rel="stylesheet" href="../../assets/css/contact.css">
+
+  <style>
+    /* =========================================
+       NEW CONTENT STYLES (Added for this update)
+       ========================================= */
+    
+    /* Office Locations Styles */
+    .locations-wrapper {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+    }
+    .location-box {
+      margin-bottom: 20px;
+    }
+    .location-box h5 {
+      color: #f0c14a; /* Brand Gold */
+      margin-bottom: 5px;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    .location-box p {
+      font-size: 0.9rem;
+      color: #555;
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    /* FAQ Section Styles */
+    .faq-section {
+      padding: 60px 8%;
+      background-color: #f9fafb;
+      margin-top: 60px;
+      border-top: 1px solid #eee;
+    }
+    .faq-title {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2rem;
+      color: #333;
+    }
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      background: white;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      border-left: 4px solid #f0c14a;
+    }
+    .faq-item h4 {
+      color: #2a2a2a;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+    .faq-item p {
+      color: #666;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Form Note */
+    .form-note {
+      font-size: 0.85rem;
+      color: #888;
+      margin-top: 15px;
+      text-align: center;
+    }
+  </style>
 </head>
 
 <body>
@@ -64,73 +138,108 @@
             </div>
           </div>
 
+          <div class="locations-wrapper">
+            <h4>Visit Our Studios</h4>
+            <br>
+            <div class="location-box">
+              <h5>📍 Pune (HQ)</h5>
+              <p>404, Tech Park Plaza, Baner Road,<br>Pune, Maharashtra 411045</p>
+            </div>
+            <div class="location-box">
+              <h5>📍 Mumbai</h5>
+              <p>WorkSpace Hub, Lower Parel,<br>Mumbai, Maharashtra 400013</p>
+            </div>
+            <div class="location-box">
+              <h5>📍 Delhi</h5>
+              <p>Connaught Place, Block B,<br>New Delhi, Delhi 110001</p>
+            </div>
+          </div>
           <div class="social-block">
             <h4>Follow Us</h4>
             <div class="socials">
-              <a href="#" aria-label="Instagram">
-                <img src="../../assets/images/social logo/instagram.png" alt="IG">
-              </a>
-              <a href="#" aria-label="Facebook">
-                <img src="../../assets/images/social logo/facebook.png" alt="FB">
-              </a>
-              <a href="#" aria-label="Twitter">
-                <img src="../../assets/images/social logo/twitter.png" alt="TW">
-              </a>
+              <a href="#"><img src="../../assets/images/social logo/instagram.png" alt="IG"></a>
+              <a href="#"><img src="../../assets/images/social logo/facebook.png" alt="FB"></a>
+              <a href="#"><img src="../../assets/images/social logo/linkedin.png" alt="LI"></a>
+              <a href="#"><img src="../../assets/images/social logo/twitter.png" alt="TW"></a>
+              <a href="#"><img src="../../assets/images/social logo/whatsapp.png" alt="WA"></a>
+              <a href="#"><img src="../../assets/images/social logo/youtube.png" alt="YT"></a>
             </div>
           </div>
         </div>
       </div>
 
       <div class="contact-form-wrapper">
-  <form class="contact-form" action="https://formsubmit.co/napullabde7@gmail.com" method="POST">
+        <form class="contact-form" action="https://formsubmit.co/napullabde7@gmail.com" method="POST">
 
-    <input type="hidden" name="_subject" value="New Inquiry from CreateSpace Website!">
-    
-    <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_subject" value="New Inquiry from CreateSpace Website!">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="https://yourwebsite.com/contact.html"> 
+          
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required />
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="you@company.com" required />
+            </div>
+            
+            <div class="form-group">
+              <label for="mobile">Mobile Number</label>
+              <input type="tel" id="mobile" name="mobile" placeholder="+91 98765 43210" required />
+            </div>
+          </div>
 
-    <input type="hidden" name="_next" value="https://yourwebsite.com/contact.html"> 
-    
-    <div class="form-group">
-      <label for="name">Full Name</label>
-      <input type="text" id="name" name="name" placeholder="Enter your name" required />
-    </div>
-    
-    <div class="form-row">
-      <div class="form-group">
-        <label for="email">Email Address</label>
-        <input type="email" id="email" name="email" placeholder="you@company.com" required />
+          <div class="form-group">
+            <label for="projectType">Project Type</label>
+            <select id="projectType" name="projectType" required>
+              <option value="" disabled selected>Select a project type...</option>
+              <option value="Residential">Residential Architecture</option>
+              <option value="Commercial">Commercial / Office</option>
+              <option value="Interior">Interior Design</option>
+              <option value="Urban">Urban Planning</option>
+              <option value="Renovation">Renovation</option>
+              <option value="Other">Other Inquiry</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Tell us about your project..." required></textarea>
+          </div>
+          
+          <button class="btn btn-primary" type="submit">Send Message</button>
+
+          <p class="form-note">By submitting this form, you agree to our privacy policy. We usually respond within 24 hours.</p>
+        </form>
       </div>
-      
-      <div class="form-group">
-        <label for="mobile">Mobile Number</label>
-        <input type="tel" id="mobile" name="mobile" placeholder="+91 98765 43210" required />
+
+    </div>
+
+    <section class="faq-section">
+      <h2 class="faq-title">Frequently Asked Questions</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h4>What projects do you undertake?</h4>
+          <p>We specialize in Residential Architecture, Commercial Office Spaces, Urban Design, and Sustainable Landscape planning. No project is too big or too small.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Do you work outside of India?</h4>
+          <p>Yes! CreateSpace is a global infrastructure firm. While our studios are in India, we work with distributed teams and clients worldwide.</p>
+        </div>
+        <div class="faq-item">
+          <h4>What is the estimated timeline?</h4>
+          <p>Timelines vary by scope. An interior project might take 3-4 months, while large architectural builds can take 12-18 months. Contact us for a precise estimate.</p>
+        </div>
+        <div class="faq-item">
+          <h4>How do you charge for services?</h4>
+          <p>We offer both fixed-fee structures and square-footage based pricing, depending on the project type. We provide a transparent quote after our initial consultation.</p>
+        </div>
       </div>
-    </div>
-
-    <div class="form-group">
-      <label for="projectType">Project Type</label>
-      <select id="projectType" name="projectType" required>
-        <option value="" disabled selected>Select a project type...</option>
-        <option value="Residential">Residential Architecture</option>
-        <option value="Commercial">Commercial / Office</option>
-        <option value="Interior">Interior Design</option>
-        <option value="Urban">Urban Planning</option>
-        <option value="Renovation">Renovation</option>
-        <option value="Other">Other Inquiry</option>
-      </select>
-    </div>
-    
-    <div class="form-group">
-      <label for="message">Message</label>
-      <textarea id="message" name="message" rows="5" placeholder="Tell us about your project..." required></textarea>
-    </div>
-    
-    <button class="btn btn-primary" type="submit">Send Message</button>
-  </form>
-</div>
-
-    </div>
-  </main>
+    </section>
+    </main>
 
   <footer id="footer">
     <div class="footer-top">
@@ -140,11 +249,12 @@
           <p>Global infrastructure built for modern applications and distributed teams.</p>
         </div>
 
-        <div>
+               <div>
           <h4>Services</h4>
-          <a href="#">Architecture</a>
-          <a href="#">Interior Design</a>
-          <a href="#">Urban Design</a>
+          <a href="../../assets/projects/Architecture/Architecture.html?filter=Architecture">Architecture</a>
+          <a href="../../assets/projects/Architecture/Architecture.html?filter=Interior_Design">Interior Design</a>
+          <a href="../../assets/projects/Architecture/Architecture.html?filter=Landscape">Landscape</a>
+          <a href="../../assets/projects/Architecture/Architecture.html?filter=Urban_Design">Urban Design</a>
         </div>
 
         <div>
@@ -158,6 +268,9 @@
           <a href="#"><img src="../../assets/images/social logo/instagram.png" alt="IG" width="24"></a>
           <a href="#"><img src="../../assets/images/social logo/facebook.png" alt="FB" width="24"></a>
           <a href="#"><img src="../../assets/images/social logo/linkedin.png" alt="LI" width="24"></a>
+          <a href="#"><img src="../../assets/images/social logo/twitter.png" alt="TW" width="24"></a>
+          <a href="#"><img src="../../assets/images/social logo/whatsapp.png" alt="WA" width="24"></a>
+          <a href="#"><img src="../../assets/images/social logo/youtube.png" alt="YT" width="24"></a>
         </div>
       </div>
     </div>
