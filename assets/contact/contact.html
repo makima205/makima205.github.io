@@ -12,11 +12,7 @@
   <link rel="stylesheet" href="../../assets/css/contact.css">
 
   <style>
-    /* =========================================
-       NEW CONTENT STYLES (Added for this update)
-       ========================================= */
-    
-    /* Office Locations Styles */
+
     .locations-wrapper {
       margin-top: 30px;
       padding-top: 20px;
@@ -38,7 +34,6 @@
       margin: 0;
     }
 
-    /* FAQ Section Styles */
     .faq-section {
       padding: 60px 8%;
       background-color: #f9fafb;
@@ -76,7 +71,6 @@
       line-height: 1.6;
     }
 
-    /* Form Note */
     .form-note {
       font-size: 0.85rem;
       color: #888;
@@ -169,32 +163,28 @@
       </div>
 
       <div class="contact-form-wrapper">
-        <form class="contact-form" action="https://formsubmit.co/napullabde7@gmail.com" method="POST">
-
-          <input type="hidden" name="_subject" value="New Inquiry from CreateSpace Website!">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_next" value="https://yourwebsite.com/contact.html"> 
+        <form class="contact-form" name="submit-to-google-sheet" id="submit-form">
           
           <div class="form-group">
             <label for="name">Full Name</label>
-            <input type="text" id="name" name="name" placeholder="Enter your name" required />
+            <input type="text" id="name" name="Name" placeholder="Enter your name" required />
           </div>
           
           <div class="form-row">
             <div class="form-group">
               <label for="email">Email Address</label>
-              <input type="email" id="email" name="email" placeholder="you@company.com" required />
+              <input type="email" id="email" name="Email" placeholder="you@company.com" required />
             </div>
             
             <div class="form-group">
               <label for="mobile">Mobile Number</label>
-              <input type="tel" id="mobile" name="mobile" placeholder="+91 98765 43210" required />
+              <input type="tel" id="mobile" name="Mobile" placeholder="+91 98765 43210" required />
             </div>
           </div>
 
           <div class="form-group">
             <label for="projectType">Project Type</label>
-            <select id="projectType" name="projectType" required>
+            <select id="projectType" name="Project Type" required>
               <option value="" disabled selected>Select a project type...</option>
               <option value="Residential">Residential Architecture</option>
               <option value="Commercial">Commercial / Office</option>
@@ -207,12 +197,12 @@
           
           <div class="form-group">
             <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5" placeholder="Tell us about your project..." required></textarea>
+            <textarea id="message" name="Message" rows="5" placeholder="Tell us about your project..." required></textarea>
           </div>
           
-          <button class="btn btn-primary" type="submit">Send Message</button>
+          <button class="btn btn-primary" type="submit" id="submit-btn">Send Message</button>
 
-          <p class="form-note">By submitting this form, you agree to our privacy policy. We usually respond within 24 hours.</p>
+          <p class="form-note" id="form-status">By submitting this form, you agree to our privacy policy. We usually respond within 24 hours.</p>
         </form>
       </div>
 
@@ -291,5 +281,44 @@
   </footer>
 
   <script src="../../assets/js/script.js"></script>
+
+  <script>
+    // PASTE YOUR GOOGLE DEPLOYMENT URL HERE:
+const scriptURL = 'https://script.google.com/macros/s/AKfycbxQMESFz1d94y7_1N8Ve8tz5KD1qDl2HFcCrL3DCR5V42-Is9mayZ--J6UoPOhMEgx-/exec';
+    
+    const form = document.forms['submit-to-google-sheet'];
+    const statusTxt = document.getElementById('form-status');
+    const btn = document.getElementById('submit-btn');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      
+      const originalBtnText = btn.innerHTML;
+      btn.innerHTML = "Sending...";
+      btn.disabled = true;
+
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+          statusTxt.innerHTML = "✅ Message sent successfully! We will contact you soon.";
+          statusTxt.style.color = "green";
+          btn.innerHTML = "Sent";
+          form.reset();
+          
+          setTimeout(() => {
+            btn.innerHTML = originalBtnText;
+            btn.disabled = false;
+            statusTxt.innerHTML = "By submitting this form, you agree to our privacy policy. We usually respond within 24 hours.";
+            statusTxt.style.color = "#888";
+          }, 5000);
+        })
+        .catch(error => {
+          console.error('Error!', error.message);
+          statusTxt.innerHTML = "❌ Error sending message. Please try again.";
+          statusTxt.style.color = "red";
+          btn.innerHTML = originalBtnText;
+          btn.disabled = false;
+        })
+    });
+  </script>
 </body>
 </html>
