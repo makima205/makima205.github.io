@@ -92,16 +92,16 @@ overflow: hidden;
 
 <header class="site-header">
 <div class="container header-inner">
-<a class="brand" href="../../../index.html">CreateSpace</a>
+<a class="brand" href="../../../">CreateSpace</a>
 <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
 <span></span><span></span><span></span>
 </button>
 <nav class="site-nav" aria-label="Primary navigation">
 <ul>
-<li><a href="../../projects/Services.html">Services</a></li>
-<li><a href="../../../AboutUs/aboutus.html">About</a></li>
-<li><a href="../../../News/News.html">News</a></li>
-<li><a href="../../contact/contact.html">Contact</a></li>
+<li><a href="../../projects/">Services</a></li>
+<li><a href="../../../AboutUs/">About</a></li>
+<li><a href="../../../News/">News</a></li>
+<li><a href="../../contact/">Contact</a></li>
 </ul>
 </nav>
 </div>
@@ -136,17 +136,17 @@ overflow: hidden;
 
 <div>
 <h4>Services</h4>
-<a href="../../projects/Architecture/Architecture.html?filter=Architecture">Architecture</a>
-<a href="../../projects/Architecture/Architecture.html?filter=Interior_Design">Interior Design</a>
-<a href="../../projects/Architecture/Architecture.html?filter=Landscape">Landscape</a>
-<a href="../../projects/Architecture/Architecture.html?filter=Urban_Design">Urban Design</a>
+<a href="../../projects/Architecture/?filter=Architecture">Architecture</a>
+<a href="../../projects/Architecture/?filter=Interior_Design">Interior Design</a>
+<a href="../../projects/Architecture/?filter=Landscape">Landscape</a>
+<a href="../../projects/Architecture/?filter=Urban_Design">Urban Design</a>
 </div>
 
 <div>
 <h4>Company</h4>
-<a href="../../../AboutUs/aboutus.html">About</a>
-<a href="../../../News/News.html">News</a>
-<a href="../../contact/contact.html">Contact us</a>
+<a href="../../../AboutUs/">About</a>
+<a href="../../../News/">News</a>
+<a href="../../contact/">Contact us</a>
 </div>
 
 <div class="social">
@@ -300,7 +300,7 @@ function generateHTML(data) {
         const finalImage = processImg(project.imageURL);
 
         // 2. Fix Link Path (Assuming project.html is in same folder)
-        const link = `projects/project.html?project=${encodeURIComponent(project.title)}`;
+        const link = `projects/?project=${encodeURIComponent(project.title)}`;
 
         const card = `
           <div class="column ${project.category} show">

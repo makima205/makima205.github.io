@@ -123,14 +123,14 @@
 
 <header class="site-header">
     <div class="header-inner">
-      <a class="brand" href="../index.html">CreateSpace</a>
+      <a class="brand" href="../">CreateSpace</a>
       <button class="menu-toggle"><span></span><span></span><span></span></button>
       <nav class="site-nav">
         <ul>
-          <li><a href="../assets/projects/Services.html">Services</a></li>
-          <li><a href="../AboutUs/aboutus.html">About</a></li>
-          <li><a href="news.html" style="color:#f0c14a;">News</a></li>
-          <li><a href="../assets/contact/contact.html">Contact</a></li>
+          <li><a href="../assets/projects/">Services</a></li>
+          <li><a href="../AboutUs/">About</a></li>
+          <li><a href="/" style="color:#f0c14a;">News</a></li>
+          <li><a href="../assets/contact/">Contact</a></li>
         </ul>
       </nav>
     </div>
@@ -154,17 +154,17 @@
 
         <div>
           <h4>Services</h4>
-          <a href="../assets/projects/Architecture/Architecture.html?filter=Architecture">Architecture</a>
-          <a href="../assets/projects/Architecture/Architecture.html?filter=Interior Design">Interior Design</a>
-          <a href="../assets/projects/Architecture/Architecture.html?filter=Landscape">Landscape</a>
-          <a href="../assets/projects/Architecture/Architecture.html?filter=Urban Design">Urban Design</a>
+          <a href="../assets/projects/Architecture/?filter=Architecture">Architecture</a>
+          <a href="../assets/projects/Architecture/?filter=Interior Design">Interior Design</a>
+          <a href="../assets/projects/Architecture/?filter=Landscape">Landscape</a>
+          <a href="../assets/projects/Architecture/?filter=Urban Design">Urban Design</a>
         </div>
 
         <div>
           <h4>Company</h4>
-          <a href="../AboutUs/aboutus.html">About</a>
-          <a href="../News/News.html">News</a>
-          <a href="../assets/contact/contact.html">Contact us</a>
+          <a href="../AboutUs/">About</a>
+          <a href="../News/">News</a>
+          <a href="../assets/contact/">Contact us</a>
         </div>
 
         <div class="social">
@@ -183,7 +183,7 @@
   </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
-<script src="../../js/script.js"></script>
+<script src="../assets/js/script.js"></script>
 
 <script>
 // ==========================================
@@ -270,7 +270,7 @@ function generateHTML(data) {
             // Fix the Image URL
             const finalImg = processImg(imageURL);
 
-            const link = `newsDetail.html?article=${encodeURIComponent(title)}`;
+            const link = `news/?article=${encodeURIComponent(title)}`;
 
             const card = `
               <div class="column show" style="width:100%">
@@ -292,6 +292,6 @@ function generateHTML(data) {
     });
 }
 </script>
-<script src="../../js/script.js"></script>
+
 </body>
 </html>

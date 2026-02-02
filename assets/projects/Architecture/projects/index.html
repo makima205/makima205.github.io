@@ -46,6 +46,36 @@
   .gallery-grid img:hover {
     transform: translateY(-5px);
   }
+  /* =========================================
+   LIGHTBOX NAVIGATION STYLES
+   ========================================= */
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: none;
+  font-size: 3rem;
+  padding: 10px 20px;
+  cursor: pointer;
+  z-index: 1002;
+  border-radius: 5px;
+  user-select: none;
+  transition: background 0.3s;
+}
+.lightbox-nav:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  color: #f0c14a;
+}
+.lightbox-prev { left: 20px; }
+.lightbox-next { right: 20px; }
+
+@media (max-width: 600px) {
+  .lightbox-nav { font-size: 2rem; padding: 5px 10px; }
+  .lightbox-prev { left: 10px; }
+  .lightbox-next { right: 10px; }
+}
 </style>
 </head>
 
@@ -53,7 +83,7 @@
 
 <header class="site-header">
     <div class="header-inner">
-      <a class="brand" href="../../../../index.html">CreateSpace</a>
+      <a class="brand" href="../../../../">CreateSpace</a>
 
       <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -61,10 +91,10 @@
 
       <nav class="site-nav" aria-label="Primary navigation">
         <ul>
-          <li><a href="../../Services.html">Services</a></li>
-          <li><a href="../../../../AboutUs/aboutus.html">About</a></li>
-          <li><a href="../../../../News/News.html">News</a></li>
-          <li><a href="../../../contact/contact.html">Contact</a></li>
+          <li><a href="../../">Services</a></li>
+          <li><a href="../../../../AboutUs/">About</a></li>
+          <li><a href="../../../../News/">News</a></li>
+          <li><a href="../../../contact/">Contact</a></li>
         </ul>
       </nav>
     </div>
@@ -83,16 +113,16 @@
         </div>
         <div>
           <h4>Services</h4>
-          <a href="../../../projects/Architecture/Architecture.html?filter=Architecture">Architecture</a>
-          <a href="../../../projects/Architecture/Architecture.html?filter=Interior_Design">Interior Design</a>
-          <a href="../../../projects/Architecture/Architecture.html?filter=Landscape">Landscape</a>
-          <a href="../../../projects/Architecture/Architecture.html?filter=Urban Design">Urban Design</a>
+          <a href="../../../projects/Architecture/?filter=Architecture">Architecture</a>
+          <a href="../../../projects/Architecture/?filter=Interior_Design">Interior Design</a>
+          <a href="../../../projects/Architecture/?filter=Landscape">Landscape</a>
+          <a href="../../../projects/Architecture/?filter=Urban Design">Urban Design</a>
         </div>
         <div>
           <h4>Company</h4>
-          <a href="../../../../AboutUs/aboutus.html">About</a>
-          <a href="../../../../News/News.html">News</a>
-          <a href="../../../contact/contact.html">Contact us</a>
+          <a href="../../../../AboutUs/">About</a>
+          <a href="../../../../News/">News</a>
+          <a href="../../../contact/">Contact us</a>
         </div>
         <div class="social">
           <a href="#"><img src="../../../images/social logo/instagram.png" alt="Insta"></a>
@@ -112,10 +142,13 @@
     </div>
     <div class="footer-bottom">© 2025 CreateSpace. All rights reserved.</div>
 </footer>
-
 <div id="lightbox" class="lightbox">
   <span class="lightbox-close">&times;</span>
-  <img id="lightbox-img">
+  
+  <button class="lightbox-nav lightbox-prev" id="lb-prev">&#10094;</button>
+  <button class="lightbox-nav lightbox-next" id="lb-next">&#10095;</button>
+  
+  <img id="lightbox-img" class="lightbox-content">
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
@@ -269,7 +302,7 @@ function renderPage(p) {
 
       <div class="paginationbox">
         <div class="prev-next-title">
-          <a href="../Architecture.html">
+          <a href="../">
             <span>Back to</span>
             <div class="component-title prev-next">All Projects</div>
           </a>
@@ -277,23 +310,71 @@ function renderPage(p) {
       </div>
     `;
 
-    initLightbox();
+   setTimeout(initLightbox, 100);
 }
 
+// ==========================================
+// 6. LIGHTBOX LOGIC (UPGRADED)
+// ==========================================
 function initLightbox() {
     const lb = document.getElementById("lightbox");
     const lbImg = document.getElementById("lightbox-img");
-    const close = document.querySelector(".lightbox-close");
+    const closeBtn = document.querySelector(".lightbox-close");
+    const nextBtn = document.getElementById("lb-next");
+    const prevBtn = document.getElementById("lb-prev");
 
-    document.querySelectorAll("#dynamic-content img").forEach(img => {
+    // Select all images inside dynamic-content
+    const images = Array.from(document.querySelectorAll("#dynamic-content img"));
+    let currentIndex = 0;
+
+    // 1. Open Lightbox on Click
+    images.forEach((img, index) => {
+        img.style.cursor = "pointer"; 
         img.addEventListener("click", () => {
+            currentIndex = index;
+            updateLightboxImage();
             lb.style.display = "flex";
-            lbImg.src = img.src;
         });
     });
 
-    close.onclick = () => lb.style.display = "none";
-    lb.onclick = e => { if(e.target === lb) lb.style.display = "none"; };
+    // 2. Helper to switch image
+    function updateLightboxImage() {
+        if(images[currentIndex]) {
+            lbImg.src = images[currentIndex].src;
+        }
+    }
+
+    // 3. Next/Prev Logic
+    function showNext() {
+        currentIndex++;
+        if (currentIndex >= images.length) currentIndex = 0; 
+        updateLightboxImage();
+    }
+
+    function showPrev() {
+        currentIndex--;
+        if (currentIndex < 0) currentIndex = images.length - 1; 
+        updateLightboxImage();
+    }
+
+    // 4. Button Events
+    nextBtn.onclick = (e) => { e.stopPropagation(); showNext(); };
+    prevBtn.onclick = (e) => { e.stopPropagation(); showPrev(); };
+
+    // 5. Keyboard Events
+    document.onkeydown = (e) => {
+        if (lb.style.display === "flex") {
+            if (e.key === "ArrowRight") showNext();
+            if (e.key === "ArrowLeft") showPrev();
+            if (e.key === "Escape") lb.style.display = "none";
+        }
+    };
+
+    // 6. Close Events
+    closeBtn.onclick = () => lb.style.display = "none";
+    lb.onclick = (e) => {
+        if (e.target === lb) lb.style.display = "none";
+    };
 }
 </script>
 <script src="../../../js/script.js"></script>
