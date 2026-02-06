@@ -6,7 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="stylesheet" href="../../../css/style.css">
-
 <link rel="stylesheet" href="../../../css/detailproject.css">
 
 <style>
@@ -46,36 +45,60 @@
   .gallery-grid img:hover {
     transform: translateY(-5px);
   }
-  /* =========================================
-   LIGHTBOX NAVIGATION STYLES
-   ========================================= */
-.lightbox-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(255, 255, 255, 0.1);
-  color: white;
-  border: none;
-  font-size: 3rem;
-  padding: 10px 20px;
-  cursor: pointer;
-  z-index: 1002;
-  border-radius: 5px;
-  user-select: none;
-  transition: background 0.3s;
-}
-.lightbox-nav:hover {
-  background-color: rgba(255, 255, 255, 0.3);
-  color: #f0c14a;
-}
-.lightbox-prev { left: 20px; }
-.lightbox-next { right: 20px; }
+/* =========================================
+     YOUTUBE BACKGROUND STYLE
+     ========================================= */
+  .video-hero-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    background: #000;
+    overflow: hidden;
+    margin-bottom: 30px;
+  }
+  
+  .video-hero-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    /* This makes the video unclickable (No Pause/Play interaction) */
+    pointer-events: none; 
+  }
 
-@media (max-width: 600px) {
-  .lightbox-nav { font-size: 2rem; padding: 5px 10px; }
-  .lightbox-prev { left: 10px; }
-  .lightbox-next { right: 10px; }
-}
+  /* =========================================
+     LIGHTBOX NAVIGATION STYLES
+     ========================================= */
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+    font-size: 3rem;
+    padding: 10px 20px;
+    cursor: pointer;
+    z-index: 1002;
+    border-radius: 5px;
+    user-select: none;
+    transition: background 0.3s;
+  }
+  .lightbox-nav:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: #f0c14a;
+  }
+  .lightbox-prev { left: 20px; }
+  .lightbox-next { right: 20px; }
+
+  @media (max-width: 600px) {
+    .lightbox-nav { font-size: 2rem; padding: 5px 10px; }
+    .lightbox-prev { left: 10px; }
+    .lightbox-next { right: 10px; }
+  }
 </style>
 </head>
 
@@ -142,12 +165,11 @@
     </div>
     <div class="footer-bottom">© 2025 CreateSpace. All rights reserved.</div>
 </footer>
+
 <div id="lightbox" class="lightbox">
   <span class="lightbox-close">&times;</span>
-  
   <button class="lightbox-nav lightbox-prev" id="lb-prev">&#10094;</button>
   <button class="lightbox-nav lightbox-next" id="lb-next">&#10095;</button>
-  
   <img id="lightbox-img" class="lightbox-content">
 </div>
 
@@ -163,24 +185,35 @@ const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tq
 const IMAGE_PREFIX = ""; 
 
 // ==========================================
-// 2. HELPER: FIX GOOGLE DRIVE IMAGES
+// 2. HELPER: FIX GOOGLE DRIVE IMAGES & VIDEO
 // ==========================================
 function processImg(url) {
     if(!url) return "https://via.placeholder.com/800x600?text=No+Image"; 
     url = url.trim();
 
-    // Convert Drive Link to Thumbnail Link (Bypasses permissions/virus warnings)
+    // Convert Drive Link to Thumbnail Link
     if (url.includes('drive.google.com')) {
         const idMatch = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
         if (idMatch && idMatch[1]) {
-            // Request large image (w4000) for details page
             return `https://drive.google.com/thumbnail?id=${idMatch[1]}&sz=w4000`;
         }
     }
-    
-    // Normal Links
     if(IMAGE_PREFIX && !url.startsWith("http")) return IMAGE_PREFIX + url;
     return url;
+}
+
+function processDriveVideo(url) {
+    if (!url) return null;
+    url = url.trim();
+    
+    if (url.includes('drive.google.com')) {
+        const idMatch = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+        if (idMatch && idMatch[1]) {
+            // "uc?export=download" allows HTML5 video tags to stream the file
+            return `https://drive.google.com/uc?export=download&id=${idMatch[1]}`;
+        }
+    }
+    return url; 
 }
 
 // ==========================================
@@ -205,7 +238,6 @@ document.addEventListener("DOMContentLoaded", function() {
         return;
     }
 
-    // Fetch and Parse
     fetch(SHEET_URL)
     .then(r => r.text())
     .then(csvText => {
@@ -213,11 +245,9 @@ document.addEventListener("DOMContentLoaded", function() {
             header: false,
             complete: function(results) {
                 const rows = results.data;
-                // Find matching project by Title (Column C -> Index 2)
                 const myProjectRow = rows.find(row => row[2] && row[2].trim() === projectToFind.trim());
                 
                 if(myProjectRow) {
-                    // Map the row array to an object
                     const p = mapRowToProject(myProjectRow);
                     renderPage(p);
                 } else {
@@ -236,11 +266,8 @@ document.addEventListener("DOMContentLoaded", function() {
 // 4. MAP ROW TO OBJECT
 // ==========================================
 function mapRowToProject(cols) {
-    // MAPPING based on your previous code:
-    // B=1(Category), C=2(Title), D=3(Hero), E=4(Desc), 
-    // F=5(Client), G=6(Location), H=7(Status), I=8(Area), 
-    // J=9(DescImg), K=10(Gallery)
-    
+    // UPDATED MAPPING:
+    // Added videoUrl at Column L (Index 11)
     return {
         category:    cols[1],
         title:       cols[2],
@@ -251,19 +278,87 @@ function mapRowToProject(cols) {
         status:      cols[7],
         area:        cols[8],
         descImage:   cols[9],
-        galleryRaw:  cols[10] || ""
+        galleryRaw:  cols[10] || "",
+        videoUrl:    cols[11] || "" // <--- NEW VIDEO COLUMN
     };
 }
+/* ==========================================
+   HELPER: PROCESS VIDEO LINKS (YOUTUBE SUPPORT)
+   ========================================== */
+function processVideo(url) {
+    if (!url) return null;
+    url = url.trim();
+    
+    // 1. Check for YouTube (Short or Long links)
+    // Regex matches: youtu.be/ID or youtube.com/watch?v=ID
+    const ytMatch = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/);
+    
+    if (ytMatch && ytMatch[1]) {
+        const vidId = ytMatch[1];
+        // Params explanation:
+        // autoplay=1  -> Starts automatically
+        // mute=1      -> REQUIRED for autoplay to work
+        // controls=0  -> Hides bottom player bar
+        // loop=1      -> Loops the video
+        // playlist=ID -> Required for looping to work on YouTube embeds
+        // modsetbranding=1 -> Minimal YouTube logos
+        return `https://www.youtube.com/embed/${vidId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${vidId}&showinfo=0&modestbranding=1&rel=0`;
+    }
 
-// ==========================================
-// 5. RENDER FUNCTION
-// ==========================================
+    // 2. Check for Dropbox (Direct Link Fallback)
+    if (url.includes('dropbox.com')) {
+        return url.replace('www.dropbox.com', 'dl.dropboxusercontent.com').replace('?dl=0', '');
+    }
+
+    // 3. Return original if it's already a direct .mp4 link
+    return url;
+}
+
+
+/* ==========================================
+   5. RENDER FUNCTION
+   ========================================== */
 function renderPage(p) {
     const container = document.getElementById('dynamic-content');
     
-    // Process Images
+    // Process Media
     const heroImg = processImg(p.heroImage);
     const descImg = processImg(p.descImage);
+    
+    // Process Video URL
+    const rawVideoUrl = p.videoUrl ? p.videoUrl.trim() : "";
+    const processedVideoUrl = processVideo(rawVideoUrl);
+
+    let heroMediaHTML;
+    
+    if (processedVideoUrl) {
+        // CHECK: Is it YouTube (iframe) or Direct File (video tag)?
+        if (processedVideoUrl.includes('youtube.com/embed')) {
+            // RENDER YOUTUBE IFRAME
+            heroMediaHTML = `
+                <div class="video-hero-container">
+                    <iframe 
+                        src="${processedVideoUrl}" 
+                        allow="autoplay; encrypted-media" 
+                        allowfullscreen>
+                    </iframe>
+                </div>`;
+        } else {
+            // RENDER DIRECT VIDEO (Dropbox / GitHub)
+            heroMediaHTML = `
+                <div class="video-hero-container">
+                    <video autoplay muted loop playsinline>
+                        <source src="${processedVideoUrl}" type="video/mp4">
+                    </video>
+                </div>`;
+        }
+    } else {
+        // FALLBACK: HERO IMAGE
+        heroMediaHTML = `
+            <div class="single-img">
+                <img src="${heroImg}" alt="${p.title}" class="lightbox-trigger" onerror="this.src='https://via.placeholder.com/800x600?text=Image+Error'">
+            </div>`;
+    }
     
     // Process Gallery
     const galleryHTML = p.galleryRaw.split(',')
@@ -275,9 +370,7 @@ function renderPage(p) {
     container.innerHTML = `
       <h1 class="component-title component-head">${p.title}</h1>
 
-      <div class="single-img">
-        <img src="${heroImg}" alt="${p.title}" onerror="this.src='https://via.placeholder.com/800x600?text=Image+Error'">
-      </div>
+      ${heroMediaHTML}
 
       <div class="component-menu">
         <div><p class="component-menu-title">Project Client</p><p>${p.client || 'N/A'}</p></div>
@@ -288,7 +381,7 @@ function renderPage(p) {
       </div>
 
       <div class="img-text">
-        <img src="${descImg}" alt="Detail Shot" onerror="this.src='https://via.placeholder.com/600x400?text=Image+Error'">
+        <img src="${descImg}" alt="Detail Shot" class="lightbox-trigger" onerror="this.src='https://via.placeholder.com/600x400?text=Image+Error'">
         <p class="component-text">${p.description}</p>
       </div>
 
@@ -310,11 +403,10 @@ function renderPage(p) {
       </div>
     `;
 
-   setTimeout(initLightbox, 100);
+    setTimeout(initLightbox, 100);
 }
-
 // ==========================================
-// 6. LIGHTBOX LOGIC (UPGRADED)
+// 6. LIGHTBOX LOGIC
 // ==========================================
 function initLightbox() {
     const lb = document.getElementById("lightbox");
@@ -323,11 +415,9 @@ function initLightbox() {
     const nextBtn = document.getElementById("lb-next");
     const prevBtn = document.getElementById("lb-prev");
 
-    // Select all images inside dynamic-content
     const images = Array.from(document.querySelectorAll("#dynamic-content img"));
     let currentIndex = 0;
 
-    // 1. Open Lightbox on Click
     images.forEach((img, index) => {
         img.style.cursor = "pointer"; 
         img.addEventListener("click", () => {
@@ -337,14 +427,12 @@ function initLightbox() {
         });
     });
 
-    // 2. Helper to switch image
     function updateLightboxImage() {
         if(images[currentIndex]) {
             lbImg.src = images[currentIndex].src;
         }
     }
 
-    // 3. Next/Prev Logic
     function showNext() {
         currentIndex++;
         if (currentIndex >= images.length) currentIndex = 0; 
@@ -357,11 +445,9 @@ function initLightbox() {
         updateLightboxImage();
     }
 
-    // 4. Button Events
     nextBtn.onclick = (e) => { e.stopPropagation(); showNext(); };
     prevBtn.onclick = (e) => { e.stopPropagation(); showPrev(); };
 
-    // 5. Keyboard Events
     document.onkeydown = (e) => {
         if (lb.style.display === "flex") {
             if (e.key === "ArrowRight") showNext();
@@ -370,7 +456,6 @@ function initLightbox() {
         }
     };
 
-    // 6. Close Events
     closeBtn.onclick = () => lb.style.display = "none";
     lb.onclick = (e) => {
         if (e.target === lb) lb.style.display = "none";
@@ -379,4 +464,4 @@ function initLightbox() {
 </script>
 <script src="../../../js/script.js"></script>
 </body>
-</html>
+</html>te
