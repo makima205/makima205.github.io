@@ -313,7 +313,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 60;
-  background: rgba(7, 16, 36, .75);
+  background: rgb(157, 157, 157);
   backdrop-filter: blur(10px);
 }
 
@@ -326,7 +326,7 @@ body {
 
 .brand {
   font-weight: 800;
-  color: #f0c14a;
+  color: #ffffff;
   text-decoration: none;
   letter-spacing: 1px;
   font-size: 1.3rem;
@@ -347,7 +347,7 @@ body {
 }
 
 .site-nav a:hover {
-  color: #f0c14a;
+  color: #000000;
 }
 
 /* Mobile Menu Toggle */
@@ -366,7 +366,7 @@ body {
   display: block;
   width: 28px;
   height: 3px;
-  background: #f0c14a;
+  background: #000000;
   border-radius: 2px;
   transition: all 0.3s ease;
 }
@@ -384,7 +384,7 @@ body {
 
 /* ================= FOOTER ================= */
 footer {
-  background: radial-gradient(circle at top, #d0d0d3, #545454);
+  background: rgb(157, 157, 157);
   color: #cfd6e4;
 }
 
@@ -473,7 +473,7 @@ footer {
 }
 
 .footer-brand {
-  color: #f0c14a;
+  color: #ffffff;
   font-size: 1.5rem;
   margin-bottom: 12px;
 }
@@ -543,7 +543,7 @@ footer {
     top: 100%;
     left: 0;
     right: 0;
-    background: rgba(7, 16, 36, 0.98);
+    background: rgb(157, 157, 157);
     backdrop-filter: blur(15px);
     max-height: 0;
     overflow: hidden;

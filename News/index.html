@@ -122,19 +122,25 @@
 <body>
 
 <header class="site-header">
-    <div class="header-inner">
+    <div class="container header-inner">
       <a class="brand" href="../">CreateSpace</a>
-      <button class="menu-toggle"><span></span><span></span><span></span></button>
-      <nav class="site-nav">
+
+      <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="site-nav" aria-label="Primary navigation">
         <ul>
           <li><a href="../assets/projects/">Services</a></li>
           <li><a href="../AboutUs/">About</a></li>
-          <li><a href="/" style="color:#f0c14a;">News</a></li>
+          <li><a href="../News/">News</a></li>
           <li><a href="../assets/contact/">Contact</a></li>
         </ul>
       </nav>
     </div>
-</header>
+  </header>
 
 <div class="main">
   <h2>Latest News</h2>
@@ -215,16 +221,7 @@ function processImg(url) {
 // 3. MAIN LOGIC
 // ==========================================
 document.addEventListener("DOMContentLoaded", function() {
-    // Mobile Menu Logic
-    const menuToggle = document.querySelector('.menu-toggle');
-    const siteNav = document.querySelector('.site-nav');
-    if(menuToggle) {
-        menuToggle.addEventListener('click', () => {
-            siteNav.classList.toggle('active');
-            menuToggle.classList.toggle('active');
-        });
-    }
-
+ 
     fetch(SHEET_URL)
     .then(r => r.text())
     .then(csvText => {
