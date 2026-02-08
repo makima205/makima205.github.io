@@ -8,6 +8,28 @@
   
   <title>Studio 4 Core - Architecture & Design</title>
   <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+  /* 1. Initial State: Transparent & Floating */
+  .site-header {
+    background: transparent !important; /* Force override */
+    backdrop-filter: none !important;   /* No blur initially */
+    box-shadow: none !important;
+    position: fixed;  /* Float ON TOP of the hero video */
+    width: 100%;      /* Ensure full width */
+    top: 0;
+    transition: background 0.4s ease, backdrop-filter 0.4s ease, padding 0.4s ease;
+  }
+
+  /* 2. Scrolled State: The Grey Look */
+  .site-header.scrolled {
+    background: rgb(157, 157, 157) !important; /* Your grey color */
+    backdrop-filter: blur(10px) !important;    /* Restore blur */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1) !important;
+  }
+
+  /* Optional: Adjust logo color if needed on transparency */
+  /* .site-header .brand { color: #fff; } */
+</style>
 </head>
 
 <body>
@@ -286,6 +308,20 @@
     document.addEventListener("DOMContentLoaded", loadNews);
 </script>
   <script src="assets/js/script.js"></script>
+  <script>
+  // 3. Script to toggle the class on scroll
+  document.addEventListener("DOMContentLoaded", function() {
+    const header = document.querySelector(".site-header");
+    
+    window.addEventListener("scroll", function() {
+      if (window.scrollY > 50) { // If scrolled down 50px
+        header.classList.add("scrolled");
+      } else { // If at the top
+        header.classList.remove("scrolled");
+      }
+    });
+  });
+</script>
 </body>
 
 </html>

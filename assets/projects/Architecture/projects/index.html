@@ -46,28 +46,37 @@
     transform: translateY(-5px);
   }
 /* =========================================
-     YOUTUBE BACKGROUND STYLE
-     ========================================= */
-  .video-hero-container {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-    height: 0;
-    background: #000;
-    overflow: hidden;
-    margin-bottom: 30px;
-  }
+    YOUTUBE "CINEMATIC CROP" STYLE (NO ZOOM)
+    ========================================= */
+.video-hero-container {
+  position: relative;
+  width: 100%;
+  /* Standard 16:9 ratio is 56.25%. 
+     We use 45% to make the container SHORTER. 
+     This forces the top and bottom of the video to get cut off.
+  */
+  padding-bottom: 45%; 
+  height: 0;
+  background: #000;
+  overflow: hidden; /* CRITICAL: Clips the excess top/bottom */
+  margin-bottom: 30px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.video-hero-container iframe {
+  position: absolute;
+  /* NO ZOOM applied here. Width stays 100% for maximum sharpness. */
+  width: 100%;    
+  /* We make the iframe taller than the container */
+  height: 125%;   
+  /* Center the video vertically so it crops evenly */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   
-  .video-hero-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-    /* This makes the video unclickable (No Pause/Play interaction) */
-    pointer-events: none; 
-  }
+  border: 0;
+  pointer-events: none; /* Makes it unclickable */
+}
 
   /* =========================================
      LIGHTBOX NAVIGATION STYLES
@@ -202,19 +211,6 @@ function processImg(url) {
     return url;
 }
 
-function processDriveVideo(url) {
-    if (!url) return null;
-    url = url.trim();
-    
-    if (url.includes('drive.google.com')) {
-        const idMatch = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
-        if (idMatch && idMatch[1]) {
-            // "uc?export=download" allows HTML5 video tags to stream the file
-            return `https://drive.google.com/uc?export=download&id=${idMatch[1]}`;
-        }
-    }
-    return url; 
-}
 
 // ==========================================
 // 3. MAIN LOGIC
@@ -282,35 +278,26 @@ function mapRowToProject(cols) {
         videoUrl:    cols[11] || "" // <--- NEW VIDEO COLUMN
     };
 }
-/* ==========================================
-   HELPER: PROCESS VIDEO LINKS (YOUTUBE SUPPORT)
-   ========================================== */
+
 function processVideo(url) {
     if (!url) return null;
     url = url.trim();
     
-    // 1. Check for YouTube (Short or Long links)
     // Regex matches: youtu.be/ID or youtube.com/watch?v=ID
     const ytMatch = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/);
     
     if (ytMatch && ytMatch[1]) {
         const vidId = ytMatch[1];
-        // Params explanation:
-        // autoplay=1  -> Starts automatically
-        // mute=1      -> REQUIRED for autoplay to work
-        // controls=0  -> Hides bottom player bar
-        // loop=1      -> Loops the video
-        // playlist=ID -> Required for looping to work on YouTube embeds
-        // modsetbranding=1 -> Minimal YouTube logos
-        return `https://www.youtube.com/embed/${vidId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${vidId}&showinfo=0&modestbranding=1&rel=0`;
+        // CHANGE 1: Use 'www.youtube-nocookie.com'
+        // CHANGE 2: Add 'iv_load_policy=3' to hide annotations
+        return `https://www.youtube-nocookie.com/embed/${vidId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${vidId}&showinfo=0&modestbranding=1&rel=0&iv_load_policy=3`;
     }
 
-    // 2. Check for Dropbox (Direct Link Fallback)
+    // Dropbox Fix
     if (url.includes('dropbox.com')) {
         return url.replace('www.dropbox.com', 'dl.dropboxusercontent.com').replace('?dl=0', '');
     }
 
-    // 3. Return original if it's already a direct .mp4 link
     return url;
 }
 
@@ -333,7 +320,7 @@ function renderPage(p) {
     
     if (processedVideoUrl) {
         // CHECK: Is it YouTube (iframe) or Direct File (video tag)?
-        if (processedVideoUrl.includes('youtube.com/embed')) {
+        if (processedVideoUrl.includes('/embed/')) {
             // RENDER YOUTUBE IFRAME
             heroMediaHTML = `
                 <div class="video-hero-container">
