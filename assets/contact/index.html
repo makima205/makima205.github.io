@@ -13,6 +13,17 @@
 
   <style>
 
+    /* Ensure header gets the dark text since there is no dark video background here */
+    .site-header {
+      background: rgba(250, 249, 247, 0.9) !important; 
+      backdrop-filter: blur(20px) !important;
+      -webkit-backdrop-filter: blur(20px) !important;
+      border-bottom: 1px solid rgba(0,0,0,0.05) !important;
+
+    }
+    .site-header .brand, .site-header .site-nav a { color: #111 !important; }
+    .site-header .menu-toggle span { background: #111 !important; }
+
     .locations-wrapper {
       margin-top: 30px;
       padding-top: 20px;
@@ -83,7 +94,7 @@
 <body>
 
   <header class="site-header">
-    <div class="container header-inner">
+    <div class="header-inner">
       <a class="brand" href="../../">Studio4Core</a>
 
       <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
@@ -94,10 +105,10 @@
 
       <nav class="site-nav" aria-label="Primary navigation">
         <ul>
-          <li><a href="../projects/">Services</a></li>
+          <li><a href="../../assets/projects/">Services</a></li>
           <li><a href="../../AboutUs/">About</a></li>
           <li><a href="../../News/">News</a></li>
-          <li><a href="../contact/" style="color:#000000;">Contact</a></li>
+          <li><a href="../contact/" class="active-page">Contact</a></li>
         </ul>
       </nav>
     </div>
@@ -120,40 +131,20 @@
           <div class="details-list">
             <div class="detail-item">
               <span class="icon">📧</span>
-              <a href="mailto:hello@createspace.com">hello@createspace.com</a>
+              <a href="mailto:connect.studio4core@gmail.com">connect.studio4core@gmail.com</a>
             </div>
             <div class="detail-item">
               <span class="icon">💼</span>
-              <a href="https://www.linkedin.com/in/napul-labde/" target="_blank">linkedin.com/in/napul-labde</a>
+              <a href="https://www.linkedin.com/in/studio-4core-6b2b043b5/" target="_blank">linkedin.com/in/studio4core</a>
             </div>
-            <div class="detail-item">
-              <span class="icon">💻</span>
-              <a href="https://github.com/napul205" target="_blank">github.com/napul205</a>
-            </div>
-          </div>
 
-          <div class="locations-wrapper">
-            <h4>Visit Our Studios</h4>
-            <br>
-            <div class="location-box">
-              <h5>📍 Pune (HQ)</h5>
-              <p>404, Tech Park Plaza, Baner Road,<br>Pune, Maharashtra 411045</p>
-            </div>
-            <div class="location-box">
-              <h5>📍 Mumbai</h5>
-              <p>WorkSpace Hub, Lower Parel,<br>Mumbai, Maharashtra 400013</p>
-            </div>
-            <div class="location-box">
-              <h5>📍 Delhi</h5>
-              <p>Connaught Place, Block B,<br>New Delhi, Delhi 110001</p>
-            </div>
           </div>
           <div class="social-block">
             <h4>Follow Us</h4>
             <div class="socials">
-              <a href="#"><img src="../../assets/images/social logo/instagram.png" alt="IG"></a>
+              <a href="https://www.instagram.com/studio4core/"><img src="../../assets/images/social logo/instagram.png" alt="IG"></a>
               <a href="#"><img src="../../assets/images/social logo/facebook.png" alt="FB"></a>
-              <a href="#"><img src="../../assets/images/social logo/linkedin.png" alt="LI"></a>
+              <a href="https://www.linkedin.com/in/studio-4core-6b2b043b5/"><img src="../../assets/images/social logo/linkedin.png" alt="LI"></a>
               <a href="#"><img src="../../assets/images/social logo/twitter.png" alt="TW"></a>
               <a href="#"><img src="../../assets/images/social logo/whatsapp.png" alt="WA"></a>
               <a href="#"><img src="../../assets/images/social logo/youtube.png" alt="YT"></a>
@@ -208,78 +199,60 @@
 
     </div>
 
-    <section class="faq-section">
-      <h2 class="faq-title">Frequently Asked Questions</h2>
-      <div class="faq-grid">
-        <div class="faq-item">
-          <h4>What projects do you undertake?</h4>
-          <p>We specialize in Residential Architecture, Commercial Office Spaces, Urban Design, and Sustainable Landscape planning. No project is too big or too small.</p>
-        </div>
-        <div class="faq-item">
-          <h4>Do you work outside of India?</h4>
-          <p>Yes! CreateSpace is a global infrastructure firm. While our studios are in India, we work with distributed teams and clients worldwide.</p>
-        </div>
-        <div class="faq-item">
-          <h4>What is the estimated timeline?</h4>
-          <p>Timelines vary by scope. An interior project might take 3-4 months, while large architectural builds can take 12-18 months. Contact us for a precise estimate.</p>
-        </div>
-        <div class="faq-item">
-          <h4>How do you charge for services?</h4>
-          <p>We offer both fixed-fee structures and square-footage based pricing, depending on the project type. We provide a transparent quote after our initial consultation.</p>
-        </div>
-      </div>
-    </section>
+  
     </main>
 
   <footer id="footer">
     <div class="footer-top">
       <div class="footer-grid">
-        <div>
+        <div class="footer-col-main">
           <h2 class="footer-brand">Studio4Core</h2>
           <p>Global infrastructure built for modern applications and distributed teams.</p>
+          <a href="mailto:connect.studio4core@gmail.com" style="margin-top: 20px;">connect.studio4core@gmail.com</a>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
+            <a href="https://wa.me/918805513821?text=Hi,%20I%20want%20to%20connect.">+91 8805513821</a>
+           <a href="https://wa.me/917709315430?text=Hi,%20I%20want%20to%20connect.">+91 7709315430</a>
+            <a href="https://wa.me/918007605291?text=Hi,%20I%20want%20to%20connect.">+91 8007605291</a>
+            <a href="https://wa.me/919518581033?text=Hi,%20I%20want%20to%20connect.">+91 9518581033</a>
+          </div>
         </div>
 
-               <div>
+        <div>
           <h4>Services</h4>
           <a href="../../assets/projects/Architecture/?filter=Architecture">Architecture</a>
           <a href="../../assets/projects/Architecture/?filter=Interior_Design">Interior Design</a>
           <a href="../../assets/projects/Architecture/?filter=Landscape">Landscape</a>
           <a href="../../assets/projects/Architecture/?filter=Urban_Design">Urban Design</a>
         </div>
-
+        
         <div>
           <h4>Company</h4>
           <a href="../../AboutUs/">About</a>
           <a href="../../News/">News</a>
-          <a href="/">Contact</a>
+          <a href="../../assets/contact/">Contact us</a>
         </div>
 
-        <div class="social">
-          <a href="#"><img src="../../assets/images/social logo/instagram.png" alt="IG" width="24"></a>
-          <a href="#"><img src="../../assets/images/social logo/facebook.png" alt="FB" width="24"></a>
-          <a href="#"><img src="../../assets/images/social logo/linkedin.png" alt="LI" width="24"></a>
-          <a href="#"><img src="../../assets/images/social logo/twitter.png" alt="TW" width="24"></a>
-          <a href="#"><img src="../../assets/images/social logo/whatsapp.png" alt="WA" width="24"></a>
-          <a href="#"><img src="../../assets/images/social logo/youtube.png" alt="YT" width="24"></a>
+        <div>
+          <h4>Follow Us</h4>
+          <div class="social">
+            <a href="https://www.instagram.com/studio4core/" target="_blank"><img src="../../assets/images/social logo/instagram.png" alt="Instagram"></a>
+            <a href="https://www.linkedin.com/in/studio-4core-6b2b043b5/" target="_blank"><img src="../../assets/images/social logo/linkedin.png" alt="LinkedIn"></a>
+            <!-- <a href="https://www.twitter.com" target="_blank"><img src="../../assets/images/social logo/twitter.png" alt="Twitter"></a> -->
+          </div>
         </div>
       </div>
     </div>
-    
-    <div class="line-break"></div>
 
-    <div class="location">
-      <a href="#"><img src="../../assets/images/social logo/location.png" width="24"> Pune</a>
-      <a href="#"><img src="../../assets/images/social logo/location.png" width="24"> Mumbai</a>
-      <a href="#"><img src="../../assets/images/social logo/location.png" width="24"> Delhi</a>
-    </div>
-
-    <div class="line-break"></div>
+    <!-- <div class="location">
+      <span><img src="assets/images/social logo/location.png" alt="Loc" width="18"> Pune</span>
+      <span><img src="assets/images/social logo/location.png" alt="Loc" width="18"> Mumbai</span>
+      <span><img src="assets/images/social logo/location.png" alt="Loc" width="18"> Delhi</span>
+    </div> -->
 
     <div class="footer-bottom">
-      © 2025 Studio4Core. All rights reserved.
+      <p>© 2026 Studio4Core. All rights reserved.</p>
     </div>
   </footer>
-
   <script src="../../assets/js/script.js"></script>
 
   <script>

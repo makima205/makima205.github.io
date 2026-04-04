@@ -6,36 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="V0p0LgcgshsFt061kymfreYSMtU4E_9lTzzwgxlEne4" />
   
-  <title>Studio 4 Core - Architecture & Design</title>
+  <title>Studio4Core | Architecture & Design</title>
+  <link rel="icon" type="image/png" href="assets/images/logo.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="assets/css/style.css">
-  <style>
-  /* 1. Initial State: Transparent & Floating */
-  .site-header {
-    background: transparent !important; /* Force override */
-    backdrop-filter: none !important;   /* No blur initially */
-    box-shadow: none !important;
-    position: fixed;  /* Float ON TOP of the hero video */
-    width: 100%;      /* Ensure full width */
-    top: 0;
-    transition: background 0.4s ease, backdrop-filter 0.4s ease, padding 0.4s ease;
-  }
-
-  /* 2. Scrolled State: The Grey Look */
-  .site-header.scrolled {
-    background: rgb(157, 157, 157) !important; /* Your grey color */
-    backdrop-filter: blur(10px) !important;    /* Restore blur */
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1) !important;
-  }
-
-  /* Optional: Adjust logo color if needed on transparency */
-  /* .site-header .brand { color: #fff; } */
-</style>
 </head>
 
 <body>
 
   <header class="site-header">
-    <div class="container header-inner">
+    <div class="header-inner">
       <a class="brand" href="/">Studio4Core</a>
 
       <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
@@ -55,99 +38,99 @@
     </div>
   </header>
 
-  <section id="services" class="hero video-hero">
+  <section id="home" class="hero">
     <video class="bg-video" autoplay muted loop playsinline>
-      <source src="assets/videos/bg.mp4" type="video/mp4">
+      <source src="assets/videos/Timeline 1.mov" >
     </video>
 
     <div class="hero-text">
-      <h1>Design With Purpose</h1>
-      <p>Global infrastructure built for modern applications and distributed teams.</p>
+      <h1>Design With<br>Purpose.</h1>
+      <p>Global infrastructure built for modern applications and distributed teams. We shape the spaces that shape society.</p>
     </div>
   </section>
 
-
   <section id="services" class="what-we-do">
-    <h1>What We Do</h1>
-    <p>At Studio4core, we belive architecture is the art and science of designing, planning, and constructing buildings and other structures,
-      blending creativity with technical skill to create spaces that are functional, safe, beautiful, and meaningful for
-      people and society</p>
-<div class="cards">
-  
-  <a href="assets/projects/Architecture/?filter=Architecture" class="service-card" style="background-image:url('https://picsum.photos/600/600?3'); display:block; text-decoration:none; color:inherit;">
-    <div class="overlay">
-      <h3 class="card-title">Architecture</h3>
-      <p class="card-desc">Innovative architectural solutions focused on sustainability and craft.</p>
-      <span class="card-link">View Projects</span>
+    <div class="section-heading">
+      <h1>What We Do</h1>
+      <p>At Studio4Core, we believe architecture is the art and science of designing, planning, and constructing structures, blending creativity with technical skill to create spaces that are functional, safe, beautiful, and meaningful.</p>
     </div>
-  </a>
 
-  <a href="assets/projects/Architecture/?filter=Interior_Design" class="service-card" style="background-image:url('https://picsum.photos/600/600?4'); display:block; text-decoration:none; color:inherit;">
-    <div class="overlay">
-      <h3 class="card-title">Interior Design</h3>
-      <p class="card-desc">Functional and aesthetic interiors tailored to enhance user experience and well-being.</p>
-      <span class="card-link">Explore</span>
+    <div class="cards">
+      <a href="assets/projects/Architecture/?filter=Architecture" class="service-card" style="background-image:url('https://picsum.photos/800/1000?3');">
+        <div class="overlay">
+          <h3 class="card-title">Architecture</h3>
+          <p class="card-desc">Innovative architectural solutions focused on sustainability and craft.</p>
+          <span class="card-link">View Projects</span>
+        </div>
+      </a>
+
+      <a href="assets/projects/Architecture/?filter=Interior_Design" class="service-card" style="background-image:url('https://picsum.photos/800/1000?4');">
+        <div class="overlay">
+          <h3 class="card-title">Interior Design</h3>
+          <p class="card-desc">Functional and aesthetic interiors tailored to enhance user experience.</p>
+          <span class="card-link">Explore</span>
+        </div>
+      </a>
+
+      <a href="assets/projects/Architecture/?filter=Landscape" class="service-card" style="background-image:url('https://picsum.photos/800/1000?5');">
+        <div class="overlay">
+          <h3 class="card-title">Landscape</h3>
+          <p class="card-desc">Harmonious outdoor environments that blend natural ecology with human interaction.</p>
+          <span class="card-link">Learn More</span>
+        </div>
+      </a>
+
+      <a href="assets/projects/Architecture/?filter=Urban_Design" class="service-card" style="background-image:url('https://picsum.photos/800/1000?6');">
+        <div class="overlay">
+          <h3 class="card-title">Urban Design</h3>
+          <p class="card-desc">Human-focused urban planning that enables connected and thriving communities.</p>
+          <span class="card-link">Explore</span>
+        </div>
+      </a>
     </div>
-  </a>
-
-  <a href="assets/projects/Architecture/?filter=Landscape" class="service-card" style="background-image:url('https://picsum.photos/600/600?5'); display:block; text-decoration:none; color:inherit;">
-    <div class="overlay">
-      <h3 class="card-title">Landscape</h3>
-      <p class="card-desc">Harmonious outdoor environments that blend natural ecology with human interaction.</p>
-      <span class="card-link">Learn More</span>
-    </div>
-  </a>
-
-  <a href="assets/projects/Architecture/?filter=Urban_Design" class="service-card" style="background-image:url('https://picsum.photos/600/600?4'); display:block; text-decoration:none; color:inherit;">
-    <div class="overlay">
-      <h3 class="card-title">Urban Design</h3>
-      <p class="card-desc">Human-focused urban planning that enables resilient, connected, and thriving communities.</p>
-      <span class="card-link">Explore</span>
-    </div>
-  </a>
-
-</div>
   </section>
 
   <section id="about" class="about">
-    <div class="about-img" style="background-image:url('https://picsum.photos/1200/900?6')"></div>
+    <div class="about-img" style="background-image:url('https://picsum.photos/1200/900?7')"></div>
     <div class="about-text">
       <h1>About Us</h1>
-      <p>
-        Architecture is the art and science of designing, planning, and constructing buildings and other structures,
-        blending creativity with technical skill to create spaces that are functional,
-        safe, beautiful, and meaningful for people and society. It's about shaping our built environment, from houses
-        and cities to bridges, serving practical needs (shelter, function) while also expressing culture, emotion, and
-        aesthetics (form, beauty).
-        Key AspectsArt & Science: It combines artistic vision (beauty, symbolism) with engineering principles
-        (stability, practicality).
-        Function & Form: Buildings must serve a purpose (function) while also having an appealing look and feel (form).
-        Social Art: Architecture influences human experience, affecting well-being, community, and culture.
-        Context: Designs must integrate with their environment, considering surroundings, climate, and history.
-        Process: It involves stages from initial concept and design to construction and user experience.
-      </p>
+      <p>Architecture is the art and science of designing, planning, and constructing buildings and other structures, blending creativity with technical skill to create spaces that are functional, safe, beautiful, and meaningful for people and society.</p>
+      <p>It's about shaping our built environment, from houses and cities to bridges, serving practical needs while also expressing culture, emotion, and aesthetics. Our designs integrate with their environment, considering surroundings, climate, and history.</p>
     </div>
   </section>
 
-  <section id="news" class="news">
-    <h1>News</h1>
-
-    <p class="section-desc">
-      Architecture is the art and science of designing meaningful spaces.
-    </p>
+  <!-- <section id="news" class="news">
+    <h1>Journal & News</h1>
+    <p class="section-desc">Architecture is the art and science of designing meaningful spaces.</p>
 
     <div class="news-carousel">
       <div class="news-track" id="newsTrack">
         </div>
+    </div>
+  </section> -->
+
+  <section class="trace-cta">
+    <h2>Explore Architectural Possibilities</h2>
+    <div class="trace-row">
+      <div class="trace-line left"></div>
+      <a href="assets/contact/" class="trace-btn">Connect with us Today</a>
+      <div class="trace-line right"></div>
     </div>
   </section>
 
   <footer id="footer">
     <div class="footer-top">
       <div class="footer-grid">
-        <div>
+        <div class="footer-col-main">
           <h2 class="footer-brand">Studio4Core</h2>
           <p>Global infrastructure built for modern applications and distributed teams.</p>
+          <a href="mailto:connect.studio4core@gmail.com" style="margin-top: 20px;">connect.studio4core@gmail.com</a>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
+            <a href="tel:+918805513821">+91 8805513821</a>
+            <a href="tel:+917709315430">+91 7709315430</a>
+            <a href="tel:+918007605291">+91 8007605291</a>
+            <a href="tel:+919518581033">+91 9518581033</a>
+          </div>
         </div>
 
         <div>
@@ -157,6 +140,7 @@
           <a href="assets/projects/Architecture/?filter=Landscape">Landscape</a>
           <a href="assets/projects/Architecture/?filter=Urban_Design">Urban Design</a>
         </div>
+        
         <div>
           <h4>Company</h4>
           <a href="AboutUs/">About</a>
@@ -164,71 +148,46 @@
           <a href="assets/contact/">Contact us</a>
         </div>
 
-        <div class="social">
-          <a href="https://www.instagram.com" target="_blank">
-            <img src="assets/images/social logo/instagram.png" alt="Instagram" width="24">
-          </a>
-          <a href="https://www.facebook.com" target="_blank">
-            <img src="assets/images/social logo/facebook.png" alt="Facebook" width="24">
-          </a>
-          <a href="https://www.linkedin.com" target="_blank">
-            <img src="assets/images/social logo/linkedin.png" alt="LinkedIn" width="24">
-          </a>
-          <a href="https://www.twitter.com" target="_blank">
-            <img src="assets/images/social logo/twitter.png" alt="Twitter" width="24">
-          </a>
-          <a href="https://www.whatsapp.com" target="_blank">
-            <img src="assets/images/social logo/whatsapp.png" alt="WhatsApp" width="24">
-          </a>
-          <a href="https://www.youtube.com" target="_blank">
-            <img src="assets/images/social logo/youtube.png" alt="YouTube" width="24">
-          </a>
+        <div>
+          <h4>Follow Us</h4>
+          <div class="social">
+            <a href="https://www.instagram.com/studio4core/" target="_blank"><img src="assets/images/social logo/instagram.png" alt="Instagram"></a>
+            <a href="https://www.linkedin.com/in/studio-4core-6b2b043b5/" target="_blank"><img src="assets/images/social logo/linkedin.png" alt="LinkedIn"></a>
+            <!-- <a href="https://www.twitter.com" target="_blank"><img src="assets/images/social logo/twitter.png" alt="Twitter"></a> -->
+          </div>
         </div>
-
       </div>
     </div>
-    <div class="line-break"></div>
 
-    <div class="location">
-      <a href="https://www.youtube.com" target="_blank">
-        <img src="assets/images/social logo/location.png" alt="Pune" width="24">Pune
-      </a>
-      <a href="https://www.youtube.com" target="_blank">
-        <img src="assets/images/social logo/location.png" alt="Mumbai" width="24">Mumbai
-      </a>
-      <a href="https://www.youtube.com" target="_blank">
-        <img src="assets/images/social logo/location.png" alt="Delhi" width="24">Delhi
-      </a>
-    </div>
-    <div class="line-break"></div>
+    <!-- <div class="location">
+      <span><img src="assets/images/social logo/location.png" alt="Loc" width="18"> Pune</span>
+      <span><img src="assets/images/social logo/location.png" alt="Loc" width="18"> Mumbai</span>
+      <span><img src="assets/images/social logo/location.png" alt="Loc" width="18"> Delhi</span>
+    </div> -->
 
     <div class="footer-bottom">
-      © 2025 Studio4Core. All rights reserved.
+      <p>© 2026 Studio4Core. All rights reserved.</p>
     </div>
   </footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
 
-<script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+  
+  <script>
     /* ===== HELPER: FIX GOOGLE DRIVE IMAGES ===== */
     function processImg(url) {
-      if (!url) return "https://picsum.photos/600/400"; // Fallback image
+      if (!url) return "https://picsum.photos/600/400";
       url = url.trim();
-
-      // Convert Drive Link to Thumbnail Link (Bypasses permissions/virus warnings)
       if (url.includes('drive.google.com')) {
         const idMatch = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
-        if (idMatch && idMatch[1]) {
-          return `https://drive.google.com/thumbnail?id=${idMatch[1]}&sz=w800`;
-        }
+        if (idMatch && idMatch[1]) return `https://drive.google.com/thumbnail?id=${idMatch[1]}&sz=w800`;
       }
       return url;
     }
 
-  /* ===== LOAD NEWS FROM GOOGLE SHEETS ===== */
+    /* ===== LOAD NEWS FROM GOOGLE SHEETS ===== */
     async function loadNews() {
       const track = document.getElementById("newsTrack");
       if (!track) return;
-
       const sheetId = '1gtu1WSMvPOrPn1qzD2smIdSajVTqeOmH272c9LW6a1c';
       const sheetName = 'News%20cards';
       const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=${sheetName}`;
@@ -236,92 +195,74 @@
       try {
         const response = await fetch(url);
         const data = await response.text();
-
         Papa.parse(data, {
           header: false,
           complete: function (results) {
             const rows = results.data;
-            const newsItems = rows.slice(2); // Skip headers
-
+            const newsItems = rows.slice(2);
             track.innerHTML = ""; 
-
             let cardsHtml = "";
-            let validCount = 0; // Counter to track valid items
+            let validCount = 0;
 
             newsItems.forEach(row => {
               const title = row[1];
-              // Apply the Drive Fix here
               const imgUrl = processImg(row[2]); 
               const description = row[3];
               const date = row[4];
 
               if (title && title.trim() !== "") {
-                validCount++; // Increment count found
-                
-                // Link to Detail Page
+                validCount++; 
                 const link = `News/news/?article=${encodeURIComponent(title)}`;
-
                 cardsHtml += `
-                  <article class="news-card" onclick="window.location.href='${link}'" style="cursor: pointer;">
+                  <article class="news-card" onclick="window.location.href='${link}'">
                     <img src="${imgUrl}" alt="${title}" onerror="this.src='https://picsum.photos/600/400'">
-                    <div class="news-content" style="padding: 15px;">
+                    <div class="news-content">
                       <h3 class="card-title">${title}</h3>
-                      <p class="card-desc" style="text-align:left;">
-                        ${limitText(description || "", 75)}</p>
-                      <p class="news-date" style="text-align:left; font-size: 0.8rem; color: #888; margin-top:10px;">
-                        ${date || ""}
-                      </p>
+                      <p class="card-desc">${limitText(description || "", 90)}</p>
+                      <p class="news-date">${date || ""}</p>
                     </div>
                   </article>
                 `;
               }
             });
 
-            // === UPDATED LOGIC FOR ANIMATION & CENTERING ===
-            track.innerHTML = cardsHtml; // Always add at least once
-
+            track.innerHTML = cardsHtml;
             if (validCount >= 5) {
-                // If 5 or more, duplicate content for infinite loop and allow animation
                 track.innerHTML += cardsHtml; 
-                // Ensure default styles for animation are active (if overridden previously)
-                track.style.width = ""; 
-                track.style.justifyContent = "";
             } else {
-                // If less than 5, stop animation and center items
                 track.style.animation = "none";
                 track.style.display = "flex";
-                track.style.width = "100%";            // Force track to full width
-                track.style.justifyContent = "center"; // Center the cards
-                track.style.gap = "20px";
+                track.style.width = "100%"; 
+                track.style.justifyContent = "center";
             }
           }
         });
       } catch (error) {
-        console.error("Error fetching sheet:", error);
-        track.innerHTML = "<p style='color:black; padding:20px;'>Run via Local Server to see news.</p>";
+        track.innerHTML = "<p style='color:black;'>Error loading news. Ensure you are on a live server.</p>";
       }
     }
-    function limitText(text, limit = 75) {
-      return text.length > limit ? text.substring(0, limit) + "..." : text;
-    }
-
+    function limitText(text, limit = 90) { return text.length > limit ? text.substring(0, limit) + "..." : text; }
     document.addEventListener("DOMContentLoaded", loadNews);
-</script>
-  <script src="assets/js/script.js"></script>
-  <script>
-  // 3. Script to toggle the class on scroll
-  document.addEventListener("DOMContentLoaded", function() {
-    const header = document.querySelector(".site-header");
-    
-    window.addEventListener("scroll", function() {
-      if (window.scrollY > 50) { // If scrolled down 50px
-        header.classList.add("scrolled");
-      } else { // If at the top
-        header.classList.remove("scrolled");
-      }
-    });
-  });
-</script>
-</body>
 
+    /* ===== HEADER SCROLL LOGIC & MOBILE MENU ===== */
+    document.addEventListener("DOMContentLoaded", function() {
+      const header = document.querySelector(".site-header");
+      const menuToggle = document.querySelector(".menu-toggle");
+      const siteNav = document.querySelector(".site-nav");
+      
+      // Scroll Glassmorphism
+      window.addEventListener("scroll", function() {
+        if (window.scrollY > 50) header.classList.add("scrolled");
+        else header.classList.remove("scrolled");
+      });
+
+      // Mobile Menu
+      menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active');
+        siteNav.classList.toggle('active');
+        header.classList.add("scrolled"); // Force dark text when menu is open
+      });
+    });
+  </script>
+</body>
 </html>

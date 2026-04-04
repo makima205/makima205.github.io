@@ -1,629 +1,492 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap');
 
-/* ================= ROOT ================= */
+/* ================= 1. THE PHYSICS ENGINE (ROOT) ================= */
 :root {
-  --bg: #faf9f7;
-  --surface: #f1efe9;
-  --card: #ffffff;
-  --text: #2a2a2a;
-  --muted: #7a7a7a;
-  --border: #e2dfd6;
-  --accent: #1f2937;
-
-  --radius: 18px;
-  --transition: 320ms cubic-bezier(.2, .9, .3, 1);
+  --bg: #faf9f7;       /* Warm architectural white */
+  --surface: #ffffff;
+  --text-main: #111111;
+  --text-muted: #555555;
+  --accent: #000000;
+  
+  /* Heavy, expensive animation curve */
+  --ease-premium: cubic-bezier(0.19, 1, 0.22, 1); 
+  --radius: 2px; /* Extremely sharp corners */
 }
 
-/* ================= RESET ================= */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* ================= 2. GLOBAL RESET & TYPOGRAPHY ================= */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
 
 body {
   font-family: 'Inter', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.65;
-  letter-spacing: .2px;
-  -webkit-font-smoothing: antialiased;
+  background-color: var(--bg);
+  color: var(--text-main);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased; 
+  overflow-x: hidden;
 }
 
-
-/* ================= HERO / VIDEO ================= */
-.hero {
-  position: relative;
-  min-height: 100vh;
-  overflow: hidden;
-}
-
-.bg-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -1;
-}
-
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom,
-      rgba(0, 0, 0, .6),
-      rgba(0, 0, 0, .3));
-}
-
-.hero-text {
-  position: absolute;
-  bottom: 22%;
-  left: 8%;
-  color: #fff;
-  max-width: 560px;
-}
-
-.hero-text h1 {
-  font-size: 64px;
-  font-weight: 600;
+h1, h2, h3, .brand {
+  font-weight: 400; 
+  letter-spacing: -0.04em; /* Tight editorial tracking */
   line-height: 1.1;
+  color: var(--text-main);
 }
 
-.hero-text p {
-  margin-top: 12px;
-  font-size: 19px;
-  opacity: .9;
-}
+p { font-weight: 300; opacity: 0.9; }
 
-/* ================= WHAT WE DO ================= */
-.what-we-do h1 {
-  text-align: center;
-  font-size: 42px;
-  margin-bottom: 24px;
-}
-
-.what-we-do {
-  margin: 56px 70px 24px 70px;
-}
-
-.what-we-do p {
-  text-align: center;
-  max-width: 780px;
-  margin: 0 auto 60px;
-  font-size: 1.1rem;
-  color: var(--muted);
-}
-
-.cards {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
-}
-
-.service-card {
-  position: relative;
-  height: 420px;
-  background-size: cover;
-  background-position: center;
-  overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, .12);
-  transition: transform var(--transition), box-shadow var(--transition);
-}
-
-.service-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 32px 60px rgba(0, 0, 0, .18);
-}
-
-/* overlay */
-.service-card .overlay {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 22px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, .65));
-  backdrop-filter: blur(6px);
-  transform: translateY(calc(100% - 58px));
-  transition: transform var(--transition);
-}
-
-.service-card:hover .overlay {
-  transform: translateY(0);
-}
-
-.card-title {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #fff;
-}
-
-.card-desc,
-.card-link {
-  opacity: 0;
-  max-height: 0;
-  transition: all var(--transition);
-}
-
-.service-card:hover .card-desc,
-.service-card:hover .card-link {
-  opacity: 1;
-  max-height: 200px;
-}
-
-.card-desc {
-  font-size: .95rem;
-  color: #e5e7eb;
-  text-align: justify;
-}
-
-.card-link {
-  margin-top: 10px;
-  color: #fff;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(255, 255, 255, .6);
-  width: max-content;
-}
-
-/* ================= ABOUT ================= */
-.about {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 70px;
-  align-items: center;
-  margin: 56px 70px 24px 70px;
-}
-
-.about-img {
-  height: 520px;
-  background-size: cover;
-  background-position: center;
-}
-
-.about-text h1 {
-  font-size: 42px;
-  margin-bottom: 20px;
-}
-
-.about-text p {
-  font-size: 1.05rem;
-  color: var(--muted);
-  line-height: 1.8;
-  text-align: justify;
-}
-
-/* ================= NEWS (INFINITE SCROLL FIXED) ================= */
-.news {
-  margin: 56px 0 24px 0;
-  padding-bottom: 30px;
-}
-
-.news p.section-desc {
-  text-align: center;
-  padding-bottom: 10px;
-  padding-left: 16px;
-  color: var(--muted);
-}
-
-.news h1 {
-  text-align: center;
-  font-size: 42px;
-  margin-bottom: 25px;
-}
-
-.news-carousel {
-  overflow: hidden;
-  width: 100%;
-  position: relative;
-  padding: 20px 0;
-  /* Soft fade on edges */
-  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-}
-
-.news-track {
-  display: flex;
-  gap: 24px;
-  width: max-content;
-  /* CRITICAL: Force left alignment for loop */
-  justify-content: flex-start !important;
-  animation: newsLoop 60s linear infinite;
-  will-change: transform;
-}
-
-.news-track:hover {
-  animation-play-state: paused;
-}
-
-@keyframes newsLoop {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-.news-card {
-  flex: 0 0 300px; /* Fixed width */
-  max-width: 300px;
-  background: #fff;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, .06);
-  transition: transform var(--transition), box-shadow var(--transition);
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.news-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, .1);
-}
-
-.news-card img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-}
-
-.news-card .card-title {
-  color: var(--text);
-  padding: 14px 16px 6px;
-  font-size: 1.1rem;
-}
-
-.news-card .card-desc {
-  padding: 0 16px 18px;
-  font-size: .95rem;
-  color: var(--muted);
-  opacity: 1;
-  max-height: none;
-  text-align: left;
-}
-
-.news-track::-webkit-scrollbar {
-  display: none;
-}
-
-/* ================= CLIENTS ================= */
-.clients {
-  min-height: auto;
-  margin: 56px 70px 24px 70px;
-}
-
-.clients h1 {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.client-slider {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  filter: grayscale(100%);
-  opacity: .7;
-}
-
-.logo {
-  width: 140px;
-  object-fit: contain;
-}
-
-/* ================= NAVBAR ================= */
+/* ================= 3. NAVIGATION (GLASSMORPHISM) ================= */
 .site-header {
-  position: sticky;
-  top: 0;
-  z-index: 60;
-  background: rgb(157, 157, 157);
-  backdrop-filter: blur(10px);
+  position: fixed;
+  top: 0; left: 0; width: 100%;
+  z-index: 999;
+  padding: 15px 5%;
+  background: transparent;
+  transition: all 0.6s var(--ease-premium);
+}
+
+.site-header.scrolled {
+  padding: 15px 5%;
+  background: rgba(250, 249, 247, 0.9); 
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
 }
 
 .header-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 14px 3%;
+  max-width: 1600px;
+  margin: 0 auto;
 }
 
 .brand {
-  font-weight: 800;
-  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 600;
   text-decoration: none;
-  letter-spacing: 1px;
-  font-size: 1.3rem;
-  z-index: 61;
+  color: #fff; /* White on video */
+  transition: color 0.4s var(--ease-premium);
 }
 
-.site-nav ul {
-  display: flex;
-  gap: 22px;
-  list-style: none;
-}
+.site-nav ul { display: flex; gap: 40px; list-style: none; }
 
 .site-nav a {
-  color: #fff;
   text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s ease;
+  color: #fff; /* White on video */
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: opacity 0.3s, color 0.4s;
 }
 
-.site-nav a:hover {
-  color: #000000;
-}
+.site-nav a:hover { opacity: 0.7; }
+
+/* Invert colors when scrolled */
+.site-header.scrolled .brand, 
+.site-header.scrolled .site-nav a { color: #111; }
+.site-header.scrolled .menu-toggle span { background: #111; }
 
 /* Mobile Menu Toggle */
 .menu-toggle {
   display: none;
   flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
-  background: transparent;
+  gap: 6px;
+  background: none;
   border: none;
-  padding: 5px;
-  z-index: 61;
+  cursor: pointer;
+  z-index: 1001;
 }
-
 .menu-toggle span {
-  display: block;
-  width: 28px;
-  height: 3px;
-  background: #000000;
-  border-radius: 2px;
-  transition: all 0.3s ease;
+  display: block; width: 30px; height: 2px; 
+  background: #fff; transition: 0.3s;
 }
 
-/* Mobile menu open state - Transformed into X */
-.menu-toggle.active span:nth-child(1) {
-  transform: rotate(45deg) translate(7px, 7px);
-}
-.menu-toggle.active span:nth-child(2) {
-  opacity: 0;
-}
-.menu-toggle.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(7px, -7px);
+/* ================= 4. CINEMATIC HERO ================= */
+.hero {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 5% 12vh 5%;
+  overflow: hidden;
 }
 
-/* ================= FOOTER ================= */
+.bg-video {
+  position: absolute;
+  inset: 0; width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  transform: scale(1.05); /* Slight scale to prevent edge bleeding */
+}
+
+.hero::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
+  z-index: 1;
+}
+
+.hero-text {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  max-width: 900px;
+  animation: slideUpFade 1.5s var(--ease-premium) forwards;
+}
+
+.hero-text h1 {
+  font-size: clamp(1.75rem, 4vw, 3.5rem);
+  line-height: 0.95;
+  margin-bottom: 25px;
+  color: #fff;
+}
+
+.hero-text p {
+  font-size: 1.25rem;
+  max-width: 600px;
+  color: rgba(255,255,255,0.85);
+  border-left: 2px solid rgba(255,255,255,0.3);
+  padding-left: 20px;
+}
+
+@keyframes slideUpFade {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+/* Base link styles */
+.site-nav a {
+  position: relative; /* Required for the underline animation */
+  text-decoration: none;
+  color: #fff; 
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: opacity 0.3s, color 0.4s, transform 0.1s;
+}
+
+/* 1. The Animated Underline */
+.site-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background-color: currentColor; /* Automatically matches white or black text! */
+  transition: width 0.4s var(--ease-premium);
+}
+
+/* 2. Hover State: Line draws out */
+.site-nav a:hover::after {
+  width: 100%;
+}
+
+/* 3. Click State: Slight physical push down */
+.site-nav a:active {
+  transform: translateY(2px);
+  opacity: 0.5;
+}
+
+/* 4. Active Page State: Line stays drawn */
+.site-nav a.active-page::after {
+  width: 100%;
+}
+/* ================= 5. SECTIONS BASE ================= */
+.what-we-do, .about, .news {
+  padding: 75px 5%;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+.what-we-do, .about, .news p {
+  text-align: justify;
+}
+
+.section-heading { margin-bottom: 80px; }
+
+.section-heading h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  margin-bottom: 30px;
+}
+
+.section-heading p {
+  font-size: 1.4rem;
+  line-height: 1.6;
+  max-width: 900px;
+  color: var(--text-muted);
+}
+
+/* ================= 6. INTERACTIVE CARDS ================= */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.service-card {
+  position: relative;
+  height: 600px; 
+  background-color: #000;
+  overflow: hidden;
+  border-radius: var(--radius);
+  text-decoration: none;
+}
+
+/* Grayscale Image that zooms and colorizes */
+.service-card::before {
+  content: ""; position: absolute; inset: 0;
+  background-image: inherit;
+  background-size: cover; background-position: center;
+  filter: grayscale(100%);
+  transition: transform 1.2s var(--ease-premium), filter 0.8s;
+}
+
+.service-card:hover::before {
+  transform: scale(1.1);
+  filter: grayscale(0%);
+}
+
+.service-card .overlay {
+  position: absolute; inset: 0;
+  padding: 40px;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent 50%);
+}
+
+.card-title {
+  font-size: 2rem; color: #fff;
+  transform: translateY(15px);
+  transition: transform 0.6s var(--ease-premium);
+}
+
+.service-card:hover .card-title { transform: translateY(0); }
+
+.card-desc {
+  color: rgba(255,255,255,0.8); font-size: 1rem;
+  margin-top: 10px; max-height: 0; opacity: 0;
+  transition: all 0.6s var(--ease-premium);
+}
+
+.service-card:hover .card-desc { max-height: 100px; opacity: 1; }
+
+.card-link {
+  margin-top: 25px; display: inline-block; color: #fff;
+  border-bottom: 1px solid rgba(255,255,255,0.4);
+  padding-bottom: 5px; font-size: 0.85rem;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+
+/* ================= 7. ABOUT SECTION ================= */
+.about {
+  display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center; gap: 8vw;
+}
+
+.about-img {
+  height: 700px; width: 100%;
+  background-size: cover; background-position: center;
+  border-radius: var(--radius);
+}
+
+.about-text h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 40px; }
+
+.about-text p {
+  font-size: 1.15rem; color: var(--text-muted);
+  margin-bottom: 25px; line-height: 1.8;
+}
+
+/* ================= 8. NEWS CAROUSEL ================= */
+.news h1 { text-align: center; font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 15px; }
+.news .section-desc { text-align: center; font-size: 1.2rem; color: var(--text-muted); margin-bottom: 60px; }
+
+.news-carousel {
+  overflow: hidden; padding: 20px 0;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.news-track {
+  display: flex; gap: 40px; width: max-content;
+  animation: newsMarquee 45s linear infinite;
+}
+
+.news-track:hover { animation-play-state: paused; }
+
+@keyframes newsMarquee { to { transform: translateX(-50%); } }
+
+.news-card {
+  width: 380px; background: #fff;
+  border-radius: var(--radius);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+  overflow: hidden; cursor: pointer;
+  transition: transform 0.4s var(--ease-premium);
+}
+
+.news-card:hover { transform: translateY(-10px); }
+
+.news-card img { width: 100%; height: 240px; object-fit: cover; }
+
+.news-content { padding: 30px; }
+.news-card .card-title { font-size: 1.3rem; margin-bottom: 12px; color: var(--text-main); }
+.news-card .card-desc { font-size: 1rem; color: var(--text-muted); margin-bottom: 15px; }
+.news-date { font-size: 0.85rem; color: #999; font-weight: 500; text-transform: uppercase; }
+
+/* ================= 9. ARCHITECTURAL TRACE CTA ================= */
+.trace-cta { padding: 80px 5%; text-align: center; overflow: hidden; }
+.trace-cta h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 30px; }
+
+.trace-row { display: flex; align-items: flex-end; justify-content: center; width: 100%; }
+
+.trace-btn {
+  display: inline-block; padding: 18px 40px;
+  border: 2px solid var(--accent);
+  color: var(--text-main); font-weight: 600; text-transform: uppercase;
+  letter-spacing: 1px; font-size: 0.9rem; text-decoration: none;
+  background: var(--bg); transition: all 0.3s;
+}
+
+.trace-btn:hover { background: var(--accent); color: #fff; }
+
+.trace-line {
+  flex-grow: 1; height: 30px;
+  border-bottom: 2px solid var(--accent);
+}
+
+.trace-line.left { border-right: 2px solid var(--accent); margin-right: -2px; }
+.trace-line.right { border-left: 2px solid var(--accent); margin-left: -2px; }
+
+/* ================= 10. PREMIUM FOOTER ================= */
 footer {
-  background: rgb(157, 157, 157);
-  color: #cfd6e4;
-}
-
-.footer-top {
-  padding: 20px 8% 10px 8%;
+  background: #111; color: #888;
+  padding: 100px 5% 40px; margin-top: 100px;
 }
 
 .footer-grid {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1fr;
-  gap: 70px;
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 60px; max-width: 1600px; margin: 0 auto;
 }
 
+.footer-brand { color: #fff; font-size: 2rem; margin-bottom: 20px; }
+.footer-col-main p { max-width: 300px; line-height: 1.6; }
+
 .footer-grid h4 {
-  color: #fff;
-  letter-spacing: 2px;
-  margin-bottom: 22px;
+  color: #fff; font-size: 0.85rem; text-transform: uppercase;
+  letter-spacing: 2px; margin-bottom: 30px;
 }
 
 .footer-grid a {
-  color: #ffffff;
-  text-decoration: none;
-  margin-bottom: 10px;
-  display: block;
-  font-size: large;
+  display: block; color: #999; text-decoration: none;
+  margin-bottom: 15px; font-size: 1rem; transition: color 0.3s;
 }
-
-.footer-grid a:hover {
-  color: #fff;
-}
-
-.footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, .08);
-  padding: 10px 8%;
-  font-size: .85rem;
-  text-align: center;
-}
+.footer-grid a:hover { color: #fff; }
 
 .social {
   display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
+  gap: 15px;
 }
 
-.social a img {
-  display: block;
-}
-
-.line-break {
-  height: 1px;
-  width: 100%;
-  margin: 10px 0;
-  background-color: #ffffff;
-}
+.social a { display: inline-block; margin-bottom: 0; }
+.social img { width: 22px; filter: invert(0.6); transition: filter 0.3s; }
+.social a:hover img { filter: invert(1); }
 
 .location {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20%;
-  flex-wrap: wrap;
-  padding: 15px 8%;
+  display: flex; justify-content: center; gap: 40px;
+  padding: 60px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  max-width: 1600px; margin: 0 auto;
 }
 
-.location a {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 20px;
-  font-weight: 600;
-  color: #ffffff;
-  text-decoration: none;
-}
+.location span { display: flex; align-items: center; gap: 10px; color: #ccc; }
+.location img { filter: invert(0.8); }
 
-.location img {
-  width: 26px;
-  height: 26px;
-  color: #ffffff;
-}
+.footer-bottom { text-align: center; padding-top: 30px; font-size: 0.9rem; color: #666; }
 
-.location a:hover {
-  color: #000;
-  transform: translateY(-2px);
-  transition: 0.2s ease;
-}
-
-.footer-brand {
-  color: #ffffff;
-  font-size: 1.5rem;
-  margin-bottom: 12px;
-}
-
-/* ================= RESPONSIVE (UPDATED & BOOSTED) ================= */
-
-/* Large Desktop (1200px - 1440px) */
-@media(max-width:1440px) {
-  .what-we-do, .about, .news, .clients {
-    margin: 56px 50px 24px 50px;
-  }
-}
-
-/* Desktop / Small Laptop (1024px - 1200px) */
-@media(max-width:1200px) {
-  .cards { grid-template-columns: repeat(2, 1fr); }
-  .what-we-do, .about, .news, .clients { margin: 40px 40px 24px 40px; }
-  .hero-text h1 { font-size: 56px; }
-}
-
-/* Tablet Landscape (768px - 1024px) */
-@media(max-width:1024px) {
-  .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
-  .location { gap: 10%; }
-  .site-nav ul { gap: 16px; }
-  .about { gap: 50px; }
-  .about-img { height: 450px; }
-}
-
-/* ================= MOBILE & TABLET PORTRAIT (Important Fixes) ================= */
-@media(max-width:768px) {
-  /* 1. Layout Adjustments */
-  .cards { grid-template-columns: 1fr; }
+/* ================= 11. MOBILE RESPONSIVE ================= */
+@media (max-width: 1024px) {
+  .about { grid-template-columns: 1fr; gap: 50px; }
   
-  .about { display: flex; flex-direction: column; }
-  .about-text { order: 1; }
-  .about-img { 
-    order: 2; 
-    width: 100%; 
-    height: 350px; /* Taller image */
-    background-size: cover; 
-    background-position: center; 
-  }
-  .about-text p { order: 3; }
-
-  /* 2. Text Size BOOST for Mobile Reading */
-  body { font-size: 18px; } /* Base size increase */
+  /* Force the text block (with the heading) to the top */
+  .about-text { order: 1; } 
   
-  .hero-text h1 { font-size: 48px; line-height: 1.1; }
-  .hero-text p { font-size: 20px; }
+  /* Push the image below the text */
+  .about-img { height: 500px; order: 2; margin-top: -20px; } 
+  
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
 
-  .what-we-do h1, .about-text h1, .news h1, .clients h1 {
-    font-size: 40px; /* Much larger headers */
+@media (max-width: 768px) {
+  .hero-text h1 { font-size: 3.5rem; }
+  .section-heading p { font-size: 1.15rem; }
+  
+  /* --- PREMIUM MOBILE FOOTER --- */
+  .footer-grid { 
+    grid-template-columns: 1fr 1fr; 
+    gap: 40px 20px; 
+    text-align: left; 
+  }
+  
+  .footer-col-main { grid-column: 1 / -1; }
+  .footer-col-main p { max-width: 100%; font-size: 1.1rem; }
+
+  .footer-grid > div:nth-child(4) {
+    grid-column: 1 / -1;
+    margin-top: 10px;
+  }
+  
+  /* FORCE SOCIALS ON ONE LINE */
+  .social { 
+    display: flex !important;
+    justify-content: flex-start !important; 
+    flex-wrap: nowrap !important; /* CRITICAL: Forces one line */
+    gap: 15px !important; 
+    overflow-x: visible !important; 
+  }
+  
+  .social a {
+    display: inline-block !important;
+    margin: 0 !important;
   }
 
-  .what-we-do p, .about-text p {
-    font-size: 1.15rem; /* ~19px readable text */
-    line-height: 1.7;
-    text-align: left; /* Easier to read on mobile than justify/center */
+  .social img {
+    width: 22px !important; 
+    margin-right: 0 !important; 
   }
+  
+  /* Clean, stacked left-aligned locations */
+  .location { 
+    flex-direction: column; 
+    gap: 20px; 
+    align-items: flex-start; 
+    padding: 40px 0;
+  }
+  
+  .footer-bottom { 
+    text-align: left; 
+    padding-top: 20px;
+  }
+  /* ------------------------------- */
 
-  /* 3. Mobile Navigation Menu */
+  .trace-cta { padding: 60px 20px; }
+  .trace-line { height: 20px; }
+
+  /* Mobile Nav Drawer */
   .menu-toggle { display: flex; }
   
   .site-nav {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: rgb(157, 157, 157);
-    backdrop-filter: blur(15px);
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    position: fixed; top: 0; right: -100%;
+    width: 100%; height: 100vh;
+    background: var(--bg);
+    display: flex; align-items: center; justify-content: center;
+    transition: right 0.6s var(--ease-premium);
   }
   
-  /* Class added via JS */
-  .site-nav.active { max-height: 500px; } 
-  
-  .site-nav ul {
-    flex-direction: column;
-    gap: 0;
-    padding: 20px 0;
-  }
-  
-  .site-nav li { border-bottom: 1px solid rgba(255, 255, 255, .08); }
-  
-  .site-nav a {
-    display: block;
-    padding: 20px 8%; /* Larger touch target */
-    font-size: 1.2rem; /* Bigger menu text */
-    letter-spacing: 1px;
-  }
+  .site-nav.active { right: 0; }
+  .site-nav ul { flex-direction: column; text-align: center; gap: 30px; }
+  .site-nav a { color: var(--text-main) !important; font-size: 2rem; }
 
-  /* 4. Footer & Sections */
-  .footer-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
-  .footer-grid a { font-size: 1.1rem; padding: 5px 0; } /* Bigger links */
-  .social { justify-content: center; gap: 20px; }
-  .social a img { width: 28px; height: 28px; } /* Bigger icons */
-  
-  .location { flex-direction: column; gap: 20px; }
-  .location a { font-size: 18px; }
-
-  .what-we-do, .about, .news, .clients { margin: 40px 25px; }
-
-  /* 5. NEWS SLIDESHOW FOR MOBILE (UPDATED) */
-  .news-carousel {
-    overflow: hidden; /* Hide scrollbar for seamless look */
-    padding-bottom: 20px;
-    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-  }
-
-  .news-track {
-    display: flex;
-    gap: 16px;
-    width: max-content;
-    /* Enable the infinite loop animation */
-    animation: newsLoop 45s linear infinite; 
-    transform: translateX(0); /* Reset generic transform */
-  }
-
-  /* Pause scrolling if user touches it */
-  .news-track:active, .news-track:focus {
-    animation-play-state: paused;
-  }
-
-  .news-card {
-    /* Use fixed width (pixels) instead of vw to ensure smooth looping calculations */
-    flex: 0 0 260px; 
-    max-width: 260px;
-    scroll-snap-align: unset; /* Disable snap */
-  }
-
-  .news-card img { height: 180px; }
-}
-
-/* Small Mobile (below 480px) */
-@media(max-width:480px) {
-  .hero-text h1 { font-size: 38px; }
-  .hero-text p { font-size: 18px; }
-  
-  .what-we-do h1, .about-text h1, .news h1, .clients h1 {
-    font-size: 34px;
-  }
-  
-  .brand { font-size: 1.2rem; }
-  .header-inner { padding: 15px 5%; }
-  
-  .service-card { height: 380px; }
-  .service-card .card-title { font-size: 1.4rem; } /* Bigger card titles */
+  .menu-toggle.active span { background: var(--text-main); }
+  .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
+  .menu-toggle.active span:nth-child(2) { opacity: 0; }
+  .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
 }

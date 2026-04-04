@@ -1,18 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Services | Studio4Core</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Services | Studio4Core</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/Services.css">
+  
+  <style>
+    /* Ensure header gets the dark text since there is no dark video background here */
+    .site-header {
+      background: rgba(250, 249, 247, 0.9) !important; 
+      backdrop-filter: blur(20px) !important;
+      -webkit-backdrop-filter: blur(20px) !important;
+      border-bottom: 1px solid rgba(0,0,0,0.05) !important;
 
-<link rel="stylesheet" href="../css/Services.css">
+    }
+    .site-header .brand, .site-header .site-nav a { color: #111 !important; }
+    .site-header .menu-toggle span { background: #111 !important; }
+  </style>
 </head>
 
 <body>
 
-<header class="site-header">
+  <header class="site-header">
     <div class="header-inner">
       <a class="brand" href="../../">Studio4Core</a>
 
@@ -24,84 +36,79 @@
 
       <nav class="site-nav" aria-label="Primary navigation">
         <ul>
-          <li><a href="../projects/" style="color:#000000;">Services</a></li>
+          <li><a href="../projects/" class="active-page">Services</a></li>
           <li><a href="../../AboutUs/">About</a></li>
           <li><a href="../../News/">News</a></li>
           <li><a href="../contact/">Contact</a></li>
         </ul>
       </nav>
     </div>
-</header>
+  </header>
 
-<div class="main">
-  <h1>Services</h1>
-  <p>An architecture firm in India designing solutions that enhance the built environment and prioritise user experience. Our designs are centred around users, backed by extensive research, and seamlessly integrated into their unique contexts.</p>
-  
-  <div class="row">
-    <a href="../../assets/projects/Architecture/?filter=Architecture" class="column">
-      <div class="card">
-        <img src="https://picsum.photos/640/420?14" alt="Architecture">
-        <div class="container1">
-          <h2>Architecture</h2>
-          <p>Our architectural projects focus on spatial exploration, allowing us to push the boundaries of conventional design while maintaining a strong connection to the local context</p>
-          <p><button class="button">View projects</button></p>
+  <div class="main">
+    <h1>Services</h1>
+    <p>An architecture firm in India designing solutions that enhance the built environment and prioritise user experience. Our designs are centred around users, backed by extensive research, and seamlessly integrated into their unique contexts.</p>
+    
+    <div class="cards">
+      
+      <a href="../../assets/projects/Architecture/?filter=Architecture" class="service-card" style="background-image:url('https://picsum.photos/800/1000?14');">
+        <div class="overlay">
+          <h3 class="card-title">Architecture</h3>
+          <p class="card-desc">Our architectural projects focus on spatial exploration, allowing us to push the boundaries of conventional design while maintaining a strong connection to the local context.</p>
+          <span class="card-link">View Projects</span>
         </div>
-      </div>
-    </a>
+      </a>
 
-    <a href="../../assets/projects/Architecture/?filter=Interior_Design" class="column">
-      <div class="card">
-        <img src="https://picsum.photos/640/420?15" alt="Interior Design">
-        <div class="container1">
-          <h2>Interior Design</h2>
-          <p>Our architectural projects focus on spatial exploration, allowing us to push the boundaries of conventional design while maintaining a strong connection to the local context</p>
-          <p><button class="button">View projects</button></p>
+      <a href="../../assets/projects/Architecture/?filter=Interior_Design" class="service-card" style="background-image:url('https://picsum.photos/800/1000?15');">
+        <div class="overlay">
+          <h3 class="card-title">Interior Design</h3>
+          <p class="card-desc">Functional and aesthetic interiors tailored to enhance user experience and well-being.</p>
+          <span class="card-link">Explore</span>
         </div>
-      </div>
-    </a>
+      </a>
 
-        <a href="../../assets/projects/Architecture/?filter=Landscape" class="column">
-      <div class="card">
-        <img src="https://picsum.photos/640/420?17" alt="Landscape">
-        <div class="container1">
-          <h2>Landscape</h2>
-          <p>Our architectural projects focus on spatial exploration, allowing us to push the boundaries of conventional design while maintaining a strong connection to the local context</p>
-          <p><button class="button">View projects</button></p>
+      <a href="../../assets/projects/Architecture/?filter=Landscape" class="service-card" style="background-image:url('https://picsum.photos/800/1000?17');">
+        <div class="overlay">
+          <h3 class="card-title">Landscape</h3>
+          <p class="card-desc">Harmonious outdoor environments that blend natural ecology with human interaction.</p>
+          <span class="card-link">Learn More</span>
         </div>
-      </div>
-    </a>
+      </a>
 
-    <a href="../../assets/projects/Architecture/?filter=Urban_Design" class="column">
-      <div class="card">
-        <img src="https://picsum.photos/640/420?16" alt="Urban Design">
-        <div class="container1">
-          <h2>Urban Design</h2>
-          <p>Our architectural projects focus on spatial exploration, allowing us to push the boundaries of conventional design while maintaining a strong connection to the local context</p>
-          <p><button class="button">View projects</button></p>
+      <a href="../../assets/projects/Architecture/?filter=Urban_Design" class="service-card" style="background-image:url('https://picsum.photos/800/1000?16');">
+        <div class="overlay">
+          <h3 class="card-title">Urban Design</h3>
+          <p class="card-desc">Human-focused urban planning that enables resilient, connected, and thriving communities.</p>
+          <span class="card-link">Explore</span>
         </div>
-      </div>
-    </a>
+      </a>
 
-
+    </div>
   </div>
-</div>
 
-<footer id="footer">
+  <footer id="footer">
     <div class="footer-top">
       <div class="footer-grid">
-        <div>
+        <div class="footer-col-main">
           <h2 class="footer-brand">Studio4Core</h2>
           <p>Global infrastructure built for modern applications and distributed teams.</p>
+          <a href="mailto:connect.studio4core@gmail.com" style="margin-top: 20px;">connect.studio4core@gmail.com</a>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
+            <a href="https://wa.me/918805513821?text=Hi,%20I%20want%20to%20connect.">+91 8805513821</a>
+           <a href="https://wa.me/917709315430?text=Hi,%20I%20want%20to%20connect.">+91 7709315430</a>
+            <a href="https://wa.me/918007605291?text=Hi,%20I%20want%20to%20connect.">+91 8007605291</a>
+            <a href="https://wa.me/919518581033?text=Hi,%20I%20want%20to%20connect.">+91 9518581033</a>
+          </div>
         </div>
 
         <div>
           <h4>Services</h4>
-          <a href="../projects/Architecture/?filter=Architecture">Architecture</a>
-          <a href="../projects/Architecture/?filter=Interior_Design">Interior Design</a>
-          <a href="../projects/Architecture/?filter=Landscape">Landscape</a>
-          <a href="../projects/Architecture/?filter=Urban_Design">Urban Design</a>
+          <a href="../../assets/projects/Architecture/?filter=Architecture">Architecture</a>
+          <a href="../../assets/projects/Architecture/?filter=Interior_Design">Interior Design</a>
+          <a href="../../assets/projects/Architecture/?filter=Landscape">Landscape</a>
+          <a href="../../assets/projects/Architecture/?filter=Urban_Design">Urban Design</a>
         </div>
-
+        
         <div>
           <h4>Company</h4>
           <a href="../../AboutUs/">About</a>
@@ -109,84 +116,38 @@
           <a href="../../assets/contact/">Contact us</a>
         </div>
 
-        <div class="social">
-          <a href="https://www.instagram.com" target="_blank">
-            <img src="../../assets/images/social logo/instagram.png" alt="Instagram">
-          </a>
-          <a href="https://www.facebook.com" target="_blank">
-            <img src="../../assets/images/social logo/facebook.png" alt="Facebook">
-          </a>
-          <a href="https://www.linkedin.com" target="_blank">
-            <img src="../../assets/images/social logo/linkedin.png" alt="LinkedIn">
-          </a>
-          <a href="https://www.twitter.com" target="_blank">
-            <img src="../../assets/images/social logo/twitter.png" alt="Twitter">
-          </a>
-          <a href="https://www.whatsapp.com" target="_blank">
-            <img src="../../assets/images/social logo/whatsapp.png" alt="WhatsApp">
-          </a>
-          <a href="https://www.youtube.com" target="_blank">
-            <img src="../../assets/images/social logo/youtube.png" alt="YouTube">
-          </a>
+        <div>
+          <h4>Follow Us</h4>
+          <div class="social">
+            <a href="https://www.instagram.com/studio4core/" target="_blank"><img src="../../assets/images/social logo/instagram.png" alt="Instagram"></a>
+            <a href="https://www.linkedin.com/in/studio-4core-6b2b043b5/" target="_blank"><img src="../../assets/images/social logo/linkedin.png" alt="LinkedIn"></a>
+            <!-- <a href="https://www.twitter.com" target="_blank"><img src="../../assets/images/social logo/twitter.png" alt="Twitter"></a> -->
+          </div>
         </div>
       </div>
     </div>
-    <div class="line-break"></div>
 
-    <div class="location">
-      <a href="https://www.youtube.com" target="_blank">
-        <img src="../../assets/images/social logo/location.png" alt="Pune">Pune
-      </a>
-      <a href="https://www.youtube.com" target="_blank">
-        <img src="../../assets/images/social logo/location.png" alt="Mumbai">Mumbai
-      </a>
-      <a href="https://www.youtube.com" target="_blank">
-        <img src="../../assets/images/social logo/location.png" alt="Delhi">Delhi
-      </a>
-    </div>
-    <div class="line-break"></div>
+    <!-- <div class="location">
+      <span><img src="assets/images/social logo/location.png" alt="Loc" width="18"> Pune</span>
+      <span><img src="assets/images/social logo/location.png" alt="Loc" width="18"> Mumbai</span>
+      <span><img src="assets/images/social logo/location.png" alt="Loc" width="18"> Delhi</span>
+    </div> -->
 
     <div class="footer-bottom">
-      © 2025 Studio4Core. All rights reserved.
+      <p>© 2026 Studio4Core. All rights reserved.</p>
     </div>
-</footer>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
+  </footer>
 
-  document.querySelectorAll(".card").forEach(card => {
-    const title = card.querySelector("h2")?.textContent.trim();
-    const button = card.querySelector(".button");
-
-    if (!button) return;
-
-    button.addEventListener("click", function () {
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const menuToggle = document.querySelector(".menu-toggle");
+      const siteNav = document.querySelector(".site-nav");
       
-      // Default base URL
-      let targetUrl = "Architecture/";
-      let filterCategory = "all";
-
-      // Map the Title to the specific Filter Category used in Architecture.html
-      if (title === "Architecture") {
-        filterCategory = "Architecture";
-      } 
-      else if (title === "Interior Design") {
-        filterCategory = "Interior_Design"; // Note the underscore match
-      } 
-      else if (title === "Urban Design") {
-        filterCategory = "Urban_Design";
-      } 
-      else if (title === "Landscape") {
-        filterCategory = "Landscape";
-      }
-
-      // Go to the page with the filter in the URL
-      window.location.href = `${targetUrl}?filter=${filterCategory}`;
+      menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active');
+        siteNav.classList.toggle('active');
+      });
     });
-  });
-
-});
-</script>
-<script src="../js/script.js"></script>
-
+  </script>
 </body>
 </html>

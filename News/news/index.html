@@ -10,6 +10,22 @@
 
 <style>
   /* Loading State */
+  .main{
+  margin-top: 75px;
+}
+body {
+  font-family: Arial, sans-serif;
+}
+  
+.site-header {
+  padding: 15px 5%;
+  background: rgba(250, 249, 247, 0.9); 
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  color: #000;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+}
   #loading { 
     text-align: center; 
     padding: 100px 20px; 
@@ -82,7 +98,7 @@
 
 <header class="site-header">
     <div class="header-inner">
-      <a class="brand" href="../../">Studio4Core</a>
+      <a class="brand" href="../../" style="color:#000000;">Studio4Core</a>
 
       <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -90,10 +106,10 @@
 
       <nav class="site-nav" aria-label="Primary navigation">
         <ul>
-          <li><a href="../../assets/projects/">Services</a></li>
-          <li><a href="../../AboutUs/">About</a></li>
-          <li><a href="../../News/" style="color:#000000;">News</a></li>
-          <li><a href="../../assets/contact/">Contact</a></li>
+          <li><a href="../../assets/projects/" style="color:#000000;">Services</a></li>
+          <li><a href="../../AboutUs/" style="color:#000000;">About</a></li>
+          <li><a href="../../News/" style="color:#000000;" class="active-page">News</a></li>
+          <li><a href="../../assets/contact/" style="color:#000000;">Contact</a></li>
         </ul>
       </nav>
     </div>
@@ -103,12 +119,19 @@
   <div id="loading">Loading news details...</div>
 </main>
 
-  <footer id="footer">
+   <footer id="footer">
     <div class="footer-top">
       <div class="footer-grid">
-        <div>
+        <div class="footer-col-main">
           <h2 class="footer-brand">Studio4Core</h2>
           <p>Global infrastructure built for modern applications and distributed teams.</p>
+          <a href="mailto:connect.studio4core@gmail.com" style="margin-top: 20px;">connect.studio4core@gmail.com</a>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
+            <a href="tel:+918805513821">+91 8805513821</a>
+            <a href="tel:+917709315430">+91 7709315430</a>
+            <a href="tel:+918007605291">+91 8007605291</a>
+            <a href="tel:+919518581033">+91 9518581033</a>
+          </div>
         </div>
 
         <div>
@@ -118,56 +141,35 @@
           <a href="../../assets/projects/Architecture/?filter=Landscape">Landscape</a>
           <a href="../../assets/projects/Architecture/?filter=Urban_Design">Urban Design</a>
         </div>
+        
         <div>
           <h4>Company</h4>
           <a href="../../AboutUs/">About</a>
-          <a href="../News/">News</a>
+          <a href="../../News/">News</a>
           <a href="../../assets/contact/">Contact us</a>
         </div>
 
-        <div class="social">
-          <a href="https://www.instagram.com" target="_blank">
-            <img src="../../assets/images/social logo/instagram.png" alt="Instagram" width="24">
-          </a>
-          <a href="https://www.facebook.com" target="_blank">
-            <img src="../../assets/images/social logo/facebook.png" alt="Facebook" width="24">
-          </a>
-          <a href="https://www.linkedin.com" target="_blank">
-            <img src="../../assets/images/social logo/linkedin.png" alt="LinkedIn" width="24">
-          </a>
-          <a href="https://www.twitter.com" target="_blank">
-            <img src="../../assets/images/social logo/twitter.png" alt="Twitter" width="24">
-          </a>
-          <a href="https://www.whatsapp.com" target="_blank">
-            <img src="../../assets/images/social logo/whatsapp.png" alt="WhatsApp" width="24">
-          </a>
-          <a href="https://www.youtube.com" target="_blank">
-            <img src="../../assets/images/social logo/youtube.png" alt="YouTube" width="24">
-          </a>
+        <div>
+          <h4>Follow Us</h4>
+          <div class="social">
+            <a href="https://www.instagram.com" target="_blank"><img src="../../assets/images/social logo/instagram.png" alt="Instagram"></a>
+            <a href="https://www.linkedin.com" target="_blank"><img src="../../assets/images/social logo/linkedin.png" alt="LinkedIn"></a>
+            <a href="https://www.twitter.com" target="_blank"><img src="../../assets/images/social logo/twitter.png" alt="Twitter"></a>
+          </div>
         </div>
-
       </div>
     </div>
-    <div class="line-break"></div>
 
-    <div class="location">
-      <a href="https://www.youtube.com" target="_blank">
-        <img src="../../assets/images/social logo/location.png" alt="Pune" width="24">Pune
-      </a>
-      <a href="https://www.youtube.com" target="_blank">
-        <img src="../../assets/images/social logo/location.png" alt="Mumbai" width="24">Mumbai
-      </a>
-      <a href="https://www.youtube.com" target="_blank">
-        <img src="../../assets/images/social logo/location.png" alt="Delhi" width="24">Delhi
-      </a>
-    </div>
-    <div class="line-break"></div>
+    <!-- <div class="location">
+      <span><img src="assets/images/social logo/location.png" alt="Loc" width="18"> Pune</span>
+      <span><img src="assets/images/social logo/location.png" alt="Loc" width="18"> Mumbai</span>
+      <span><img src="assets/images/social logo/location.png" alt="Loc" width="18"> Delhi</span>
+    </div> -->
 
     <div class="footer-bottom">
-      © 2025 Studio4Core. All rights reserved.
+      <p>© 2026 Studio4Core. All rights reserved.</p>
     </div>
   </footer>
-
 <div id="lightbox" class="lightbox">
   <span class="lightbox-close">&times;</span>
   

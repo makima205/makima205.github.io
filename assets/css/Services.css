@@ -1,356 +1,137 @@
 /* =========================================
    SERVICES.CSS
-   Global Styles + Services Grid Layout
+   Page-Specific Layout & Premium Cards
    ========================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
-/* ================= ROOT VARIABLES ================= */
-:root {
-  --bg: #faf9f7;
-  --text: #2a2a2a;
-  --muted: #7a7a7a;
-  --accent: #1f2937;
-  --gold: #f0c14a; 
-}
-
-/* ================= BASE ================= */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Inter', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.65;
-  letter-spacing: .2px;
-  overflow-x: hidden;
-}
-
-img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-  transition: 0.3s;
-}
-
-/* ================= NAVBAR (MATCHING GLOBAL STYLE) ================= */
-
-/* ================= SERVICES CONTENT ================= */
+/* Ensure .main respects the header height and matches Home Page spacing */
 .main {
-  max-width: 100%;
-  margin: 56px 70px 80px 70px; 
-  padding: 0 70px;
+  max-width: 1600px;
+  margin: 150px 5% 100px 5%; 
 }
 
 .main h1 {
-  font-size: 42px;
-  margin-bottom: 18px;
-  color: var(--accent);
-  font-weight: 600;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  margin-bottom: 20px;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  color: var(--text-main);
 }
 
-/* Justified Description */
 .main > p {
-  max-width: 100%;
-  color: var(--muted);
-  margin-bottom: 40px;
+  max-width: 900px;
+  color: var(--text-muted);
+  margin-bottom: 60px;
   line-height: 1.7;
-  font-size: 1.1rem;
-  text-align: justify;
+  font-size: 1.15rem;
 }
 
 /* ===== GRID SYSTEM ===== */
 .row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
+  gap: 30px;
 }
 
-.column {
-  width: auto;
-}
-
-/* ===== CARD STYLES ===== */
+/* ===== CARD STYLES (Architectural/Premium) ===== */
 .card {
   background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 12px 30px rgba(0,0,0,.08);
-  transition: transform .35s ease, box-shadow .35s ease;
+  border-radius: var(--radius); /* Sharp 2px corners */
+  border: 1px solid rgba(0,0,0,0.05); /* Clean architectural border */
   overflow: hidden;
   height: 100%;
   display: flex;
   flex-direction: column;
+  transition: transform 0.4s var(--ease-premium);
 }
 
 .card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 24px 50px rgba(0,0,0,.14);
+  transform: translateY(-10px);
 }
 
 .card img {
   width: 100%;
-  height: 220px;
+  height: 250px;
   object-fit: cover;
+  filter: grayscale(100%); /* Matches homepage cinematic aesthetic */
+  transition: filter 0.8s, transform 1.2s var(--ease-premium);
+}
+
+/* Image zooms slightly and colorizes on hover */
+.card:hover img {
+  filter: grayscale(0%);
+  transform: scale(1.03);
 }
 
 .container1 {
-  padding: 22px;
+  padding: 30px;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  background: #fff; /* Ensures text area stays white over the zooming image */
+  position: relative;
+  z-index: 2;
 }
 
 .container1 h2 {
-  font-size: 1.25rem;
-  margin-bottom: 10px;
-  color: var(--accent);
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+  color: var(--text-main);
+  font-weight: 500;
 }
 
-/* Justified Card Text */
 .container1 p {
-  font-size: .95rem;
-  color: var(--muted);
+  font-size: 0.95rem;
+  color: var(--text-muted);
   line-height: 1.6;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   flex-grow: 1;
-  text-align: justify;
 }
 
-/* BUTTON */
+/* BUTTON - Matched to your global .trace-btn style */
 .button {
   display: inline-block;
   padding: 12px 24px;
+  background: transparent;
+  color: var(--text-main);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  border: 2px solid var(--accent);
+  border-radius: var(--radius); /* Sharp corner */
+  transition: all 0.4s var(--ease-premium);
+}
+
+.card:hover .button {
   background: var(--accent);
   color: #fff;
-  font-size: .9rem;
-  font-weight: 500;
-  cursor: pointer;
-  border: none;
-  border-radius: 4px;
-  transition: background .3s ease;
-}
-
-.button:hover {
-  background: var(--gold);
-  color: #000;
-}
-
-
-/* ================= FOOTER (MATCHING GLOBAL STYLE) ================= */
-footer {
-  background: radial-gradient(circle at top, #d0d0d3, #545454);
-  color: #cfd6e4;
-  margin-top: 100px;
-}
-
-.footer-top {
-  padding: 20px 8% 10px 8%;
-}
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1fr;
-  gap: 70px;
-}
-
-.footer-grid h4 {
-  color: #fff;
-  letter-spacing: 2px;
-  margin-bottom: 22px;
-}
-
-.footer-grid a {
-  color: #ffffff;
-  margin-bottom: 10px;
-  display: block;
-  font-size: large;
-}
-
-.footer-grid a:hover {
-  color: #fff;
-}
-
-.footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, .08);
-  padding: 10px 8%;
-  font-size: .85rem;
-  text-align: center;
-}
-
-.social {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-/* Patch for Footer Icons */
-.social a {
-  display: block;
-  width: auto;
-  height: auto;
-}
-.social a img {
-  display: block;
-  width: 24px !important; 
-  height: 24px !important; 
-  object-fit: contain;
-}
-
-.line-break {
-  height: 1px;
-  width: 100%;
-  margin: 10px 0;
-  background-color: #ffffff;
-}
-
-.location {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20%;
-  flex-wrap: wrap;
-  padding: 15px 8%;
-}
-
-.location a {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 20px;
-  font-weight: 600;
-  color: #ffffff;
-}
-
-.location img {
-  width: 26px;
-  height: 26px;
-  color: #ffffff;
-}
-
-.location a:hover {
-  color: #000;
-  transform: translateY(-2px);
-}
-
-.footer-brand {
-  color: #f0c14a;
-  font-size: 1.5rem;
-  margin-bottom: 12px;
 }
 
 /* ================= RESPONSIVE ================= */
-
-/* 1. Large Desktop (Max 1440px) */
-@media(max-width:1440px) {
-  .main {
-    margin: 56px 50px 80px 50px;
-    padding: 0;
-  }
-}
-
-/* 2. Desktop / Small Laptop (Max 1200px) */
-@media(max-width:1200px) {
-  .main {
-    margin: 40px 40px 80px 40px;
-  }
+@media(max-width: 1200px) {
   .row {
     grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
   }
 }
 
-/* 3. Tablet Landscape (Max 1024px) */
-@media(max-width:1024px) {
-  .footer-grid { 
-    grid-template-columns: 1fr 1fr; 
-    gap: 40px; 
+@media(max-width: 768px) {
+  .main { 
+    margin: 120px 5% 60px 5%; 
   }
-  .location { gap: 10%; }
-}
-
-/* 4. MOBILE & TABLET PORTRAIT (Max 800px) */
-@media(max-width:800px) {
   
-  body { font-size: 18px; }
+  .main h1 { 
+    font-size: 3.5rem; 
+  }
   
-  .main {
-    margin: 40px 25px;
-    padding: 0;
+  .main > p { 
+    font-size: 1.1rem; 
+    text-align: left; 
   }
 
-  .main h1 {
-    font-size: 34px;
-  }
-  
-  /* --- MOBILE NAVIGATION --- */
-  .menu-toggle { display: flex; }
-  
-  .site-nav {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: rgba(7, 16, 36, 0.98);
-    backdrop-filter: blur(15px);
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-  }
-  
-  .site-nav.active { max-height: 500px; } 
-  
-  .site-nav ul {
-    flex-direction: column;
-    gap: 0;
-    padding: 20px 0;
-  }
-  
-  .site-nav li { border-bottom: 1px solid rgba(255, 255, 255, .08); }
-  
-  .site-nav a {
-    display: block;
-    padding: 20px 8%; 
-    font-size: 1.2rem;
-    letter-spacing: 1px;
-  }
-
-  /* --- GRID STACKING --- */
   .row {
     grid-template-columns: 1fr;
-    gap: 30px;
-  }
-
-  /* --- FOOTER STACKING --- */
-  .footer-grid { 
-    grid-template-columns: 1fr; 
-    gap: 40px; 
-    text-align: center; 
-  }
-  
-  .social { 
-    justify-content: center; 
-    gap: 20px; 
-  }
-  
-  .location { 
-    flex-direction: column; 
-    gap: 20px; 
-  }
-}
-
-/* 5. SMALL MOBILE FIX */
-@media(max-width:480px) {
-  .header-inner {
-    padding: 15px 5%;
+    gap: 40px;
   }
 }
