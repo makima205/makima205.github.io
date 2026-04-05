@@ -6,7 +6,7 @@
 /* Ensure .main respects the header height and matches Home Page spacing */
 .main {
   max-width: 1600px;
-  margin: 150px 5% 100px 5%; 
+  margin: 75px 5% 100px 5%; 
 }
 
 .main h1 {

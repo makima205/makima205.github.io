@@ -77,7 +77,7 @@ h2 {
 
 .content {
   background-color: #fff;
-  padding: 14px;
+  /* padding: 14px; */
   min-height: 360px;          /* SAME HEIGHT */
   display: flex;
   flex-direction: column;
