@@ -6,20 +6,75 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="V0p0LgcgshsFt061kymfreYSMtU4E_9lTzzwgxlEne4" />
   
-  <title>Studio4Core | Architecture & Design</title>
+  <title>Studio4Core | Architecture & Interior Design Studio in India</title>
+  <meta name="description" content="Studio4Core is a multidisciplinary architecture and design studio offering Architecture, Interior Design, Landscape, and Urban Design services across India. Crafting timeless spatial narratives.">
+  <meta name="keywords" content="Studio4Core, studio4core, architecture firm India, interior design studio, landscape design, urban design, architecture studio Pune, residential architecture, commercial architecture, sustainable design">
+  <meta name="author" content="Studio4Core">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.studio4core.com/">
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Studio4Core | Architecture & Interior Design Studio in India">
+  <meta property="og:description" content="Studio4Core is a multidisciplinary architecture and design studio offering Architecture, Interior Design, Landscape, and Urban Design services across India.">
+  <meta property="og:url" content="https://www.studio4core.com/">
+  <meta property="og:site_name" content="Studio4Core">
+  <meta property="og:image" content="https://www.studio4core.com/assets/images/logo.jpg">
+  <meta property="og:locale" content="en_IN">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Studio4Core | Architecture & Interior Design Studio in India">
+  <meta name="twitter:description" content="Multidisciplinary architecture and design studio crafting timeless spatial narratives.">
+  <meta name="twitter:image" content="https://www.studio4core.com/assets/images/logo.jpg">
+
   <link rel="icon" type="image/png" href="assets/images/logo.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Structured Data: Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ArchitectureFirm",
+    "name": "Studio4Core",
+    "url": "https://www.studio4core.com",
+    "logo": "https://www.studio4core.com/assets/images/logo.jpg",
+    "description": "Studio4Core is a multidisciplinary architecture and design studio founded by four designers. We offer Architecture, Interior Design, Landscape, and Urban Design services.",
+    "email": "connect.studio4core@gmail.com",
+    "telephone": ["+918805513821", "+917709315430", "+918007605291", "+919518581033"],
+    "sameAs": [
+      "https://www.instagram.com/studio4core/",
+      "https://www.linkedin.com/in/studio-4core-6b2b043b5/"
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "IN"
+    },
+    "serviceType": ["Architecture", "Interior Design", "Landscape Design", "Urban Design"]
+  }
+  </script>
+
+  <!-- Structured Data: Website (enables sitelinks search box) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Studio4Core",
+    "url": "https://www.studio4core.com"
+  }
+  </script>
 </head>
 
 <body>
 
   <header class="site-header">
     <div class="header-inner">
-      <a class="brand" href="/">Studio4Core</a>
+      
+      <a class="brand" href="/"><img src="assets/images/logo.jpg" style="max-width: 30px; max-height: 30px;" alt="Studio4Core Logo" class="logo"> Studio4Core</a>
 
       <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
         <span></span>
@@ -39,7 +94,10 @@
   </header>
 
   <section id="home" class="hero">
-    <video class="bg-video" autoplay muted loop playsinline>
+    <video class="bg-video bg-video--landscape" autoplay muted loop playsinline>
+      <source src="assets/videos/Timeline 1.mov" >
+    </video>
+    <video class="bg-video bg-video--portrait" autoplay muted loop playsinline>
       <source src="assets/videos/Timeline 1.mov" >
     </video>
 
@@ -122,7 +180,7 @@
     <div class="footer-top">
       <div class="footer-grid">
         <div class="footer-col-main">
-          <h3 class="footer-brand">Studio4Core</h2>
+          <h3 class="footer-brand">Studio4Core</h3>
           <p>Global infrastructure built for modern applications and distributed teams.</p>
           <a href="mailto:connect.studio4core@gmail.com" style="margin-top: 20px;">connect.studio4core@gmail.com</a>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
@@ -243,26 +301,7 @@
     }
     function limitText(text, limit = 90) { return text.length > limit ? text.substring(0, limit) + "..." : text; }
     document.addEventListener("DOMContentLoaded", loadNews);
-
-    /* ===== HEADER SCROLL LOGIC & MOBILE MENU ===== */
-    document.addEventListener("DOMContentLoaded", function() {
-      const header = document.querySelector(".site-header");
-      const menuToggle = document.querySelector(".menu-toggle");
-      const siteNav = document.querySelector(".site-nav");
-      
-      // Scroll Glassmorphism
-      window.addEventListener("scroll", function() {
-        if (window.scrollY > 50) header.classList.add("scrolled");
-        else header.classList.remove("scrolled");
-      });
-
-      // Mobile Menu
-      menuToggle.addEventListener('click', () => {
-        menuToggle.classList.toggle('active');
-        siteNav.classList.toggle('active');
-        header.classList.add("scrolled"); // Force dark text when menu is open
-      });
-    });
   </script>
+  <script src="assets/js/script.js"></script>
 </body>
 </html>

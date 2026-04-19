@@ -123,6 +123,14 @@ p { font-weight: 300; opacity: 0.9; }
   transform: scale(1.05); /* Slight scale to prevent edge bleeding */
 }
 
+/* Landscape video: show on wide screens, hide on mobile */
+.bg-video--portrait { display: none; }
+
+@media (max-width: 768px) {
+  .bg-video--landscape { display: none; }
+  .bg-video--portrait { display: block; }
+}
+
 .hero::after {
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);

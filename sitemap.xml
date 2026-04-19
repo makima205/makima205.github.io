@@ -4,64 +4,72 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
 
 <url>
   <loc>https://www.studio4core.com/</loc>
-  <lastmod>2026-02-06T11:49:17+00:00</lastmod>
+  <lastmod>2026-04-19</lastmod>
+  <changefreq>weekly</changefreq>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://www.studio4core.com/assets/projects/</loc>
-  <lastmod>2026-02-06T11:49:17+00:00</lastmod>
+  <lastmod>2026-04-19</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://www.studio4core.com/assets/contact/</loc>
+  <lastmod>2026-04-19</lastmod>
+  <changefreq>monthly</changefreq>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.studio4core.com/AboutUs/</loc>
-  <lastmod>2026-02-06T11:49:17+00:00</lastmod>
+  <lastmod>2026-04-19</lastmod>
+  <changefreq>monthly</changefreq>
   <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.studio4core.com/AboutUs/team/</loc>
+  <lastmod>2026-04-19</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
 </url>
 <url>
   <loc>https://www.studio4core.com/News/</loc>
-  <lastmod>2026-02-06T11:49:17+00:00</lastmod>
+  <lastmod>2026-04-19</lastmod>
+  <changefreq>weekly</changefreq>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.studio4core.com/assets/contact/</loc>
-  <lastmod>2026-02-06T11:49:17+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://www.studio4core.com/assets/projects/Architecture/</loc>
+  <lastmod>2026-04-19</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.85</priority>
 </url>
 <url>
   <loc>https://www.studio4core.com/assets/projects/Architecture/?filter=Architecture</loc>
-  <lastmod>2026-02-06T11:49:17+00:00</lastmod>
-  <priority>0.80</priority>
+  <lastmod>2026-04-19</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
 </url>
 <url>
   <loc>https://www.studio4core.com/assets/projects/Architecture/?filter=Interior_Design</loc>
-  <lastmod>2026-02-06T11:49:17+00:00</lastmod>
-  <priority>0.80</priority>
+  <lastmod>2026-04-19</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
 </url>
 <url>
   <loc>https://www.studio4core.com/assets/projects/Architecture/?filter=Landscape</loc>
-  <lastmod>2026-02-06T11:49:17+00:00</lastmod>
-  <priority>0.80</priority>
+  <lastmod>2026-04-19</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
 </url>
 <url>
   <loc>https://www.studio4core.com/assets/projects/Architecture/?filter=Urban_Design</loc>
-  <lastmod>2026-02-06T11:49:17+00:00</lastmod>
-  <priority>0.80</priority>
+  <lastmod>2026-04-19</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
 </url>
-<url>
-  <loc>https://www.studio4core.com/assets/projects/Architecture/?filter=Interior%20Design</loc>
-  <lastmod>2026-02-06T11:49:17+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.studio4core.com/assets/projects/Architecture/?filter=Urban%20Design</loc>
-  <lastmod>2026-02-06T11:49:17+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-
 
 </urlset>

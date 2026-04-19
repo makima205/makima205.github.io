@@ -4,9 +4,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Team | CreateSpace</title>
+  <title>Our Team | Studio4Core - Architects & Designers</title>
+  <meta name="description" content="Meet the architects, designers, and visionaries behind Studio4Core. Our team brings expertise in architecture, interior design, landscape, and urban planning.">
+  <meta name="keywords" content="Studio4Core team, architects India, design team, Studio4Core founders, architecture professionals">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.studio4core.com/AboutUs/team/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Our Team | Studio4Core">
+  <meta property="og:description" content="Meet the architects, designers, and visionaries behind Studio4Core.">
+  <meta property="og:url" content="https://www.studio4core.com/AboutUs/team/">
+  <meta property="og:site_name" content="Studio4Core">
+  <meta property="og:image" content="https://www.studio4core.com/assets/images/logo.jpg">
+
+  <link rel="icon" type="image/png" href="../../assets/images/logo.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
 
   <style>
     /* ================= TEAM PAGE SPECIFIC STYLES ================= */
@@ -109,14 +125,23 @@
       .team-header { padding-top: 100px; }
       .team-header h1 { font-size: 2.5rem; }
     }
+
+    .site-header {
+      background: rgba(250, 249, 247, 0.9) !important; 
+      backdrop-filter: blur(20px) !important;
+      -webkit-backdrop-filter: blur(20px) !important;
+      border-bottom: 1px solid rgba(0,0,0,0.05) !important;
+    }
+    .site-header .brand, .site-header .site-nav a { color: #111 !important; }
+    .site-header .menu-toggle span { background: #111 !important; }
   </style>
 </head>
 
 <body>
 
   <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="../index.html">CreateSpace</a>
+    <div class="header-inner">
+      <a class="brand" href="../../">Studio4Core</a>
 
       <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
         <span></span>
@@ -126,11 +151,10 @@
 
       <nav class="site-nav" aria-label="Primary navigation">
         <ul>
-          <li><a href="../assets/projects/Services.html">Services</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="team.html" style="color:#f0c14a;">Team</a></li> 
-          <li><a href="../index.html">News</a></li>
-          <li><a href="../assets/contact/contact.html">Contact</a></li>
+          <li><a href="../../assets/projects/">Services</a></li>
+          <!-- <li><a href="../../AboutUs/">About</a></li>
+          <li><a href="../../News/">News</a></li> -->
+          <li><a href="../../assets/contact/">Contact</a></li>
         </ul>
       </nav>
     </div>
@@ -196,7 +220,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
   
-  <script src="../assets/js/script.js"></script>
+  <script src="../../assets/js/script.js"></script>
 
   <script>
     /* Helper function to convert Drive 'view' links to 'direct' image links */

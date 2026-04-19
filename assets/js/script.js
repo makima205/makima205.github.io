@@ -5,7 +5,16 @@
    ======================================================= */
 
 document.addEventListener('DOMContentLoaded', function() {
-  
+
+  // ================= HEADER SCROLL GLASSMORPHISM =================
+  const header = document.querySelector(".site-header");
+  if (header) {
+    window.addEventListener("scroll", function() {
+      if (window.scrollY > 50) header.classList.add("scrolled");
+      else header.classList.remove("scrolled");
+    });
+  }
+
   // ================= MOBILE MENU TOGGLE =================
   const menuToggle = document.querySelector('.menu-toggle');
   const siteNav = document.querySelector('.site-nav');
@@ -21,6 +30,9 @@ document.addEventListener('DOMContentLoaded', function() {
       
       this.classList.toggle('active');
       siteNav.classList.toggle('active');
+      
+      // Force dark text when menu is open
+      if (header) header.classList.add("scrolled");
       
       // Update accessibility attribute for screen readers
       const isExpanded = this.classList.contains('active');
