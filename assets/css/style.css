@@ -366,9 +366,12 @@ p { font-weight: 300; opacity: 0.9; }
 .trace-line.right { border-left: 2px solid var(--accent); margin-left: -2px; }
 
 /* ================= 10. PREMIUM FOOTER ================= */
-footer {
+footer#footer {
   background: #111; color: #888;
   padding: 100px 5% 40px; margin-top: 100px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .footer-grid {
@@ -376,8 +379,34 @@ footer {
   gap: 60px; max-width: 1600px; margin: 0 auto;
 }
 
-.footer-brand { color: #fff; font-size: 2rem; margin-bottom: 20px; }
-.footer-col-main p { max-width: 300px; line-height: 1.6; }
+.footer-brand {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0 0 20px 0;
+  line-height: 1.2;
+}
+.footer-col-main p {
+  max-width: 300px;
+  line-height: 1.6;
+  margin: 0 0 15px 0;
+  font-size: 1rem;
+}
+
+/* Phone-number grid inside footer-col-main — make it stable across pages */
+.footer-col-main .footer-phones,
+.footer-col-main > div[style*="grid-template-columns"] {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 14px !important;
+  margin-top: 12px !important;
+}
+.footer-col-main .footer-phones a,
+.footer-col-main > div[style*="grid-template-columns"] a {
+  margin-bottom: 0 !important;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
 
 .footer-grid h4 {
   color: #fff; font-size: 0.85rem; text-transform: uppercase;
@@ -428,6 +457,7 @@ footer {
   .section-heading p { font-size: 1.15rem; }
   
   /* --- PREMIUM MOBILE FOOTER --- */
+  footer#footer { padding: 70px 5% 30px; margin-top: 60px; }
   .footer-grid { 
     grid-template-columns: 1fr 1fr; 
     gap: 40px 20px; 
@@ -435,7 +465,8 @@ footer {
   }
   
   .footer-col-main { grid-column: 1 / -1; }
-  .footer-col-main p { max-width: 100%; font-size: 1.1rem; }
+  .footer-brand { font-size: 1.7rem; margin-bottom: 15px; }
+  .footer-col-main p { max-width: 100%; font-size: 1rem; }
 
   .footer-grid > div:nth-child(4) {
     grid-column: 1 / -1;
@@ -497,4 +528,38 @@ footer {
   .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
   .menu-toggle.active span:nth-child(2) { opacity: 0; }
   .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
+}
+
+/* ===== SMALL PHONE FOOTER (≤480px) — keep consistent across every page ===== */
+@media (max-width: 480px) {
+  footer#footer { padding: 50px 20px 25px; margin-top: 50px; }
+  .footer-grid { gap: 30px 15px; }
+  .footer-brand { font-size: 1.5rem; margin-bottom: 12px; }
+  .footer-col-main p { font-size: 0.95rem; line-height: 1.55; }
+  .footer-col-main > a[href^="mailto:"] {
+    font-size: 0.95rem;
+    word-break: break-all;
+  }
+  .footer-col-main .footer-phones,
+  .footer-col-main > div[style*="grid-template-columns"] {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 6px 10px !important;
+  }
+  .footer-col-main .footer-phones a,
+  .footer-col-main > div[style*="grid-template-columns"] a {
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+  .footer-grid h4 { font-size: 0.78rem; margin-bottom: 18px; letter-spacing: 1.5px; }
+  .footer-grid a { font-size: 0.92rem; margin-bottom: 10px; }
+  .footer-bottom { font-size: 0.8rem; padding-top: 15px; }
+  .footer-bottom p { margin: 0; }
+}
+
+/* ===== EXTRA-SMALL PHONE FOOTER (≤360px) — prevent phone-grid overflow ===== */
+@media (max-width: 360px) {
+  .footer-col-main .footer-phones,
+  .footer-col-main > div[style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+  }
 }

@@ -4,72 +4,112 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-
 <url>
   <loc>https://www.studio4core.com/</loc>
-  <lastmod>2026-04-19</lastmod>
+  <lastmod>2026-05-30</lastmod>
   <changefreq>weekly</changefreq>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://www.studio4core.com/assets/projects/</loc>
-  <lastmod>2026-04-19</lastmod>
+  <lastmod>2026-05-30</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.90</priority>
 </url>
 <url>
   <loc>https://www.studio4core.com/assets/contact/</loc>
-  <lastmod>2026-04-19</lastmod>
+  <lastmod>2026-05-30</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.studio4core.com/AboutUs/</loc>
-  <lastmod>2026-04-19</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.studio4core.com/AboutUs/team/</loc>
-  <lastmod>2026-04-19</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.70</priority>
 </url>
 <url>
   <loc>https://www.studio4core.com/News/</loc>
-  <lastmod>2026-04-19</lastmod>
+  <lastmod>2026-05-30</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.studio4core.com/assets/projects/Architecture/</loc>
-  <lastmod>2026-04-19</lastmod>
+  <lastmod>2026-05-30</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.85</priority>
 </url>
 <url>
   <loc>https://www.studio4core.com/assets/projects/Architecture/?filter=Architecture</loc>
-  <lastmod>2026-04-19</lastmod>
+  <lastmod>2026-05-30</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.70</priority>
 </url>
 <url>
   <loc>https://www.studio4core.com/assets/projects/Architecture/?filter=Interior_Design</loc>
-  <lastmod>2026-04-19</lastmod>
+  <lastmod>2026-05-30</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.70</priority>
 </url>
 <url>
   <loc>https://www.studio4core.com/assets/projects/Architecture/?filter=Landscape</loc>
-  <lastmod>2026-04-19</lastmod>
+  <lastmod>2026-05-30</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.70</priority>
 </url>
 <url>
   <loc>https://www.studio4core.com/assets/projects/Architecture/?filter=Urban_Design</loc>
-  <lastmod>2026-04-19</lastmod>
+  <lastmod>2026-05-30</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.70</priority>
 </url>
-
+<url>
+  <loc>https://www.studio4core.com/assets/projects/Architecture/projects/?project=Mulshi%20Farm%20House</loc>
+  <lastmod>2026-05-30</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.studio4core.com/assets/projects/Architecture/projects/?project=Mr.Rohit's%20Residence</loc>
+  <lastmod>2026-05-30</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.studio4core.com/assets/projects/Architecture/projects/?project=Mr.Patel's%20House</loc>
+  <lastmod>2026-05-30</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.studio4core.com/assets/projects/Architecture/projects/?project=Oasis%20English%20School</loc>
+  <lastmod>2026-05-30</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.studio4core.com/assets/projects/Architecture/projects/?project=Bamboo%20Villa</loc>
+  <lastmod>2026-05-30</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.studio4core.com/assets/projects/Architecture/projects/?project=Girital%20Lake%20development</loc>
+  <lastmod>2026-05-30</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.studio4core.com/assets/projects/Architecture/projects/?project=City%20Park</loc>
+  <lastmod>2026-05-30</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.studio4core.com/assets/projects/Architecture/projects/?project=Bamboo%20Pavilion</loc>
+  <lastmod>2026-05-30</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.studio4core.com/assets/projects/Architecture/projects/?project=VS4%20India%20Biomed%20Pvt.%20Ltd.</loc>
+  <lastmod>2026-05-30</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
 </urlset>

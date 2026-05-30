@@ -2,15 +2,61 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Project Details | Studio4Core</title>
-<meta name="description" content="View detailed project information from Studio4Core's architecture and design portfolio.">
-<meta name="robots" content="index, follow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<!-- Dynamic SEO: Set title/meta from URL param before page renders -->
+<script>
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  var project = params.get('project');
+  if (project) {
+    var name = decodeURIComponent(project).replace(/%20/g, ' ');
+    document.title = name + ' | Studio4Core - Architecture & Design Portfolio';
+    
+    var desc = document.createElement('meta');
+    desc.name = 'description';
+    desc.content = name + ' - View project details, images, and design approach by Studio4Core, a multidisciplinary architecture and design studio in India.';
+    document.head.appendChild(desc);
+
+    var ogTitle = document.createElement('meta');
+    ogTitle.setAttribute('property', 'og:title');
+    ogTitle.content = name + ' | Studio4Core';
+    document.head.appendChild(ogTitle);
+
+    var ogDesc = document.createElement('meta');
+    ogDesc.setAttribute('property', 'og:description');
+    ogDesc.content = name + ' - Architecture & Design project by Studio4Core.';
+    document.head.appendChild(ogDesc);
+
+    var ogUrl = document.createElement('meta');
+    ogUrl.setAttribute('property', 'og:url');
+    ogUrl.content = window.location.href;
+    document.head.appendChild(ogUrl);
+
+    var canonical = document.createElement('link');
+    canonical.rel = 'canonical';
+    canonical.href = window.location.href;
+    document.head.appendChild(canonical);
+
+    // Point Google to the static SEO page via a link tag
+    var seoPage = document.createElement('link');
+    seoPage.rel = 'alternate';
+    seoPage.href = 'seo-' + encodeURIComponent(project) + '.html';
+    document.head.appendChild(seoPage);
+  } else {
+    document.title = 'Project Details | Studio4Core';
+    var descFallback = document.createElement('meta');
+    descFallback.name = 'description';
+    descFallback.content = 'View detailed project information from Studio4Core architecture and design portfolio.';
+    document.head.appendChild(descFallback);
+  }
+})();
+</script>
 
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Studio4Core">
 <meta property="og:image" content="https://www.studio4core.com/assets/images/logo.jpg">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="icon" type="image/png" href="../../../../assets/images/logo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -100,6 +146,55 @@
 }
 
   /* =========================================
+     PROJECT HEADER (consistent layout)
+     ========================================= */
+  .project-header {
+    padding-top: 50px;
+    margin-bottom: 40px;
+  }
+  .project-breadcrumb {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 15px;
+    word-wrap: break-word;
+  }
+  .project-breadcrumb a {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .project-breadcrumb a:hover { color: #000; }
+  .project-h1.component-title {
+    margin: 0 0 12px 0 !important;
+    font-size: clamp(1.6rem, 4.2vw, 3rem) !important;
+    line-height: 1.15 !important;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+  }
+  .project-subtitle {
+    font-size: 1rem;
+    color: #555;
+    margin: 0;
+    line-height: 1.5;
+  }
+  .project-subtitle a {
+    color: #000;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+  }
+  @media (max-width: 768px) {
+    .project-header { padding-top: 30px; margin-bottom: 25px; }
+    .project-h1.component-title { font-size: clamp(1.4rem, 6vw, 2.2rem) !important; }
+    .project-subtitle { font-size: 0.9rem; }
+  }
+  @media (max-width: 480px) {
+    .project-h1.component-title { font-size: clamp(1.3rem, 7vw, 1.9rem) !important; }
+    .project-subtitle { font-size: 0.85rem; }
+  }
+
+  /* =========================================
      LIGHTBOX NAVIGATION STYLES
      ========================================= */
   .lightbox-nav {
@@ -166,7 +261,7 @@
           <h3 class="footer-brand">Studio4Core</h3>
           <p>Global infrastructure built for modern applications and distributed teams.</p>
           <a href="mailto:connect.studio4core@gmail.com" style="margin-top: 20px;">connect.studio4core@gmail.com</a>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
+                    <div class="footer-phones" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
 <a href="https://wa.me/918805513821?text=Hi,%20I%20want%20to%20connect.">+91 8805513821</a>
            <a href="https://wa.me/917709315430?text=Hi,%20I%20want%20to%20connect.">+91 7709315430</a>
             <a href="https://wa.me/918007605291?text=Hi,%20I%20want%20to%20connect.">+91 8007605291</a>
@@ -184,7 +279,6 @@
         
         <div>
           <h4>Company</h4>
-          <a href="../../../../AboutUs/">About</a>
           <a href="../../../../News/">News</a>
           <a href="../../../../assets/contact/">Contact us</a>
         </div>
@@ -350,6 +444,12 @@ function processVideo(url) {
 function renderPage(p) {
     const container = document.getElementById('dynamic-content');
     
+    // Normalize data
+    var locParts = (p.location || '').split(',').map(function(s){return s.trim();}).filter(Boolean);
+    var city = locParts[0] || '';
+    var fullLoc = locParts.join(', ');
+    var cleanCategory = (p.category || 'Architecture').replace(/_/g, ' ').trim();
+    
     // Process Media
     const heroImg = processImg(p.heroImage);
     const descImg = processImg(p.descImage);
@@ -393,18 +493,30 @@ function renderPage(p) {
     const galleryHTML = p.galleryRaw.split(',')
         .map(u => u.trim())
         .filter(u => u.length > 5)
-        .map(url => `<img src="${processImg(url)}" alt="Gallery Image">`)
+        .map((url, i) => {
+            const cityForAlt = (p.location || '').split(',')[0].trim();
+            const altText = `${p.title} ${(p.category || 'Architecture').replace(/_/g, ' ')} project${cityForAlt ? ' in ' + cityForAlt : ''} - photo ${i + 1}`;
+            return `<img src="${processImg(url)}" alt="${altText}" loading="lazy">`;
+        })
         .join('');
 
     container.innerHTML = `
-      <h1 class="component-title component-head" style = "margin-top:75px" >${p.title}</h1>
+      <div class="project-header">
+        <nav aria-label="breadcrumb" class="project-breadcrumb">
+          <a href="../../../../">Home</a> &rsaquo;
+          <a href="../">Projects</a> &rsaquo;
+          <span>${p.title}</span>
+        </nav>
+        <h1 class="component-title component-head project-h1">${p.title}${city ? ', ' + city : ''}</h1>
+        <p class="project-subtitle"><strong>${cleanCategory}</strong> project${fullLoc ? ' in <strong>' + fullLoc + '</strong>' : ''} &mdash; Designed by <a href="https://www.studio4core.com">Studio4Core</a></p>
+      </div>
 
       ${heroMediaHTML}
 
       <div class="component-menu">
         <div><p class="component-menu-title">Project Client</p><p>${p.client || 'N/A'}</p></div>
-        <div><p class="component-menu-title">Project Category</p><p>${p.category}</p></div>
-        <div><p class="component-menu-title">Location</p><p>${p.location || 'N/A'}</p></div>
+        <div><p class="component-menu-title">Project Category</p><p>${cleanCategory}</p></div>
+        <div><p class="component-menu-title">Location</p><p>${fullLoc || 'N/A'}</p></div>
         <div><p class="component-menu-title">Status</p><p>${p.status || 'Completed'}</p></div>
         <div><p class="component-menu-title">Area</p><p>${p.area || 'N/A'}</p></div>
       </div>
@@ -433,6 +545,107 @@ function renderPage(p) {
     `;
 
     setTimeout(initLightbox, 100);
+
+    // Update title with full location info now that data is loaded
+    document.title = fullLoc
+      ? p.title + ', ' + fullLoc + ' | ' + cleanCategory + ' by Studio4Core'
+      : p.title + ' | ' + cleanCategory + ' by Studio4Core';
+
+    // Update meta description with real content
+    var metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc && p.description) {
+      metaDesc.content = p.description.replace(/\s+/g, ' ').substring(0, 155);
+    }
+
+    // Inject Open Graph image alt + Twitter card tags
+    var galleryUrls = (p.galleryRaw || '').split(',').map(u => u.trim()).filter(u => u.length > 5).slice(0, 5).map(processImg);
+    var heroImgUrl = processImg(p.heroImage);
+
+    var ogImgAlt = document.createElement('meta');
+    ogImgAlt.setAttribute('property', 'og:image:alt');
+    ogImgAlt.content = p.title + ' - ' + cleanCategory + ' by Studio4Core';
+    document.head.appendChild(ogImgAlt);
+
+    var ogImg = document.createElement('meta');
+    ogImg.setAttribute('property', 'og:image');
+    ogImg.content = heroImgUrl;
+    document.head.appendChild(ogImg);
+
+    var ogLocale = document.createElement('meta');
+    ogLocale.setAttribute('property', 'og:locale');
+    ogLocale.content = 'en_IN';
+    document.head.appendChild(ogLocale);
+
+    var twCard = document.createElement('meta');
+    twCard.name = 'twitter:card';
+    twCard.content = 'summary_large_image';
+    document.head.appendChild(twCard);
+
+    var twTitle = document.createElement('meta');
+    twTitle.name = 'twitter:title';
+    twTitle.content = document.title;
+    document.head.appendChild(twTitle);
+
+    var twImg = document.createElement('meta');
+    twImg.name = 'twitter:image';
+    twImg.content = heroImgUrl;
+    document.head.appendChild(twImg);
+
+    var articleAuthor = document.createElement('meta');
+    articleAuthor.setAttribute('property', 'article:author');
+    articleAuthor.content = 'Studio4Core';
+    document.head.appendChild(articleAuthor);
+
+    // Inject CreativeWork structured data for SEO
+    var schema = document.createElement('script');
+    schema.type = 'application/ld+json';
+    schema.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": p.title,
+      "alternateName": city ? p.title + ' ' + city : p.title,
+      "description": p.description ? p.description.replace(/\s+/g, ' ').substring(0, 500) : '',
+      "image": [heroImgUrl].concat(galleryUrls),
+      "author": {
+        "@type": "Organization",
+        "name": "Studio4Core",
+        "url": "https://www.studio4core.com",
+        "logo": "https://www.studio4core.com/assets/images/logo.jpg",
+        "sameAs": ["https://www.instagram.com/studio4core/", "https://www.linkedin.com/in/studio-4core-6b2b043b5/"]
+      },
+      "creator": {
+        "@type": "Organization",
+        "name": "Studio4Core",
+        "url": "https://www.studio4core.com"
+      },
+      "locationCreated": {
+        "@type": "Place",
+        "name": fullLoc || 'India',
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": city,
+          "addressRegion": locParts[1] || '',
+          "addressCountry": "IN"
+        }
+      },
+      "genre": cleanCategory,
+      "url": window.location.href
+    });
+    document.head.appendChild(schema);
+
+    // Inject BreadcrumbList structured data
+    var breadcrumb = document.createElement('script');
+    breadcrumb.type = 'application/ld+json';
+    breadcrumb.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.studio4core.com/"},
+        {"@type": "ListItem", "position": 2, "name": "Projects", "item": "https://www.studio4core.com/assets/projects/Architecture/"},
+        {"@type": "ListItem", "position": 3, "name": p.title, "item": window.location.href}
+      ]
+    });
+    document.head.appendChild(breadcrumb);
 }
 // ==========================================
 // 6. LIGHTBOX LOGIC

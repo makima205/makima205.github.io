@@ -235,14 +235,8 @@ a {
 
 /* 3. Tablet Landscape (max 1024px) */
 @media(max-width:1024px) {
-  /* Footer Grid becomes 2x2 */
-  .footer-grid { 
-    grid-template-columns: 1fr 1fr; 
-    gap: 40px; 
-  }
-  
-  .location { gap: 10%; }
-  
+  /* Footer grid is handled by style.css — do not override here */
+
   /* Project Layout Adjustments */
   .img-text {
     gap: 40px;
@@ -321,31 +315,9 @@ a {
     gap: 30px;
   }
 
-  /* --- D. FOOTER STACKING (From style.css) --- */
-  .footer-grid { 
-    grid-template-columns: 1fr; 
-    gap: 40px; 
-    text-align: center; 
-  }
-  
-  .social { 
-    justify-content: center; 
-    gap: 20px; 
-  }
-  
-  /* Icon Size is handled by the !important rule above, 
-     but style.css had specific logic here too */
-  .social a img { 
-    width: 28px !important; 
-    height: 28px !important; 
-  }
-  
-  .location { 
-    flex-direction: column; 
-    gap: 20px; 
-  }
-  
-  .location a { font-size: 18px; }
+  /* --- D. FOOTER ---
+     Footer styling for mobile is fully handled by style.css to keep
+     it consistent across every page. Do NOT add footer rules here. */
 }
 
 /* 5. Small Mobile (max 480px) */
